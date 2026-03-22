@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AccuGPS: Fleet GPS Tracking Starting at $129</title>
+
+  <!-- Font: Figtree (closest Google Fonts match to Wix Madefor Text) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* ============================================
+       BRAND TOKENS
+    ============================================ */
+    :root {
+      --dark:        #122023;
+      --forest:      #2E443C;
+      --deep:        #162C23;
+      --accent:      #E6FF83;
+      --teal-light:  #CFDDDF;
+      --sage:        #A9BB96;
+      --green-light: #E8F8D7;
+      --white:       #FFFFFF;
+      --off-white:   #F0F0F0;
+      --mid-gray:    #C2C2C2;
+      --body-text:   #3C3C3C;
+      --muted:       #666666;
+      --muted-dark:  rgba(255,255,255,0.55);
+
+      --font-display: 'Figtree', sans-serif;
+      --font-body:    'Figtree', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--body-text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Nav hidden. Wix Studio provides site navigation. */
+
+    /* ============================================
+       HERO
+    ============================================ */
+    .hero {
+      min-height: 820px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 80px 80px 80px;
+      position: relative;
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    /* GPS dot-grid background */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(230,255,131,0.12) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+    /* Fade dot grid at edges */
+    .hero-grid::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 70% at 30% 50%, transparent 40%, var(--dark) 100%),
+        radial-gradient(ellipse 40% 100% at 0% 50%, var(--dark) 0%, transparent 60%);
+    }
+
+    /* Subtle teal glow bottom-left */
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(46,68,60,0.6) 0%, transparent 70%);
+      bottom: -200px; left: -100px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 32px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--sage);
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 5.5vw, 80px);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .hero-headline .line-accent {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: clamp(15px, 1.6vw, 18px);
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--muted-dark);
+      max-width: 480px;
+      margin-bottom: 48px;
+    }
+    .hero-sub strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 52px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--dark);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 16px 36px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+
+    .btn-ghost {
+      color: rgba(255,255,255,0.45);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 400;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--white); }
+    .btn-ghost svg { transition: transform 0.2s; }
+    .btn-ghost:hover svg { transform: translateX(3px); }
+
+    .hero-micro {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .hero-micro-item {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      padding-right: 16px;
+      margin-right: 16px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-micro-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+    /* GPS Ping visualization */
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 520px;
+    }
+
+    .ping-scene {
+      position: relative;
+      width: 320px;
+      height: 320px;
+    }
+
+    /* Radiating rings */
+    .ping-ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      border-radius: 50%;
+      border: 1px solid rgba(230,255,131,0.35);
+      transform: translate(-50%, -50%);
+      animation: pingExpand 3.5s ease-out infinite;
+    }
+    .ping-ring:nth-child(1) { animation-delay: 0s; }
+    .ping-ring:nth-child(2) { animation-delay: 1.15s; }
+    .ping-ring:nth-child(3) { animation-delay: 2.3s; }
+
+    @keyframes pingExpand {
+      0%   { width: 24px; height: 24px; opacity: 0.9; }
+      100% { width: 320px; height: 320px; opacity: 0; }
+    }
+
+    /* Center dot */
+    .ping-dot {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px; height: 14px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(230,255,131,0.2), 0 0 24px rgba(230,255,131,0.5);
+      z-index: 2;
+    }
+    .ping-dot::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px; height: 6px;
+      background: var(--dark);
+      border-radius: 50%;
+    }
+
+    /* Location pin tail */
+    .ping-pin-tail {
+      position: absolute;
+      top: calc(50% + 7px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 20px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      z-index: 1;
+    }
+
+    /* Coordinate labels */
+    .ping-coord {
+      position: absolute;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: rgba(230,255,131,0.4);
+      white-space: nowrap;
+    }
+    .ping-coord.coord-lat { top: 32%; right: -10%; }
+    .ping-coord.coord-lng { bottom: 28%; left: -12%; }
+    .ping-coord.coord-speed { top: 18%; left: 5%; }
+
+    /* Mini vehicle dots scattered */
+    .vehicle-dot {
+      position: absolute;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--teal-light);
+      opacity: 0.6;
+    }
+    .vehicle-dot::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      border: 1px solid rgba(207,221,223,0.3);
+    }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 80px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 2;
+    }
+    .scroll-line {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--accent);
+      animation: scanLine 2.4s ease-in-out infinite;
+    }
+    @keyframes scanLine { 0% { left: -100%; } 100% { left: 100%; } }
+
+    .scroll-label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ============================================
+       TRUST BAR
+    ============================================ */
+    .trust-bar {
+      background: var(--forest);
+      padding: 0 80px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .trust-item {
+      padding: 44px 40px 44px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
+    .trust-item:first-child { padding-left: 0; }
+    .trust-item:last-child { border-right: none; padding-left: 40px; }
+    .trust-item:not(:first-child):not(:last-child) { padding-left: 40px; }
+
+    .trust-label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+    .trust-value {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .trust-value .accent { color: var(--accent); }
+    .trust-desc {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.5;
+      max-width: 200px;
+    }
+
+    /* ============================================
+       PRODUCT CARDS
+    ============================================ */
+    .section-products {
+      background: var(--white);
+      padding: 112px 80px;
+    }
+
+    .section-header {
+      margin-bottom: 64px;
+    }
+    .section-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px; height: 2px;
+      background: var(--forest);
+      border-radius: 2px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 4vw, 54px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--dark);
+      max-width: 600px;
+    }
+    .section-title .accent { color: var(--forest); font-style: italic; }
+    .section-sub {
+      font-family: var(--font-body);
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 560px;
+      margin-top: 20px;
+    }
+
+    .product-category {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .product-category-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .product-category-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(0,0,0,0.08);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 56px;
+    }
+    .product-grid:last-child { margin-bottom: 0; }
+
+    .camera-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .product-card {
+      background: var(--off-white);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(18,32,35,0.12);
+    }
+
+    .product-card-img {
+      background: var(--green-light);
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card-img img {
+      max-height: 160px;
+      max-width: 80%;
+      object-fit: contain;
+    }
+.product-card-body {
+      padding: 28px;
+    }
+    .product-card-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .product-card-desc {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .product-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .product-price {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .product-price-main {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.03em;
+    }
+    .product-price-note {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .product-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--forest);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: gap 0.2s;
+    }
+    .product-link:hover { gap: 10px; }
+
+    /* ============================================
+       THE MATH SECTION
+    ============================================ */
+    .section-math {
+      background: var(--green-light);
+      padding: 112px 80px;
+      border-top: 1px solid rgba(46,68,60,0.1);
+      border-bottom: 1px solid rgba(46,68,60,0.1);
+    }
+
+    .math-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .math-left .section-title { max-width: 480px; }
+
+    .math-proof {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .math-row {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid rgba(46,68,60,0.1);
+      transition: transform 0.2s;
+    }
+    .math-row:hover { transform: translateX(4px); }
+    .math-row.highlighted {
+      background: var(--dark);
+      border-color: var(--dark);
+    }
+
+    .math-row-label {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--body-text);
+    }
+    .math-row.highlighted .math-row-label { color: var(--muted-dark); }
+
+    .math-row-value {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+    }
+    .math-row.highlighted .math-row-value { color: var(--accent); }
+    .math-row-value.strikethrough {
+      text-decoration: line-through;
+      color: var(--mid-gray);
+      font-size: 18px;
+    }
+
+    .math-note {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+      padding-left: 4px;
+    }
+
+    .math-tagline {
+      margin-top: 40px;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+    }
+    .math-tagline .accent { color: var(--forest); font-style: italic; }
+
+    /* ============================================
+       PLATFORM PREVIEW
+    ============================================ */
+    .section-platform {
+      background: var(--dark);
+      padding: 112px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle grid on dark */
+    .section-platform::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(230,255,131,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .platform-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .platform-left .section-eyebrow { color: var(--sage); }
+    .platform-left .section-eyebrow::before { background: var(--sage); }
+    .platform-left .section-title { color: var(--white); max-width: 460px; }
+    .platform-left .section-title .accent { color: var(--accent); font-style: italic; }
+    .platform-left .section-sub { color: var(--muted-dark); }
+
+    .feature-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 40px;
+    }
+    .feature-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.7);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 100px;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .feature-pill:hover {
+      background: rgba(230,255,131,0.08);
+      border-color: rgba(230,255,131,0.2);
+      color: var(--accent);
+    }
+
+    .platform-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .btn-accent-outline {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(230,255,131,0.4);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 13px 28px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-accent-outline:hover {
+      background: rgba(230,255,131,0.08);
+      border-color: var(--accent);
+    }
+
+    .platform-right {
+      position: relative;
+    }
+
+    .platform-screen {
+      background: var(--forest);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+    }
+    .platform-screen-header {
+      background: rgba(0,0,0,0.3);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: rgba(190,30,45,0.6); }
+    .dot-y { background: rgba(255,195,0,0.6); }
+    .dot-g { background: rgba(39,201,63,0.6); }
+    .screen-url {
+      margin-left: 8px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.02em;
+    }
+
+    .platform-screen-body {
+      padding: 28px;
+    }
+
+    /* Fake map area */
+    .fake-map {
+      background: var(--deep);
+      border-radius: 10px;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .fake-map-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .fake-map-ping {
+      position: absolute;
+      top: 45%; left: 40%;
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(230,255,131,0.6);
+    }
+    .fake-map-ping::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(230,255,131,0.3);
+      animation: miniPing 2s ease-out infinite;
+    }
+    @keyframes miniPing {
+      0% { width: 10px; height: 10px; opacity: 0.8; }
+      100% { width: 60px; height: 60px; opacity: 0; }
+    }
+    .fake-map-ping2 {
+      position: absolute;
+      top: 30%; left: 60%;
+      width: 8px; height: 8px;
+      background: var(--sage);
+      border-radius: 50%;
+    }
+    .fake-map-ping3 {
+      position: absolute;
+      top: 65%; left: 55%;
+      width: 8px; height: 8px;
+      background: var(--teal-light);
+      border-radius: 50%;
+    }
+
+    /* Fake stat rows */
+    .fake-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+    .fake-stat {
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .fake-stat-label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 6px;
+    }
+    .fake-stat-value {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .fake-stat-value.accent { color: var(--accent); }
+
+    /* ============================================
+       INDUSTRY STRIP
+    ============================================ */
+    .section-industries {
+      background: var(--teal-light);
+      padding: 96px 80px;
+    }
+
+    .industries-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+    }
+    .industries-header .section-title { color: var(--dark); max-width: 440px; }
+    .industries-link {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--forest);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding-bottom: 8px;
+      transition: gap 0.2s;
+      white-space: nowrap;
+    }
+    .industries-link:hover { gap: 10px; }
+
+    .industry-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .industry-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      border: 1px solid rgba(46,68,60,0.1);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .industry-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(18,32,35,0.1);
+      background: var(--dark);
+    }
+    .industry-card:hover .industry-name { color: var(--white); }
+    .industry-card:hover .industry-icon { background: rgba(230,255,131,0.1); color: var(--accent); }
+
+    .industry-icon {
+      width: 44px; height: 44px;
+      background: var(--green-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .industry-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.01em;
+      transition: color 0.2s;
+    }
+
+    /* ============================================
+       ROI CALCULATOR
+    ============================================ */
+    .section-roi {
+      background: var(--white);
+      padding: 112px 80px;
+    }
+
+    .roi-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .roi-calc {
+      background: var(--off-white);
+      border-radius: 20px;
+      padding: 40px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .calc-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 32px;
+      letter-spacing: -0.02em;
+    }
+
+    .calc-field {
+      margin-bottom: 24px;
+    }
+    .calc-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--body-text);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .calc-input {
+      width: 100%;
+      background: var(--white);
+      border: 1px solid var(--mid-gray);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--dark);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .calc-input:focus {
+      border-color: var(--forest);
+      box-shadow: 0 0 0 3px rgba(46,68,60,0.1);
+    }
+
+    .calc-result {
+      background: var(--dark);
+      border-radius: 14px;
+      padding: 28px;
+      margin-top: 8px;
+    }
+    .calc-result-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 10px;
+    }
+    .calc-result-value {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .calc-result-note {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--muted-dark);
+    }
+
+    /* ============================================
+       TESTIMONIALS
+    ============================================ */
+    .section-testimonials {
+      background: var(--off-white);
+      padding: 96px 80px;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 4px;
+      color: var(--forest);
+      font-size: 14px;
+    }
+
+    .testimonial-quote {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--body-text);
+      flex: 1;
+    }
+    .testimonial-quote::before { content: '\201C'; }
+    .testimonial-quote::after  { content: '\201D'; }
+
+    .testimonial-author {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding-top: 16px;
+      border-top: 1px solid var(--off-white);
+    }
+    .testimonial-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .testimonial-role {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Case study callout */
+    .case-callout {
+      background: var(--dark);
+      border-radius: 18px;
+      padding: 40px 48px;
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .case-stat-group {
+      display: flex;
+      gap: 64px;
+    }
+    .case-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .case-stat-number {
+      font-family: var(--font-display);
+      font-size: 44px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .case-stat-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--muted-dark);
+    }
+    .case-story {
+      max-width: 320px;
+    }
+    .case-story p {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.55);
+    }
+    .case-story p strong { color: var(--white); font-weight: 500; }
+
+    /* Blog section removed. Wix Blog handles this. */
+
+    /* ============================================
+       FOOTER CTA BANNER
+    ============================================ */
+    .section-cta-banner {
+      background: var(--dark);
+      padding: 96px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(230,255,131,0.06) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+    .cta-banner-content {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .cta-banner-content .section-eyebrow {
+      justify-content: center;
+      color: var(--sage);
+    }
+    .cta-banner-content .section-eyebrow::before { background: var(--sage); }
+    .cta-banner-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 58px);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1.06;
+      margin: 16px 0 24px;
+    }
+    .cta-banner-title .accent { color: var(--accent); font-style: italic; }
+    .cta-banner-sub {
+      font-family: var(--font-body);
+      font-size: 17px;
+      color: var(--muted-dark);
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .cta-banner-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    .btn-primary-dark {
+      background: var(--accent);
+      color: var(--dark);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 16px 38px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary-dark:hover { opacity: 0.88; transform: translateY(-2px); }
+    .btn-ghost-dark {
+      color: rgba(255,255,255,0.45);
+      font-family: var(--font-body);
+      font-size: 15px;
+      background: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 15px 32px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-ghost-dark:hover { color: var(--white); border-color: rgba(255,255,255,0.3); }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      background: var(--deep);
+      padding: 64px 80px 40px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-brand img { height: 28px; width: auto; margin-bottom: 16px; }
+    .footer-tagline {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.65;
+      margin-bottom: 24px;
+      max-width: 240px;
+    }
+    .footer-contact-line {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 6px;
+    }
+    .footer-contact-line a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-contact-line a:hover { color: var(--white); }
+
+    .footer-col-title {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-links a {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 32px;
+    }
+    .footer-copy {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+    }
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+    .footer-social a {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 14px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .footer-social a:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 48px 24px 60px; min-height: auto; }
+      .hero-visual { display: none; }
+      .hero-content { max-width: 100%; }
+
+      .trust-bar { grid-template-columns: 1fr 1fr; padding: 0 24px; }
+      .trust-item { padding: 32px 20px 32px 0; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .trust-item:last-child { border-bottom: none; }
+      .trust-item:not(:first-child):not(:last-child) { padding-left: 0; }
+      .trust-item:last-child { padding-left: 0; }
+
+      .section-products,
+      .section-math,
+      .section-platform,
+      .section-industries,
+      .section-roi,
+      .section-testimonials,
+      .section-cta-banner { padding: 72px 24px; }
+
+      .product-grid { grid-template-columns: 1fr; }
+      .camera-grid { grid-template-columns: 1fr; }
+      .math-layout { grid-template-columns: 1fr; gap: 40px; }
+      .platform-layout { grid-template-columns: 1fr; gap: 48px; }
+      .industry-grid { grid-template-columns: repeat(2, 1fr); }
+      .roi-layout { grid-template-columns: 1fr; gap: 48px; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+
+      .case-callout { flex-direction: column; }
+      .case-stat-group { gap: 32px; }
+
+      .industries-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+      .cta-banner-buttons { flex-direction: column; }
+
+      footer { padding: 48px 24px 32px; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+    }
+
+    @media (max-width: 768px) {
+      .trust-bar { grid-template-columns: 1fr; }
+      .industry-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr; }
+      .case-stat-group { flex-direction: column; gap: 24px; }
+      .hero-cta-row { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* No nav. Wix Studio header is used instead. */
+  </style>
+</head>
+<body>
+
+
+
+  <!-- ================================================
+       HERO
+  ================================================ -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-content" id="hero-content">
+      <div class="hero-eyebrow">Fleet GPS Tracking, Syracuse, NY</div>
+
+      <h1 class="hero-headline">
+        Know Where<br>
+        Every Vehicle Is.<br>
+        <span class="line-accent">Right Now.</span>
+      </h1>
+
+      <p class="hero-sub">
+        Start tracking your fleet for <strong>$129</strong>. Includes hardware,
+        activation, and your first year of service. No contracts, no wiring,
+        no technical headaches. Real support from real people.
+      </p>
+
+      <div class="hero-cta-row">
+        <button class="btn-primary" onclick="navigateTo('/gps-trackers')">
+          Shop GPS Trackers
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button class="btn-ghost" onclick="navigateTo('/fleet-management-software')">
+          See How It Works
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        </button>
+      </div>
+
+      <div class="hero-micro">
+        <span class="hero-micro-item">4G LTE nationwide</span>
+        <span class="hero-micro-item">2-min OBD II install</span>
+        <span class="hero-micro-item">No contracts</span>
+        <span class="hero-micro-item">(888) 519-9128</span>
+      </div>
+    </div>
+
+    <!-- GPS Ping Visualization -->
+    <div class="hero-visual">
+      <div class="ping-scene" id="ping-scene">
+        <div class="ping-ring"></div>
+        <div class="ping-ring"></div>
+        <div class="ping-ring"></div>
+        <div class="ping-dot"></div>
+        <div class="ping-pin-tail"></div>
+
+        <!-- Scattered vehicle dots -->
+        <div class="vehicle-dot" style="top:18%;left:22%;"></div>
+        <div class="vehicle-dot" style="top:72%;left:68%;"></div>
+        <div class="vehicle-dot" style="top:35%;left:75%;"></div>
+        <div class="vehicle-dot" style="top:80%;left:25%;"></div>
+        <div class="vehicle-dot" style="top:12%;left:60%;"></div>
+
+        <!-- Coordinate labels -->
+        <span class="ping-coord coord-lat">43.0481° N</span>
+        <span class="ping-coord coord-lng">76.1474° W</span>
+        <span class="ping-coord coord-speed">↑ 42 mph</span>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span class="scroll-label">Scroll</span>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       TRUST BAR
+  ================================================ -->
+  <section class="trust-bar" id="trust-bar">
+    <div class="trust-item">
+      <div class="trust-label">Founded</div>
+      <div class="trust-value">2012</div>
+      <div class="trust-desc">Built by former BlackBerry engineers with a track record in precision tech</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-label">All-in price</div>
+      <div class="trust-value"><span class="accent">$129</span></div>
+      <div class="trust-desc">Hardware, activation, and first year of service. No surprise fees.</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-label">Network</div>
+      <div class="trust-value">4G <span class="accent">LTE</span></div>
+      <div class="trust-desc">Nationwide US coverage. Faster and more reliable than older 3G trackers.</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-label">Support</div>
+      <div class="trust-value" style="font-size:26px; line-height:1.25;">(888)<br>519-9128</div>
+      <div class="trust-desc">Real humans answer. No ticket system, no waiting in a queue.</div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       PRODUCTS
+  ================================================ -->
+  <section class="section-products" id="products">
+    <div class="section-header">
+      <div class="section-eyebrow">Fleet Solutions</div>
+      <h2 class="section-title">Complete fleet<br>visibility. <span class="accent">Inside and out.</span></h2>
+      <p class="section-sub">GPS trackers tell you where your vehicles are. Fleet cameras show you what's happening on the road. Together, they give you the full picture.</p>
+    </div>
+
+    <!-- GPS TRACKERS -->
+    <div class="product-category">
+      <span class="product-category-label">GPS Trackers</span>
+      <div class="product-category-line"></div>
+    </div>
+
+    <div class="product-grid">
+      <!-- OBD II -->
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="./obd-device.png" alt="AccuGPS OBD II Smart Tracker">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">OBD II Smart Tracker</div>
+          <div class="product-card-desc">Plugs into your vehicle's OBD II port in under 2 minutes. No wiring, no installer, no downtime. Works on any vehicle made after 1996.</div>
+          <div class="product-card-footer">
+            <div class="product-price">
+              <div class="product-price-main">$129</div>
+              <div class="product-price-note">First year all-in</div>
+            </div>
+            <button class="product-link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Magnetic -->
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="./magnetic-asset_tracker.png" alt="AccuGPS Magnetic Asset Tracker">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">Magnetic Asset Tracker</div>
+          <div class="product-card-desc">No wiring. No tools. Attach to any metal surface in seconds. Track trailers, generators, heavy equipment, and anything that doesn't have a power port.</div>
+          <div class="product-card-footer">
+            <div class="product-price">
+              <div class="product-price-main">$129</div>
+              <div class="product-price-note">First year all-in</div>
+            </div>
+            <button class="product-link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4G LTE -->
+      <div class="product-card">
+        <div class="product-card-img" style="background: var(--teal-light);">
+          <img src="./4glte-device.png" alt="AccuGPS 4G LTE GPS Tracker" onerror="this.style.display='none'">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;">
+            <rect x="20" y="24" width="40" height="32" rx="5" fill="#2E443C" opacity="0.5"/>
+            <rect x="24" y="28" width="32" height="24" rx="3" fill="#122023"/>
+            <circle cx="40" cy="40" r="6" fill="#E6FF83"/>
+            <path d="M28 20 L40 12 L52 20" stroke="#A9BB96" stroke-width="1.5" fill="none" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">4G LTE GPS Tracker</div>
+          <div class="product-card-desc">Compact, plug-and-play tracking for vehicles and assets. Internal battery backup means it keeps reporting even when primary power is cut.</div>
+          <div class="product-card-footer">
+            <div class="product-price">
+              <div class="product-price-main">$129</div>
+              <div class="product-price-note">First year all-in</div>
+            </div>
+            <button class="product-link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLEET CAMERAS -->
+    <div class="product-category">
+      <span class="product-category-label">Fleet Cameras</span>
+      <div class="product-category-line"></div>
+    </div>
+
+    <div class="camera-grid">
+      <!-- All-In-One AI Camera -->
+      <div class="product-card">
+        <div class="product-card-img" style="background: var(--dark);">
+          <img src="./camera-roadfacing.png" alt="AccuGPS All-In-One AI Camera">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">All-In-One AI Camera</div>
+          <div class="product-card-desc">Dual 1080p lenses, front and driver-facing. AI detects distraction, fatigue, and unsafe behavior in real time. Livestreaming, cloud storage, and driver coaching alerts built in. One unit does it all.</div>
+          <div class="product-card-footer">
+            <div class="product-price">
+              <div class="product-price-main">$220</div>
+              <div class="product-price-note">+ $27/mo per vehicle</div>
+            </div>
+            <button class="product-link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MDVR -->
+      <div class="product-card">
+        <div class="product-card-img" style="background: var(--forest);">
+          <img src="./camera-multicam.png" alt="AccuGPS MDVR Multi-Camera Recorder">
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">MDVR Multi-Camera Recorder</div>
+          <div class="product-card-desc">Connect up to 4 HD cameras for full vehicle coverage. 1080p recording to onboard HDD or SSD (up to 2TB), 4G LTE live monitoring, GPS-stamped footage, and historic playback. Built for fleets that need complete incident documentation.</div>
+          <div class="product-card-footer">
+            <div class="product-price">
+              <div class="product-price-main">$199</div>
+              <div class="product-price-note">+ add-on cameras from $50</div>
+            </div>
+            <button class="product-link">
+              Learn More
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       THE MATH
+  ================================================ -->
+  <section class="section-math" id="math">
+    <div class="math-layout">
+      <div class="math-left">
+        <div class="section-eyebrow">Pricing Comparison</div>
+        <h2 class="section-title">Other companies<br>charge more.<br><span class="accent">A lot more.</span></h2>
+        <p class="section-sub" style="margin-top:20px;">Most GPS tracking companies charge per month, per vehicle, on top of a hardware fee. AccuGPS bundles everything so the first year costs less than what competitors charge in two months.</p>
+        <p class="math-tagline" style="margin-top:40px;">Same real-time tracking.<br><span class="accent">Half the price.</span></p>
+      </div>
+      <div class="math-right">
+        <div class="math-proof">
+          <div class="math-row">
+            <div class="math-row-label">Typical competitor (1 vehicle/year)</div>
+            <div class="math-row-value strikethrough">$300-720</div>
+          </div>
+          <div class="math-row highlighted">
+            <div class="math-row-label">AccuGPS, year one, all-in</div>
+            <div class="math-row-value">$129</div>
+          </div>
+          <div class="math-row highlighted" style="background: var(--forest);">
+            <div class="math-row-label">AccuGPS renewal (per year)</div>
+            <div class="math-row-value" style="color: var(--teal-light);">$99</div>
+          </div>
+          <div class="math-row">
+            <div class="math-row-label">5 vehicles over 3 years. Competitors.</div>
+            <div class="math-row-value strikethrough">$4,500-10,800</div>
+          </div>
+          <div class="math-row highlighted">
+            <div class="math-row-label">5 vehicles over 3 years. AccuGPS.</div>
+            <div class="math-row-value">$1,240</div>
+          </div>
+        </div>
+        <p class="math-note">Competitor range based on $25-60/month/vehicle industry average. AccuGPS: $129 year one + $99/year renewal per vehicle.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       PLATFORM PREVIEW
+  ================================================ -->
+  <section class="section-platform" id="platform">
+    <div class="platform-layout">
+      <div class="platform-left">
+        <div class="section-eyebrow">The Platform</div>
+        <h2 class="section-title">Everything you need<br>to run your <span class="accent">fleet.</span></h2>
+        <p class="section-sub">14 report types. 99+ alert options. Live tracking on iOS, Android, and web. From Drive Score to IFTA compliance. It's all there on day one.</p>
+
+        <div class="feature-pills">
+          <span class="feature-pill">Drive Score</span>
+          <span class="feature-pill">Geofencing</span>
+          <span class="feature-pill">IFTA Reporting</span>
+          <span class="feature-pill">Trip Replay</span>
+          <span class="feature-pill">DTC Codes</span>
+          <span class="feature-pill">99+ Alerts</span>
+          <span class="feature-pill">Fuel Reports</span>
+          <span class="feature-pill">Route Analysis</span>
+          <span class="feature-pill">Maintenance Alerts</span>
+          <span class="feature-pill">Shared Access</span>
+        </div>
+
+        <div class="platform-cta-row">
+          <button class="btn-primary" onclick="navigateTo('/fleet-management-software')">Explore the Platform</button>
+          <button class="btn-accent-outline" onclick="navigateTo('/fleet-management-software')">View All Features</button>
+        </div>
+      </div>
+
+      <div class="platform-right">
+        <div class="platform-screen">
+          <div class="platform-screen-header">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <span class="screen-url">i.accugps.com/map-view</span>
+          </div>
+          <div class="platform-screen-body">
+            <div class="fake-map">
+              <div class="fake-map-grid"></div>
+              <div class="fake-map-ping"></div>
+              <div class="fake-map-ping2"></div>
+              <div class="fake-map-ping3"></div>
+            </div>
+            <div class="fake-stats">
+              <div class="fake-stat">
+                <div class="fake-stat-label">Active</div>
+                <div class="fake-stat-value accent">12</div>
+              </div>
+              <div class="fake-stat">
+                <div class="fake-stat-label">Idle</div>
+                <div class="fake-stat-value">3</div>
+              </div>
+              <div class="fake-stat">
+                <div class="fake-stat-label">Drive Score</div>
+                <div class="fake-stat-value accent">94</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       INDUSTRIES
+  ================================================ -->
+  <section class="section-industries" id="industries">
+    <div class="industries-header">
+      <div>
+        <div class="section-eyebrow" style="color:var(--forest);">Who We Serve</div>
+        <h2 class="section-title">Built for the<br>businesses that<br>keep things moving.</h2>
+      </div>
+      <a href="#" class="industries-link" onclick="navigateTo('/gps-tracking-for-business'); return false;">
+        See all industries
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="industry-grid">
+      <div class="industry-card">
+        <div class="industry-icon">🏗️</div>
+        <div class="industry-name">Construction</div>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon">🔧</div>
+        <div class="industry-name">HVAC</div>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon">🌿</div>
+        <div class="industry-name">Landscaping</div>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon">📦</div>
+        <div class="industry-name">Delivery</div>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon">📋</div>
+        <div class="industry-name">Compliance</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       ROI CALCULATOR
+  ================================================ -->
+  <section class="section-roi" id="calculator">
+    <div class="roi-layout">
+      <div>
+        <div class="section-eyebrow">ROI Calculator</div>
+        <h2 class="section-title">See your savings<br>before you <span class="accent">buy.</span></h2>
+        <p class="section-sub">Enter your fleet size and monthly fuel spend. We'll show you how much GPS tracking typically saves, based on a 15% reduction in fuel waste from route optimization and idle time monitoring.</p>
+        <p class="section-sub" style="margin-top:16px;">One local service company using AccuGPS cut idle hours by 18% and recovered their full investment in 9 months.</p>
+      </div>
+
+      <div class="roi-calc">
+        <div class="calc-title">Estimate your annual savings</div>
+        <div class="calc-field">
+          <label class="calc-label" for="calc-vehicles">Number of vehicles</label>
+          <input class="calc-input" type="number" id="calc-vehicles" placeholder="5" min="1" max="500">
+        </div>
+        <div class="calc-field">
+          <label class="calc-label" for="calc-fuel">Monthly fuel spend per vehicle ($)</label>
+          <input class="calc-input" type="number" id="calc-fuel" placeholder="400" min="50">
+        </div>
+        <div class="calc-result">
+          <div class="calc-result-label">Estimated annual fuel savings</div>
+          <div class="calc-result-value" id="calc-output">$—</div>
+          <div class="calc-result-note">Based on 15% fuel waste reduction. Actual results vary.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       TESTIMONIALS + CASE STUDY
+  ================================================ -->
+  <section class="section-testimonials" id="testimonials">
+    <div class="section-eyebrow">What Customers Say</div>
+    <h2 class="section-title" style="max-width:520px;">Real fleets.<br>Real results.</h2>
+
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Setup took five minutes. I plugged it in, opened the app, and my truck was on the map. My guys know they're being tracked now, and the speeding has stopped completely.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-name">Mike T.</div>
+          <div class="testimonial-role">HVAC Company Owner, Syracuse, NY</div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">I put the magnetic tracker on a trailer we kept losing track of at job sites. Found it the first night it went missing. Paid for itself in one week.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-name">Dave R.</div>
+          <div class="testimonial-role">Construction, Central New York</div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">We tried another GPS company first. The software was a mess and support was email-only. AccuGPS picks up the phone. That alone makes it worth it.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-name">Sarah M.</div>
+          <div class="testimonial-role">Landscaping Business, Upstate NY</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-callout">
+      <div class="case-stat-group">
+        <div class="case-stat">
+          <div class="case-stat-number">18%</div>
+          <div class="case-stat-label">Idle time reduced</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-number">9 mo</div>
+          <div class="case-stat-label">Full ROI recovered</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-number">$0</div>
+          <div class="case-stat-label">Setup cost beyond $129</div>
+        </div>
+      </div>
+      <div class="case-story">
+        <p>A local service company with 8 vehicles cut idle hours by 18% in the first quarter using AccuGPS's Drive Score and idle time reports. <strong>They recovered their full investment in 9 months.</strong> No additional hardware. No monthly surprises.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- ================================================
+       CTA BANNER
+  ================================================ -->
+  <section class="section-cta-banner">
+    <div class="cta-banner-content">
+      <div class="section-eyebrow">Get Started</div>
+      <h2 class="cta-banner-title">Start tracking<br>for <span class="accent">$129.</span></h2>
+      <p class="cta-banner-sub">Hardware, activation, and your first year of service: all included. No contracts, no technical install, no waiting around. Plug in and go.</p>
+      <div class="cta-banner-buttons">
+        <button class="btn-primary-dark" onclick="navigateTo('/gps-trackers')">Shop GPS Trackers</button>
+        <button class="btn-ghost-dark">Call (888) 519-9128</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       FOOTER
+  ================================================ -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="AccuGPSLogo.svg" alt="AccuGPS">
+        <p class="footer-tagline">Fleet GPS tracking built for small businesses. Real-time tracking, driver insights, and local support. Starting at $129.</p>
+        <p class="footer-contact-line"><a href="tel:8885199128">(888) 519-9128</a></p>
+        <p class="footer-contact-line"><a href="mailto:info@accugps.com">info@accugps.com</a></p>
+        <p class="footer-contact-line">5727 E. Seneca Turnpike, Jamesville, NY 13078</p>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Products</div>
+        <div class="footer-links">
+          <a href="#" onclick="navigateTo('/obd-ii-gps-tracker'); return false;">OBD II Smart Tracker</a>
+          <a href="#" onclick="navigateTo('/magnetic-gps-tracker'); return false;">Magnetic Asset Tracker</a>
+          <a href="#" onclick="navigateTo('/4g-lte-gps-tracker'); return false;">4G LTE GPS Tracker</a>
+          <a href="#" onclick="navigateTo('/fleet-dash-cameras'); return false;">Fleet Cameras</a>
+          <a href="#" onclick="navigateTo('/gps-tracking-pricing'); return false;">Pricing</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Platform</div>
+        <div class="footer-links">
+          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">Drive Score</a>
+          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">Geofencing</a>
+          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">IFTA Reporting</a>
+          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">Trip Replay</a>
+          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">All Features</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="#" onclick="navigateTo('/about-accugps'); return false;">About AccuGPS</a>
+          <a href="#" onclick="navigateTo('/gps-tracking-for-business'); return false;">Industries</a>
+          <a href="#" onclick="navigateTo('/blog'); return false;">Blog</a>
+          <a href="#" onclick="navigateTo('/contact'); return false;">Contact Us</a>
+          <a href="https://i.accugps.com/map-view" target="_blank">Login</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 AccuGPS LLC. All rights reserved. Jamesville, NY.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/goaccugps/" target="_blank" title="Facebook">f</a>
+        <a href="https://www.linkedin.com/company/accugps" target="_blank" title="LinkedIn">in</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ================================================
+       JAVASCRIPT
+  ================================================ -->
+  <script>
+    // ROI Calculator
+    function calcROI() {
+      const vehicles = parseFloat(document.getElementById('calc-vehicles').value) || 0;
+      const fuel = parseFloat(document.getElementById('calc-fuel').value) || 0;
+      const output = document.getElementById('calc-output');
+      if (vehicles > 0 && fuel > 0) {
+        const annual = vehicles * fuel * 12 * 0.15;
+        output.textContent = '$' + Math.round(annual).toLocaleString();
+      } else {
+        output.textContent = '$—';
+      }
+    }
+    document.getElementById('calc-vehicles').addEventListener('input', calcROI);
+    document.getElementById('calc-fuel').addEventListener('input', calcROI);
+
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero entrance
+    gsap.from('#hero-content > *', {
+      opacity: 0,
+      y: 32,
+      duration: 0.9,
+      stagger: 0.12,
+      ease: 'power3.out',
+      delay: 0.2
+    });
+
+    gsap.from('#ping-scene', {
+      opacity: 0,
+      scale: 0.85,
+      duration: 1.2,
+      ease: 'power3.out',
+      delay: 0.6
+    });
+
+    // Scroll reveals
+    const revealEls = [
+      '#trust-bar .trust-item',
+      '.product-card',
+      '.math-row',
+      '.feature-pill',
+      '.industry-card',
+      '.testimonial-card'
+    ];
+
+    revealEls.forEach(selector => {
+      gsap.from(selector, {
+        scrollTrigger: {
+          trigger: selector.split(' ')[0],
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0,
+        y: 28,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: 'power2.out'
+      });
+    });
+
+    // Math section: slide in from sides
+    gsap.from('.math-left', {
+      scrollTrigger: { trigger: '.section-math', start: 'top 80%' },
+      opacity: 0, x: -40, duration: 0.8, ease: 'power2.out'
+    });
+    gsap.from('.math-right', {
+      scrollTrigger: { trigger: '.section-math', start: 'top 80%' },
+      opacity: 0, x: 40, duration: 0.8, delay: 0.15, ease: 'power2.out'
+    });
+
+    // Platform
+    gsap.from('.platform-left', {
+      scrollTrigger: { trigger: '.section-platform', start: 'top 80%' },
+      opacity: 0, x: -40, duration: 0.8, ease: 'power2.out'
+    });
+    gsap.from('.platform-right', {
+      scrollTrigger: { trigger: '.section-platform', start: 'top 80%' },
+      opacity: 0, x: 40, duration: 0.8, delay: 0.2, ease: 'power2.out'
+    });
+
+    // Case callout
+    gsap.from('.case-callout .case-stat', {
+      scrollTrigger: { trigger: '.case-callout', start: 'top 85%' },
+      opacity: 0, y: 20, duration: 0.6, stagger: 0.15, ease: 'power2.out'
+    });
+
+    // CTA banner
+    gsap.from('.cta-banner-content > *', {
+      scrollTrigger: { trigger: '.section-cta-banner', start: 'top 80%' },
+      opacity: 0, y: 24, duration: 0.7, stagger: 0.1, ease: 'power2.out'
+    });
+  </script>
+
+</body>
+</html>

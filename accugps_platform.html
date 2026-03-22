@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platform & Features | AccuGPS Fleet Tracking</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* ============================================
+       BRAND TOKENS
+    ============================================ */
+    :root {
+      --dark:        #122023;
+      --forest:      #2E443C;
+      --deep:        #162C23;
+      --accent:      #E6FF83;
+      --teal-light:  #CFDDDF;
+      --sage:        #A9BB96;
+      --green-light: #E8F8D7;
+      --white:       #FFFFFF;
+      --off-white:   #F0F0F0;
+      --mid-gray:    #C2C2C2;
+      --body-text:   #3C3C3C;
+      --muted:       #666666;
+
+      --font-display: 'Figtree', sans-serif;
+      --font-body:    'Figtree', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--body-text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============================================
+       SHARED TYPOGRAPHY
+    ============================================ */
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--dark);
+    }
+    .section-sub {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--muted);
+      margin-top: 16px;
+      max-width: 540px;
+    }
+
+    /* ============================================
+       SHARED BUTTONS
+    ============================================ */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: var(--dark); border: none;
+      padding: 14px 26px; border-radius: 8px;
+      font-family: var(--font-body); font-size: 15px; font-weight: 700;
+      cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none;
+    }
+    .btn-primary:hover { background: #d4ec6e; transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 14px 26px; border-radius: 8px;
+      font-family: var(--font-body); font-size: 15px; font-weight: 600;
+      cursor: pointer; transition: border-color 0.2s, color 0.2s, transform 0.15s; text-decoration: none;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: var(--white); transform: translateY(-1px); }
+
+    .btn-outline-dark {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--dark);
+      border: 1.5px solid var(--dark);
+      padding: 13px 24px; border-radius: 8px;
+      font-family: var(--font-body); font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: background 0.2s, color 0.2s; text-decoration: none;
+    }
+    .btn-outline-dark:hover { background: var(--dark); color: var(--white); }
+
+    .btn-primary-dark {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: var(--dark); border: none;
+      padding: 16px 32px; border-radius: 8px;
+      font-family: var(--font-body); font-size: 16px; font-weight: 700;
+      cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none;
+    }
+    .btn-primary-dark:hover { background: #d4ec6e; transform: translateY(-1px); }
+
+    .btn-ghost-dark {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 16px 32px; border-radius: 8px;
+      font-family: var(--font-body); font-size: 16px; font-weight: 600;
+      cursor: pointer; transition: border-color 0.2s, color 0.2s; text-decoration: none;
+    }
+    .btn-ghost-dark:hover { border-color: rgba(255,255,255,0.45); color: var(--white); }
+
+    /* ============================================
+       PAGE HERO
+    ============================================ */
+    .page-hero {
+      background: var(--dark);
+      padding: 80px 80px 88px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      min-height: 420px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(230,255,131,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(230,255,131,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .hero-left { position: relative; z-index: 1; }
+
+    .hero-breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; }
+    .hero-breadcrumb-link {
+      font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.35);
+      text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s;
+    }
+    .hero-breadcrumb-link:hover { color: rgba(255,255,255,0.7); }
+    .hero-breadcrumb-sep { color: rgba(255,255,255,0.2); font-size: 12px; }
+    .hero-breadcrumb-current { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: 0.04em; }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 58px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .hero-headline .line-accent { color: var(--accent); }
+    .hero-sub {
+      font-size: 17px; line-height: 1.65;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 36px; max-width: 480px;
+    }
+    .hero-cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+    .hero-right { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; }
+    .hero-feature-chip {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex; align-items: center; gap: 14px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .hero-feature-chip:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(230,255,131,0.2);
+    }
+    .hero-chip-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: rgba(230,255,131,0.08);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .hero-chip-icon svg { width: 18px; height: 18px; }
+    .hero-chip-label { font-size: 14px; font-weight: 700; color: var(--white); }
+    .hero-chip-sub { font-size: 11px; color: rgba(255,255,255,0.38); margin-top: 2px; }
+
+    /* ============================================
+       CATEGORY DIVIDER
+    ============================================ */
+    .category-divider { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; }
+    .category-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted); white-space: nowrap;
+    }
+    .category-line { flex: 1; height: 1px; background: rgba(0,0,0,0.08); }
+
+    /* ============================================
+       PLATFORM OVERVIEW
+    ============================================ */
+    .section-overview {
+      background: var(--white);
+      padding: 96px 80px;
+    }
+    .overview-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .overview-pills {
+      display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0;
+    }
+    .overview-pill {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 700; color: var(--dark);
+      background: var(--off-white);
+      border: 1px solid rgba(0,0,0,0.07);
+      padding: 8px 14px; border-radius: 100px;
+    }
+    .overview-pill span { font-size: 16px; font-weight: 900; color: var(--forest); }
+
+    /* Browser mockup */
+    .browser-mockup {
+      background: var(--dark);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+    }
+    .browser-bar {
+      background: #1e3035;
+      padding: 10px 16px;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .browser-dots { display: flex; gap: 6px; }
+    .browser-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .bd-red { background: #FF5F57; }
+    .bd-yellow { background: #FEBC2E; }
+    .bd-green { background: #28C840; }
+    .browser-url {
+      flex: 1; background: rgba(255,255,255,0.07);
+      border-radius: 6px; padding: 5px 12px;
+      font-size: 11px; color: rgba(255,255,255,0.35);
+      font-family: monospace;
+    }
+    .browser-content {
+      padding: 0;
+      min-height: 280px;
+      position: relative;
+      overflow: hidden;
+      background: #0e1c1f;
+    }
+    /* Fake map grid */
+    .map-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(230,255,131,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(230,255,131,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    /* Fake map roads */
+    .map-road-h {
+      position: absolute; height: 2px;
+      background: rgba(255,255,255,0.07);
+      left: 0; right: 0;
+    }
+    .map-road-v {
+      position: absolute; width: 2px;
+      background: rgba(255,255,255,0.07);
+      top: 0; bottom: 0;
+    }
+    /* Pings */
+    .map-ping {
+      position: absolute;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(230,255,131,0.2), 0 0 0 8px rgba(230,255,131,0.08);
+    }
+    .map-ping-muted {
+      position: absolute;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(230,255,131,0.5);
+      box-shadow: 0 0 0 3px rgba(230,255,131,0.1);
+    }
+    /* Side stats panel */
+    .map-stats {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 140px;
+      background: rgba(14,28,31,0.95);
+      border-left: 1px solid rgba(255,255,255,0.06);
+      padding: 16px 14px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .map-stat-item { display: flex; flex-direction: column; gap: 2px; }
+    .map-stat-label { font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.08em; }
+    .map-stat-value { font-size: 16px; font-weight: 800; color: var(--white); font-family: monospace; }
+    .map-stat-sub { font-size: 10px; color: var(--sage); }
+    .map-divider { height: 1px; background: rgba(255,255,255,0.05); }
+
+    /* ============================================
+       BENTO GRID
+    ============================================ */
+    .section-bento {
+      background: var(--off-white);
+      padding: 96px 80px;
+    }
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .bento-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      min-height: 240px;
+      cursor: default;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .bento-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.16);
+    }
+    .bento-card:hover .bento-card-overlay {
+      background: linear-gradient(to top, rgba(18,32,35,0.92) 0%, rgba(18,32,35,0.25) 100%);
+    }
+    .bento-card:hover .bento-glow {
+      opacity: 1;
+    }
+    .bento-card-bg {
+      position: absolute; inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.5s ease;
+    }
+    .bento-card:hover .bento-card-bg { transform: scale(1.04); }
+    .bento-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(18,32,35,0.88) 0%, rgba(18,32,35,0.18) 100%);
+      transition: background 0.3s ease;
+    }
+    .bento-glow {
+      position: absolute; inset: 0;
+      border: 1.5px solid rgba(230,255,131,0.25);
+      border-radius: 16px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .bento-card-content {
+      position: relative; z-index: 1;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100%;
+      min-height: inherit;
+    }
+    .bento-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: rgba(230,255,131,0.12);
+      border: 1px solid rgba(230,255,131,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .bento-icon svg { width: 18px; height: 18px; stroke: var(--accent); }
+    .bento-label {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .bento-desc {
+      font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5;
+    }
+    .bento-wide { grid-column: span 2; }
+    .bento-full { grid-column: span 3; min-height: 180px; }
+    .bento-full .bento-card-content { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+    .bento-full .bento-full-right { text-align: right; }
+    .bento-stat {
+      font-family: var(--font-display);
+      font-size: 40px; font-weight: 900;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+    .bento-stat-label { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+
+    /* ============================================
+       REPORTS SECTION
+    ============================================ */
+    .section-reports {
+      background: var(--white);
+      padding: 96px 80px;
+    }
+    .reports-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+    /* Report category tabs */
+    .report-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .report-tab {
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--font-body);
+      border: 1.5px solid rgba(0,0,0,0.12);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .report-tab:hover { border-color: rgba(0,0,0,0.25); color: var(--dark); }
+    .report-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--dark);
+    }
+    .report-card-hidden { display: none !important; }
+
+    .reports-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    /* 3D Flip cards */
+    .flip-card {
+      perspective: 900px;
+      height: 190px;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.48s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+    .flip-card-front {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .flip-card:hover .flip-card-front {
+      border-color: rgba(0,0,0,0);
+    }
+    .flip-card-back {
+      background: var(--dark);
+      border: 1px solid rgba(230,255,131,0.1);
+      transform: rotateY(180deg);
+    }
+    .flip-front-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--green-light);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .flip-front-icon svg { width: 16px; height: 16px; stroke: var(--forest); }
+    .flip-front-name {
+      font-size: 14px; font-weight: 700;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+    .flip-front-teaser {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .flip-back-title {
+      font-size: 12px; font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+    .flip-back-desc {
+      font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.5;
+    }
+    .flip-back-tag {
+      font-size: 10px; font-weight: 700;
+      color: var(--sage);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: auto;
+    }
+
+    /* ============================================
+       ALERTS + GEOFENCING
+    ============================================ */
+    .section-alerts {
+      background: var(--dark);
+      padding: 96px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-alerts::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(230,255,131,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(230,255,131,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .alerts-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      position: relative; z-index: 1;
+    }
+    .alerts-col .section-eyebrow { color: var(--sage); }
+    .alerts-col .section-title { color: var(--white); }
+    .alerts-col .section-sub { color: rgba(255,255,255,0.55); }
+
+    .alert-count {
+      font-family: var(--font-display);
+      font-size: 72px; font-weight: 900;
+      color: var(--accent);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin: 24px 0 8px;
+    }
+    .alert-count-label { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 32px; }
+
+    .alert-list { display: flex; flex-direction: column; gap: 12px; }
+    .alert-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+    }
+    .alert-item-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: rgba(230,255,131,0.08);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .alert-item-icon svg { width: 15px; height: 15px; stroke: var(--accent); }
+    .alert-item-text { flex: 1; }
+    .alert-item-name { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+    .alert-item-desc { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.4; }
+
+    .alert-channels {
+      display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap;
+    }
+    .alert-channel-pill {
+      font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 6px 14px; border-radius: 100px;
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    /* Geofencing side */
+    .geo-visual {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 28px;
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .geo-zone {
+      width: 120px; height: 80px;
+      border: 2px dashed rgba(230,255,131,0.4);
+      border-radius: 12px;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .geo-zone-label {
+      font-size: 10px; font-weight: 700;
+      color: rgba(230,255,131,0.6);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .geo-dot-inside {
+      position: absolute; top: -6px; left: 24px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(230,255,131,0.2);
+    }
+    .geo-dot-outside {
+      position: absolute; bottom: -20px; right: -20px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(230,255,131,0.4);
+    }
+    .geo-use-cases { display: flex; flex-direction: column; gap: 10px; }
+    .geo-use-case {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.45;
+    }
+    .geo-use-case::before {
+      content: '•';
+      color: var(--accent);
+      font-size: 16px;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       TRIP REPLAY + SHARED ACCESS
+    ============================================ */
+    .section-replay {
+      background: var(--green-light);
+      padding: 96px 80px;
+    }
+    .replay-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .replay-col .section-eyebrow { color: var(--forest); }
+    .replay-col .section-title { font-size: clamp(26px, 3vw, 40px); }
+
+    .replay-feature-list { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+    .replay-feature {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 10px;
+      font-size: 14px; color: var(--body-text); line-height: 1.45;
+    }
+    .replay-feature-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--green-light);
+      border: 1px solid rgba(46,68,60,0.12);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .replay-feature-icon svg { width: 14px; height: 14px; stroke: var(--forest); }
+
+    .divider-vert {
+      width: 1px;
+      background: rgba(0,0,0,0.1);
+      align-self: stretch;
+      display: none;
+    }
+
+    /* ============================================
+       ACCESS EVERYWHERE
+    ============================================ */
+    .section-access {
+      background: var(--teal-light);
+      padding: 64px 80px;
+    }
+    .access-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .access-text { max-width: 380px; }
+    .access-text .section-eyebrow { color: var(--forest); }
+    .access-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-top: 8px;
+    }
+    .access-platforms {
+      display: grid;
+      grid-template-columns: repeat(3, 130px);
+      gap: 16px;
+      align-items: start;
+    }
+    .access-platform {
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 14px;
+      padding: 24px 16px;
+      height: 110px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .access-platform:hover { background: rgba(255,255,255,0.9); transform: translateY(-3px); }
+    .access-platform-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .access-platform-icon svg { width: 28px; height: 28px; display: block; stroke: var(--forest); }
+    .access-platform-name {
+      font-size: 13px; font-weight: 700; color: var(--dark);
+    }
+
+    /* ============================================
+       API CALLOUT
+    ============================================ */
+    .section-api {
+      background: var(--deep);
+      padding: 72px 80px;
+    }
+    .api-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .api-info .section-eyebrow { color: var(--sage); }
+    .api-info .section-title { color: var(--white); font-size: clamp(26px, 3vw, 40px); }
+    .api-info .section-sub { color: rgba(255,255,255,0.5); }
+
+    .api-code-card {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .api-code-bar {
+      background: rgba(255,255,255,0.04);
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .api-code-bar-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.12); }
+    .api-code-bar-label { font-size: 11px; color: rgba(255,255,255,0.25); font-family: monospace; margin-left: 4px; }
+    .api-code-body { padding: 20px; font-family: monospace; }
+    .api-line { font-size: 12px; line-height: 2; }
+    .api-comment { color: rgba(255,255,255,0.2); }
+    .api-method { color: #7dd3fc; }
+    .api-url { color: rgba(230,255,131,0.8); }
+    .api-key { color: #f9a8d4; }
+    .api-val { color: rgba(255,255,255,0.65); }
+
+    /* ============================================
+       CTA BANNER
+    ============================================ */
+    .section-cta-banner {
+      background: var(--dark);
+      padding: 96px 80px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .section-cta-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(230,255,131,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(230,255,131,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .cta-banner-content { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+    .cta-banner-content .section-eyebrow { color: var(--sage); }
+    .cta-banner-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .cta-banner-sub {
+      font-size: 17px; line-height: 1.65;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 40px;
+    }
+    .cta-banner-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer { background: var(--deep); padding: 64px 80px 40px; }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-brand img { height: 28px; margin-bottom: 16px; }
+    .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.65; margin-bottom: 20px; max-width: 280px; }
+    .footer-contact-line { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 6px; }
+    .footer-contact-line a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .footer-contact-line a:hover { color: var(--accent); }
+    .footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 20px; }
+    .footer-links { display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+    .footer-social { display: flex; gap: 8px; }
+    .footer-social a { width: 32px; height: 32px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); text-decoration: none; font-size: 14px; transition: background 0.2s, color 0.2s; }
+    .footer-social a:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 900px) {
+      .page-hero { grid-template-columns: 1fr; padding: 56px 24px 64px; min-height: auto; }
+      .hero-right { display: none; }
+
+      .section-overview,
+      .section-bento,
+      .section-reports,
+      .section-alerts,
+      .section-replay,
+      .section-access,
+      .section-api,
+      .section-cta-banner { padding: 72px 24px; }
+
+      .overview-layout { grid-template-columns: 1fr; gap: 40px; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-wide, .bento-full { grid-column: span 1; }
+      .bento-full .bento-card-content { flex-direction: column; align-items: flex-start; }
+      .reports-grid { grid-template-columns: repeat(2, 1fr); }
+      .reports-header { grid-template-columns: 1fr; }
+      .alerts-layout { grid-template-columns: 1fr; gap: 48px; }
+      .replay-layout { grid-template-columns: 1fr; gap: 48px; }
+      .access-inner { flex-direction: column; align-items: flex-start; }
+      .api-layout { grid-template-columns: 1fr; gap: 40px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+      footer { padding: 48px 24px 32px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-cta-row { flex-direction: column; align-items: flex-start; }
+      .cta-banner-buttons { flex-direction: column; align-items: center; }
+      .footer-top { grid-template-columns: 1fr; }
+      .reports-grid { grid-template-columns: repeat(2, 1fr); }
+      .access-platforms { flex-wrap: wrap; }
+    }
+
+    /* No nav. Wix Studio header is used instead. */
+  </style>
+</head>
+<body>
+
+
+  <!-- ================================================
+       PAGE HERO
+  ================================================ -->
+  <section class="page-hero" id="page-hero">
+
+    <div class="hero-left" id="hero-left">
+      <div class="hero-breadcrumb">
+        <a href="#" class="hero-breadcrumb-link" onclick="navigateTo('/'); return false;">AccuGPS</a>
+        <span class="hero-breadcrumb-sep">/</span>
+        <span class="hero-breadcrumb-current">Platform &amp; Features</span>
+      </div>
+
+      <h1 class="hero-headline">
+        One platform.<br>
+        Everything about<br>
+        <span class="line-accent">your fleet.</span>
+      </h1>
+
+      <p class="hero-sub">
+        Live map, Drive Score, multiple report types, 99+ alerts, and IFTA compliance. Available on iOS, Android, and web. All included with every tracker at no extra cost.
+      </p>
+
+      <div class="hero-cta-row">
+        <a href="https://i.accugps.com/map-view" target="_blank" class="btn-primary">
+          Login to Platform
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <button class="btn-ghost" onclick="navigateTo('/gps-trackers')">
+          Shop GPS Trackers
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-right" id="hero-right">
+
+      <div class="hero-feature-chip">
+        <div class="hero-chip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="hero-chip-label">Live Map View</div>
+          <div class="hero-chip-sub">Every vehicle and asset in real time</div>
+        </div>
+      </div>
+
+      <div class="hero-feature-chip">
+        <div class="hero-chip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div>
+          <div class="hero-chip-label">Drive Score</div>
+          <div class="hero-chip-sub">Per-driver safety scoring and coaching</div>
+        </div>
+      </div>
+
+      <div class="hero-feature-chip">
+        <div class="hero-chip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div>
+          <div class="hero-chip-label">IFTA Compliance</div>
+          <div class="hero-chip-sub">Automatic state-by-state mileage tracking</div>
+        </div>
+      </div>
+
+      <div class="hero-feature-chip">
+        <div class="hero-chip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <div>
+          <div class="hero-chip-label">99+ Alert Types</div>
+          <div class="hero-chip-sub">App, email, and SMS delivery</div>
+        </div>
+      </div>
+
+      <div class="hero-feature-chip">
+        <div class="hero-chip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        </div>
+        <div>
+          <div class="hero-chip-label">Trip Replay</div>
+          <div class="hero-chip-sub">Full route history with stops and speeds</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       PLATFORM OVERVIEW
+  ================================================ -->
+  <section class="section-overview" id="platform-overview">
+
+    <div class="overview-layout">
+
+      <div id="overview-info">
+        <div class="category-divider">
+          <span class="category-label">The Dashboard</span>
+          <div class="category-line"></div>
+        </div>
+
+        <h2 class="section-title">See every vehicle.<br><span style="color:var(--forest);">Right now.</span></h2>
+
+        <p class="section-sub">Log in from your phone, tablet, or browser and see every tracker and asset on a live map. Status indicators show Active, Stopped, or Offline at a glance. Click any vehicle for speed, location history, and current alerts.</p>
+
+        <div class="overview-pills">
+          <div class="overview-pill"><span>14</span> Report Types</div>
+          <div class="overview-pill"><span>99+</span> Alert Types</div>
+          <div class="overview-pill"><span>3</span> Platforms: iOS, Android, Web</div>
+          <div class="overview-pill"><span>73+</span> Devices Supported</div>
+        </div>
+
+        <p style="font-size:14px; color:var(--muted); line-height:1.6;">The platform manages two device types on the same map: <strong style="color:var(--body-text);">Trackers</strong> (powered vehicles with OBD II or 4G LTE trackers) and <strong style="color:var(--body-text);">Locators</strong> (non-powered assets with Magnetic trackers). Both update in real time.</p>
+
+        <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="https://i.accugps.com/map-view" target="_blank" class="btn-primary">
+            Login to Platform
+          </a>
+          <button class="btn-outline-dark">
+            Shop Trackers
+          </button>
+        </div>
+      </div>
+
+      <div id="overview-mockup">
+        <div class="browser-mockup">
+          <div class="browser-bar">
+            <div class="browser-dots">
+              <div class="browser-dot bd-red"></div>
+              <div class="browser-dot bd-yellow"></div>
+              <div class="browser-dot bd-green"></div>
+            </div>
+            <div class="browser-url">i.accugps.com/map-view</div>
+          </div>
+          <div class="browser-content">
+            <div class="map-grid"></div>
+            <div class="map-road-h" style="top:35%"></div>
+            <div class="map-road-h" style="top:65%"></div>
+            <div class="map-road-v" style="left:30%"></div>
+            <div class="map-road-v" style="left:60%"></div>
+            <!-- Active pings -->
+            <div class="map-ping" style="top:28%; left:22%"></div>
+            <div class="map-ping" style="top:50%; left:48%"></div>
+            <div class="map-ping" style="top:70%; left:18%"></div>
+            <div class="map-ping-muted" style="top:42%; left:35%"></div>
+            <div class="map-ping-muted" style="top:62%; left:55%"></div>
+            <!-- Stats panel -->
+            <div class="map-stats">
+              <div class="map-stat-item">
+                <div class="map-stat-label">Active</div>
+                <div class="map-stat-value">8</div>
+                <div class="map-stat-sub">vehicles online</div>
+              </div>
+              <div class="map-divider"></div>
+              <div class="map-stat-item">
+                <div class="map-stat-label">Stopped</div>
+                <div class="map-stat-value">3</div>
+                <div class="map-stat-sub">vehicles parked</div>
+              </div>
+              <div class="map-divider"></div>
+              <div class="map-stat-item">
+                <div class="map-stat-label">Alerts</div>
+                <div class="map-stat-value" style="color:var(--accent);">2</div>
+                <div class="map-stat-sub">need review</div>
+              </div>
+              <div class="map-divider"></div>
+              <div class="map-stat-item">
+                <div class="map-stat-label">Drive Score</div>
+                <div class="map-stat-value">87</div>
+                <div class="map-stat-sub">fleet average</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       BENTO GRID
+  ================================================ -->
+  <section class="section-bento" id="platform-features">
+
+    <div style="margin-bottom:48px;">
+      <div class="category-divider">
+        <span class="category-label">Platform Features</span>
+        <div class="category-line"></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:end;">
+        <h2 class="section-title">Five features that<br>change how you <span style="color:var(--forest);">manage your fleet.</span></h2>
+        <p class="section-sub" style="margin-top:0;">From driver behavior to IFTA compliance to engine diagnostics: the AccuGPS platform gives small fleet operators tools that used to require enterprise software.</p>
+      </div>
+    </div>
+
+    <div class="bento-grid" id="bento-grid">
+
+      <!-- Reporting: 2-col wide -->
+      <div class="bento-card bento-wide" id="bento-0">
+        <div class="bento-card-bg" style="background-image:url('./integrated-reporting.png');"></div>
+        <div class="bento-card-overlay"></div>
+        <div class="bento-glow"></div>
+        <div class="bento-card-content">
+          <div class="bento-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <div class="bento-label">Detailed Reporting</div>
+          <div class="bento-desc">Mileage, fuel, speed violations, IFTA, driving time, maintenance, and 8 more. Run on-demand or schedule automatic delivery.</div>
+        </div>
+      </div>
+
+      <!-- Drive Score: 1-col -->
+      <div class="bento-card" id="bento-1">
+        <div class="bento-card-bg" style="background-image:url('./integrated-driver.png');"></div>
+        <div class="bento-card-overlay"></div>
+        <div class="bento-glow"></div>
+        <div class="bento-card-content">
+          <div class="bento-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="bento-label">Drive Score</div>
+          <div class="bento-desc">Per-driver safety scoring based on real behavior data.</div>
+        </div>
+      </div>
+
+      <!-- IFTA: 1-col -->
+      <div class="bento-card" id="bento-2">
+        <div class="bento-card-bg" style="background-image:url('./integrated-ifta.png');"></div>
+        <div class="bento-card-overlay"></div>
+        <div class="bento-glow"></div>
+        <div class="bento-card-content">
+          <div class="bento-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+          </div>
+          <div class="bento-label">IFTA Compliance</div>
+          <div class="bento-desc">State-by-state mileage logged automatically. Quarterly filing, done.</div>
+        </div>
+      </div>
+
+      <!-- Alerts: 2-col wide -->
+      <div class="bento-card bento-wide" id="bento-3">
+        <div class="bento-card-bg" style="background-image:url('./integrated-alerts.png');"></div>
+        <div class="bento-card-overlay"></div>
+        <div class="bento-glow"></div>
+        <div class="bento-card-content">
+          <div class="bento-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </div>
+          <div class="bento-label">99+ Alert Types</div>
+          <div class="bento-desc">Geofence exits, speed violations, engine faults, after-hours movement, power cut. Delivered via app, email, or SMS in seconds.</div>
+        </div>
+      </div>
+
+      <!-- DTC: full width -->
+      <div class="bento-card bento-full" id="bento-4">
+        <div class="bento-card-bg" style="background-image:url('./integrated-eld.png'); background-position: center 40%;"></div>
+        <div class="bento-card-overlay" style="background:linear-gradient(to right, rgba(18,32,35,0.92) 0%, rgba(18,32,35,0.55) 60%, rgba(18,32,35,0.2) 100%);"></div>
+        <div class="bento-glow"></div>
+        <div class="bento-card-content">
+          <div>
+            <div class="bento-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <div class="bento-label">DTC Engine Diagnostics</div>
+            <div class="bento-desc">The OBD II tracker reads engine fault codes in real time. Know about problems before the warning light appears and before a breakdown happens on the road.</div>
+          </div>
+          <div class="bento-full-right">
+            <div class="bento-stat">P0420</div>
+            <div class="bento-stat-label">Example: Catalytic converter fault detected</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       REPORTS
+  ================================================ -->
+  <section class="section-reports" id="reports">
+
+    <div class="reports-header">
+      <div>
+        <div class="category-divider">
+          <span class="category-label">Fleet Reports</span>
+          <div class="category-line"></div>
+        </div>
+        <h2 class="section-title">Know exactly what<br>your fleet is doing.</h2>
+      </div>
+      <div>
+        <p class="section-sub" style="margin-top:0;">Every tracker generates data. AccuGPS turns it into actionable reports. Run them on-demand or schedule automatic delivery by email. Hover any card to see what it tells you.</p>
+      </div>
+    </div>
+
+    <div class="report-tabs" id="report-tabs">
+      <button class="report-tab active" data-cat="all">All Reports</button>
+      <button class="report-tab" data-cat="fleet-activity">Fleet Activity</button>
+      <button class="report-tab" data-cat="driver-behavior">Driver Behavior</button>
+      <button class="report-tab" data-cat="compliance">Compliance</button>
+      <button class="report-tab" data-cat="cost-maintenance">Cost &amp; Maintenance</button>
+    </div>
+
+    <div class="reports-grid" id="reports-grid">
+
+      <div class="flip-card" data-category="fleet-activity">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+            <div class="flip-front-name">Summary</div>
+            <div class="flip-front-teaser">Fleet-wide overview: trips, distance, idle time</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">Summary Report</div>
+            <div class="flip-back-desc">Fleet-wide activity overview for any time period. Total trips, distance, idle time, and drive score across all vehicles.</div>
+            <div class="flip-back-tag">Best for: weekly fleet reviews</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-category="fleet-activity">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 6l9-3 9 3M3 18l9 3 9-3"/></svg></div>
+            <div class="flip-front-name">Travel</div>
+            <div class="flip-front-teaser">Trip-by-trip log: start, end, distance, duration</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">Travel Report</div>
+            <div class="flip-back-desc">Trip-by-trip log for each vehicle. Shows start and end times, origin, destination, distance, and duration.</div>
+            <div class="flip-back-tag">Best for: verifying service calls</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-category="fleet-activity">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+            <div class="flip-front-name">Mileage</div>
+            <div class="flip-front-teaser">Total distance per vehicle, any time period</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">Mileage Report</div>
+            <div class="flip-back-desc">Total distance driven per vehicle over any time period. Useful for maintenance scheduling and reimbursement tracking.</div>
+            <div class="flip-back-tag">Best for: maintenance planning</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-category="fleet-activity">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+            <div class="flip-front-name">Current Info</div>
+            <div class="flip-front-teaser">Live snapshot: status, location, speed</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">Current Info</div>
+            <div class="flip-back-desc">Live snapshot of all vehicles: current status, location, speed, and last update time. The fastest way to check your entire fleet at once.</div>
+            <div class="flip-back-tag">Best for: morning fleet check</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-category="fleet-activity">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="flip-front-name">Route Analysis</div>
+            <div class="flip-front-teaser">Actual routes vs. optimal paths</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">Route Analysis</div>
+            <div class="flip-back-desc">Actual routes taken vs. optimal paths. Find detours, inefficiencies, and unauthorized stops across your fleet.</div>
+            <div class="flip-back-tag">Best for: delivery efficiency</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-category="driver-behavior">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+            <div class="flip-front-name">Driving Time</div>
+            <div class="flip-front-teaser">Hours driven vs. idle vs. parked per shift</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">Driving Time Report</div>
+            <div class="flip-back-desc">Hours of operation per driver or vehicle. Tracks time behind the wheel vs. idle vs. parked for each shift.</div>
+            <div class="flip-back-tag">Best for: driver hour compliance</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-category="driver-behavior">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <div class="flip-front-name">Speed Violation</div>
+            <div class="flip-front-teaser">Every instance over your speed threshold</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">Speed Violation Report</div>
+            <div class="flip-back-desc">Every instance where a vehicle exceeded your set speed threshold. Exact location, time, and speed recorded.</div>
+            <div class="flip-back-tag">Best for: driver accountability</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-category="driver-behavior">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="flip-front-name">Speed</div>
+            <div class="flip-front-teaser">Speed at every point on every route</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">Speed Report</div>
+            <div class="flip-back-desc">Detailed speed data across all routes. See speed at every point in a trip overlaid on a map view.</div>
+            <div class="flip-back-tag">Best for: route-level analysis</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-category="compliance">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"/></svg></div>
+            <div class="flip-front-name">IFTA State Miles</div>
+            <div class="flip-front-teaser">Miles per state, logged automatically</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">IFTA State Miles</div>
+            <div class="flip-back-desc">Miles driven in each state, logged automatically. Quarterly IFTA filing takes minutes instead of hours when data is already there.</div>
+            <div class="flip-back-tag">Best for: multi-state fleets</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-category="compliance">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="flip-front-name">Geo-fence Visit</div>
+            <div class="flip-front-teaser">Entry/exit log for every geofenced zone</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">Geo-fence Visit Report</div>
+            <div class="flip-back-desc">Complete log of every vehicle entry and exit from your geofenced zones. Time in zone, vehicle ID, and alert status recorded.</div>
+            <div class="flip-back-tag">Best for: job site tracking</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-category="compliance">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg></div>
+            <div class="flip-front-name">Temperature</div>
+            <div class="flip-front-teaser">Cargo and vehicle temperature readings</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">Temperature Report</div>
+            <div class="flip-back-desc">Temperature readings for equipped vehicles or cargo. Critical for cold chain compliance and refrigerated fleet management.</div>
+            <div class="flip-back-tag">Best for: cold chain fleets</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-category="compliance">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg></div>
+            <div class="flip-front-name">Power Cut Off</div>
+            <div class="flip-front-teaser">Logs every power disconnect event</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">Power Cut Off Log</div>
+            <div class="flip-back-desc">Records every time a vehicle's power was cut. Detects tampering, battery disconnects, and potential theft attempts before they escalate.</div>
+            <div class="flip-back-tag">Best for: theft detection</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-category="cost-maintenance">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/></svg></div>
+            <div class="flip-front-name">Fuel</div>
+            <div class="flip-front-teaser">Consumption estimates and idle waste</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">Fuel Report</div>
+            <div class="flip-back-desc">Fuel consumption estimates and idle fuel waste per vehicle. One fleet recovered full ROI in 9 months by reducing idle by 18%.</div>
+            <div class="flip-back-tag">Best for: cost reduction</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-category="cost-maintenance">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <div class="flip-front-name">Maintenance</div>
+            <div class="flip-front-teaser">Service alerts based on mileage thresholds</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">Maintenance Report</div>
+            <div class="flip-back-desc">Service alerts and maintenance history based on mileage thresholds. Know which vehicles are due before they break down.</div>
+            <div class="flip-back-tag">Best for: proactive servicing</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-category="cost-maintenance">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="flip-front-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+            <div class="flip-front-name">Engine Diagnostics</div>
+            <div class="flip-front-teaser">DTC fault codes read directly from the vehicle</div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-title">Engine Diagnostics (DTC)</div>
+            <div class="flip-back-desc">Diagnostic Trouble Codes read directly from the vehicle's OBD port. Know about engine faults before drivers report them.</div>
+            <div class="flip-back-tag">Best for: preventing breakdowns</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       ALERTS + GEOFENCING
+  ================================================ -->
+  <section class="section-alerts" id="alerts-geofencing">
+    <div class="alerts-layout">
+
+      <div class="alerts-col">
+        <span class="section-eyebrow">Alerts</span>
+        <h2 class="section-title light">99+ alert types.<br>Delivered instantly.</h2>
+        <div class="alert-count">99+</div>
+        <div class="alert-count-label">configurable alert types in the platform</div>
+
+        <div class="alert-list">
+          <div class="alert-item">
+            <div class="alert-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="alert-item-text">
+              <div class="alert-item-name">Geofence Exit</div>
+              <div class="alert-item-desc">Vehicle left a zone outside allowed hours</div>
+            </div>
+          </div>
+          <div class="alert-item">
+            <div class="alert-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <div class="alert-item-text">
+              <div class="alert-item-name">Speed Threshold Exceeded</div>
+              <div class="alert-item-desc">Driver exceeded your defined speed limit</div>
+            </div>
+          </div>
+          <div class="alert-item">
+            <div class="alert-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+            <div class="alert-item-text">
+              <div class="alert-item-name">Engine Fault Detected</div>
+              <div class="alert-item-desc">DTC code read from OBD II port before warning light</div>
+            </div>
+          </div>
+          <div class="alert-item">
+            <div class="alert-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg></div>
+            <div class="alert-item-text">
+              <div class="alert-item-name">Power Cut Detected</div>
+              <div class="alert-item-desc">Battery disconnect or tampering attempt logged</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert-channels">
+          <div class="alert-channel-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            App Push
+          </div>
+          <div class="alert-channel-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email
+          </div>
+          <div class="alert-channel-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.64 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+            SMS
+          </div>
+        </div>
+      </div>
+
+      <div class="alerts-col">
+        <span class="section-eyebrow">Geofencing</span>
+        <h2 class="section-title light">Draw a boundary.<br>Know instantly.</h2>
+        <p class="section-sub">Create a virtual zone on the map around any location: a job site, equipment yard, customer property, or restricted area. Every entry and exit is logged and alerted in real time.</p>
+
+        <div class="geo-visual" style="margin-top:28px;">
+          <div class="geo-zone">
+            <span class="geo-zone-label">Job Site</span>
+            <div class="geo-dot-inside"></div>
+            <div class="geo-dot-outside"></div>
+          </div>
+        </div>
+
+        <div class="geo-use-cases">
+          <div class="geo-use-case">After-hours security: get alerted if a vehicle enters the yard at 2am</div>
+          <div class="geo-use-case">HVAC crews: confirm arrival and departure times at customer sites</div>
+          <div class="geo-use-case">Equipment yards: know immediately if a trailer leaves without authorization</div>
+          <div class="geo-use-case">Compliance: log every visit to a regulated facility automatically</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       TRIP REPLAY + SHARED ACCESS
+  ================================================ -->
+  <section class="section-replay" id="trip-replay">
+    <div class="replay-layout">
+
+      <div class="replay-col">
+        <span class="section-eyebrow">Trip Replay</span>
+        <h2 class="section-title">See exactly where<br>every vehicle went.</h2>
+        <p class="section-sub">Rewind any vehicle's full route history for any date. See every stop, speed at every point, and time spent at each location.</p>
+
+        <div class="replay-feature-list">
+          <div class="replay-feature">
+            <div class="replay-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+            Replay any trip with full route visualization on map
+          </div>
+          <div class="replay-feature">
+            <div class="replay-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            Every stop logged: time arrived, time departed, duration
+          </div>
+          <div class="replay-feature">
+            <div class="replay-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            Speed at every point: confirm or dispute any incident
+          </div>
+          <div class="replay-feature">
+            <div class="replay-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            Verify service calls: confirm your crew was at the job site
+          </div>
+        </div>
+      </div>
+
+      <div class="replay-col">
+        <span class="section-eyebrow">Shared Account</span>
+        <h2 class="section-title">Share visibility<br>without sharing your login.</h2>
+        <p class="section-sub">Give a client, contractor, or property manager read-only access to specific vehicles. They see what you choose. No phone check-ins. No guesswork.</p>
+
+        <div class="replay-feature-list" style="margin-top:24px;">
+          <div class="replay-feature">
+            <div class="replay-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            Separate login for each shared viewer
+          </div>
+          <div class="replay-feature">
+            <div class="replay-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            Read-only: they see location, you control everything else
+          </div>
+          <div class="replay-feature">
+            <div class="replay-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            Share specific vehicles: not your whole fleet
+          </div>
+          <div class="replay-feature">
+            <div class="replay-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.64 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg></div>
+            Eliminates "where is my crew?" calls from clients
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       ACCESS EVERYWHERE
+  ================================================ -->
+  <section class="section-access" id="access">
+    <div class="access-inner">
+      <div class="access-text">
+        <span class="section-eyebrow">Any Device</span>
+        <h2>The same full platform<br>on every screen.</h2>
+        <p style="font-size:15px; color:var(--muted); margin-top:12px; line-height:1.6;">Log in from your phone in the truck yard or from your office browser. Real-time data, reports, and alerts are always one tap away.</p>
+      </div>
+      <div class="access-platforms" id="access-platforms">
+        <div class="access-platform">
+          <div class="access-platform-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div class="access-platform-name">iOS App</div>
+        </div>
+        <div class="access-platform">
+          <div class="access-platform-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/><line x1="9" y1="2" x2="15" y2="2"/></svg>
+          </div>
+          <div class="access-platform-name">Android App</div>
+        </div>
+        <div class="access-platform">
+          <div class="access-platform-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="access-platform-name">Web Browser</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       API CALLOUT
+  ================================================ -->
+  <section class="section-api" id="api-access">
+    <div class="api-layout">
+      <div class="api-info">
+        <span class="section-eyebrow">For Developers</span>
+        <h2 class="section-title">Connect AccuGPS<br>to your existing tools.</h2>
+        <p class="section-sub">Push fleet data to your dispatch system, CRM, or custom reporting tool. API access is available for businesses that need deeper integration.</p>
+        <div style="margin-top:28px;">
+          <button class="btn-ghost">
+            Contact Us About API Access
+          </button>
+        </div>
+      </div>
+      <div class="api-code-card">
+        <div class="api-code-bar">
+          <div class="api-code-bar-dot"></div>
+          <div class="api-code-bar-dot"></div>
+          <div class="api-code-bar-dot"></div>
+          <div class="api-code-bar-label">AccuGPS REST API</div>
+        </div>
+        <div class="api-code-body">
+          <div class="api-line"><span class="api-comment">// Get live vehicle positions</span></div>
+          <div class="api-line"><span class="api-method">GET</span> <span class="api-url">/api/v1/fleet/vehicles</span></div>
+          <div class="api-line">&nbsp;</div>
+          <div class="api-line"><span class="api-comment">// Pull trip history for a vehicle</span></div>
+          <div class="api-line"><span class="api-method">GET</span> <span class="api-url">/api/v1/trips/:vehicle_id</span></div>
+          <div class="api-line">&nbsp;</div>
+          <div class="api-line"><span class="api-comment">// Subscribe to real-time alerts</span></div>
+          <div class="api-line"><span class="api-key">Authorization:</span> <span class="api-val">Bearer {your_api_key}</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       CTA BANNER
+  ================================================ -->
+  <section class="section-cta-banner">
+    <div class="cta-banner-content">
+      <span class="section-eyebrow">Get Started Today</span>
+      <h2 class="cta-banner-title">The platform is<br>included with every <span style="color:var(--accent);">tracker.</span></h2>
+      <p class="cta-banner-sub">Every GPS tracker ships with full access to the platform: live map, all reports, all 99+ alerts, Drive Score, IFTA, and the mobile apps. No platform fee. No per-user charge. Starting at $129.</p>
+      <div class="cta-banner-buttons">
+        <button class="btn-primary-dark" onclick="navigateTo('/gps-trackers')">Shop GPS Trackers</button>
+        <button class="btn-ghost-dark">Call (888) 519-9128</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       FOOTER
+  ================================================ -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="AccuGPSLogo.svg" alt="AccuGPS">
+        <p class="footer-tagline">Fleet GPS tracking built for small businesses. Real-time tracking, driver insights, and local support. Starting at $129.</p>
+        <p class="footer-contact-line"><a href="tel:8885199128">(888) 519-9128</a></p>
+        <p class="footer-contact-line"><a href="mailto:info@accugps.com">info@accugps.com</a></p>
+        <p class="footer-contact-line">5727 E. Seneca Turnpike, Jamesville, NY 13078</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Products</div>
+        <div class="footer-links">
+          <a href="#" onclick="navigateTo('/obd-ii-gps-tracker'); return false;">OBD II Smart Tracker</a>
+          <a href="#" onclick="navigateTo('/magnetic-gps-tracker'); return false;">Magnetic Asset Tracker</a>
+          <a href="#" onclick="navigateTo('/4g-lte-gps-tracker'); return false;">4G LTE GPS Tracker</a>
+          <a href="#" onclick="navigateTo('/fleet-dash-cameras'); return false;">Fleet Cameras</a>
+          <a href="#" onclick="navigateTo('/gps-tracking-pricing'); return false;">Pricing</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Platform</div>
+        <div class="footer-links">
+          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">Drive Score</a>
+          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">Geofencing</a>
+          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">IFTA Reporting</a>
+          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">Trip Replay</a>
+          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">All Features</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="#" onclick="navigateTo('/about-accugps'); return false;">About AccuGPS</a>
+          <a href="#" onclick="navigateTo('/gps-tracking-for-business'); return false;">Industries</a>
+          <a href="#" onclick="navigateTo('/blog'); return false;">Blog</a>
+          <a href="#" onclick="navigateTo('/contact'); return false;">Contact Us</a>
+          <a href="https://i.accugps.com/map-view" target="_blank">Login</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 AccuGPS LLC. All rights reserved. Jamesville, NY.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/goaccugps/" target="_blank" title="Facebook">f</a>
+        <a href="https://www.linkedin.com/company/accugps" target="_blank" title="LinkedIn">in</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ================================================
+       JAVASCRIPT
+  ================================================ -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero entrance
+    gsap.from('#hero-left > *', { opacity: 0, y: 28, duration: 0.8, stagger: 0.1, ease: 'power3.out', delay: 0.15 });
+    gsap.from('#hero-right .hero-feature-chip', { opacity: 0, x: 32, duration: 0.7, stagger: 0.1, ease: 'power3.out', delay: 0.4 });
+
+    // Platform overview
+    gsap.from('#overview-info > *', {
+      scrollTrigger: { trigger: '.section-overview', start: 'top 85%' },
+      opacity: 0, y: 24, duration: 0.6, stagger: 0.08, ease: 'power2.out'
+    });
+    gsap.from('#overview-mockup', {
+      scrollTrigger: { trigger: '.section-overview', start: 'top 80%' },
+      opacity: 0, x: 40, duration: 0.9, ease: 'power2.out', delay: 0.1
+    });
+
+    // Bento grid: staggered entrance per card
+    gsap.from('#bento-0, #bento-1, #bento-2, #bento-3, #bento-4', {
+      scrollTrigger: { trigger: '#bento-grid', start: 'top 85%' },
+      opacity: 0, y: 36, duration: 0.7, stagger: 0.12, ease: 'power2.out'
+    });
+
+    // Reports flip cards: staggered entrance
+    gsap.from('.flip-card', {
+      scrollTrigger: { trigger: '#reports-grid', start: 'top 85%' },
+      opacity: 0, y: 28, duration: 0.55, stagger: 0.04, ease: 'power2.out'
+    });
+
+    // Alerts section
+    gsap.from('.alerts-col', {
+      scrollTrigger: { trigger: '.section-alerts', start: 'top 85%' },
+      opacity: 0, y: 32, duration: 0.7, stagger: 0.2, ease: 'power2.out'
+    });
+
+    // Trip replay
+    gsap.from('.replay-col', {
+      scrollTrigger: { trigger: '.section-replay', start: 'top 85%' },
+      opacity: 0, y: 28, duration: 0.7, stagger: 0.15, ease: 'power2.out'
+    });
+
+    // Access platforms
+    gsap.from('#access-platforms .access-platform', {
+      scrollTrigger: { trigger: '.section-access', start: 'top 85%' },
+      opacity: 0, y: 24, scale: 0.95, duration: 0.55, stagger: 0.12, ease: 'back.out(1.4)'
+    });
+
+    // API section
+    gsap.from('.api-info > *, .api-code-card', {
+      scrollTrigger: { trigger: '.section-api', start: 'top 85%' },
+      opacity: 0, y: 24, duration: 0.6, stagger: 0.1, ease: 'power2.out'
+    });
+
+    // CTA banner
+    gsap.from('.cta-banner-content > *', {
+      scrollTrigger: { trigger: '.section-cta-banner', start: 'top 80%' },
+      opacity: 0, y: 24, duration: 0.7, stagger: 0.1, ease: 'power2.out'
+    });
+
+    // Report category tab filtering
+    (function() {
+      var tabs = document.querySelectorAll('.report-tab');
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var cat = this.dataset.cat;
+          tabs.forEach(function(t) { t.classList.remove('active'); });
+          this.classList.add('active');
+          document.querySelectorAll('#reports-grid .flip-card').forEach(function(card) {
+            if (cat === 'all' || card.dataset.category === cat) {
+              card.classList.remove('report-card-hidden');
+            } else {
+              card.classList.add('report-card-hidden');
+            }
+          });
+        });
+      });
+    })();
+
+
+    function navigateTo(slug) {
+      window.parent.postMessage({ type: 'wix-navigate', slug: slug }, '*');
+    }
+    // Wix Studio: hide native nav on embed load
+    window.addEventListener('message', function(e) {
+      if (e.data && e.data.type === 'wix-hide-nav') {
+        document.body.style.paddingTop = '0';
+      }
+    });
+  </script>
+
+</body>
+</html>
