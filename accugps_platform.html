@@ -707,7 +707,7 @@
       display: grid;
       grid-template-columns: repeat(3, 130px);
       gap: 16px;
-      align-items: start;
+      align-items: center;
     }
     .access-platform {
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
@@ -759,6 +759,17 @@
     }
     .api-code-bar-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.12); }
     .api-code-bar-label { font-size: 11px; color: rgba(255,255,255,0.25); font-family: monospace; margin-left: 4px; }
+    .api-tabs { display: flex; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .api-tab {
+      padding: 10px 16px; font-size: 11px; font-family: monospace;
+      color: rgba(255,255,255,0.35); cursor: pointer;
+      border-bottom: 2px solid transparent; transition: color 0.2s;
+      user-select: none;
+    }
+    .api-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .api-tab:hover:not(.active) { color: rgba(255,255,255,0.6); }
+    .api-panel { display: none; }
+    .api-panel.active { display: block; }
     .api-code-body { padding: 20px; font-family: monospace; }
     .api-line { font-size: 12px; line-height: 2; }
     .api-comment { color: rgba(255,255,255,0.2); }
@@ -766,6 +777,9 @@
     .api-url { color: rgba(230,255,131,0.8); }
     .api-key { color: #f9a8d4; }
     .api-val { color: rgba(255,255,255,0.65); }
+    .api-use-cases { list-style: none; margin: 20px 0 28px; display: flex; flex-direction: column; gap: 10px; }
+    .api-use-cases li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+    .api-use-cases li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: 7px; flex-shrink: 0; }
 
     /* ============================================
        CTA BANNER
@@ -882,7 +896,7 @@
 
     <div class="hero-left" id="hero-left">
       <div class="hero-breadcrumb">
-        <a href="#" class="hero-breadcrumb-link" onclick="navigateTo('/'); return false;">AccuGPS</a>
+        <a href="#" class="hero-breadcrumb-link" onclick="navigateTo('/home'); return false;">AccuGPS</a>
         <span class="hero-breadcrumb-sep">/</span>
         <span class="hero-breadcrumb-current">Platform &amp; Features</span>
       </div>
@@ -902,7 +916,7 @@
           Login to Platform
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </a>
-        <button class="btn-ghost" onclick="navigateTo('/gps-trackers')">
+        <button class="btn-ghost" onclick="navigateTo('/fleettrackingsolutions')">
           Shop GPS Trackers
         </button>
       </div>
@@ -982,8 +996,8 @@
         <p class="section-sub">Log in from your phone, tablet, or browser and see every tracker and asset on a live map. Status indicators show Active, Stopped, or Offline at a glance. Click any vehicle for speed, location history, and current alerts.</p>
 
         <div class="overview-pills">
-          <div class="overview-pill"><span>14</span> Report Types</div>
-          <div class="overview-pill"><span>99+</span> Alert Types</div>
+          <div class="overview-pill"><span>Multiple</span> Report Types</div>
+          <div class="overview-pill"><span>Multiple</span> Alert Types</div>
           <div class="overview-pill"><span>3</span> Platforms: iOS, Android, Web</div>
           <div class="overview-pill"><span>73+</span> Devices Supported</div>
         </div>
@@ -1125,7 +1139,7 @@
           <div class="bento-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
           </div>
-          <div class="bento-label">99+ Alert Types</div>
+          <div class="bento-label">Multiple Alert Types</div>
           <div class="bento-desc">Geofence exits, speed violations, engine faults, after-hours movement, power cut. Delivered via app, email, or SMS in seconds.</div>
         </div>
       </div>
@@ -1419,8 +1433,8 @@
 
       <div class="alerts-col">
         <span class="section-eyebrow">Alerts</span>
-        <h2 class="section-title light">99+ alert types.<br>Delivered instantly.</h2>
-        <div class="alert-count">99+</div>
+        <h2 class="section-title light">Multi-alerts system.<br>Delivered instantly.</h2>
+        <div class="alert-count" style="font-size: 52px; letter-spacing: -0.02em;">Multi</div>
         <div class="alert-count-label">configurable alert types in the platform</div>
 
         <div class="alert-list">
@@ -1595,32 +1609,78 @@
   <section class="section-api" id="api-access">
     <div class="api-layout">
       <div class="api-info">
-        <span class="section-eyebrow">For Developers</span>
-        <h2 class="section-title">Connect AccuGPS<br>to your existing tools.</h2>
-        <p class="section-sub">Push fleet data to your dispatch system, CRM, or custom reporting tool. API access is available for businesses that need deeper integration.</p>
-        <div style="margin-top:28px;">
-          <button class="btn-ghost">
-            Contact Us About API Access
-          </button>
-        </div>
+        <span class="section-eyebrow">Open API</span>
+        <h2 class="section-title">Connect AccuGPS<br>to any software.</h2>
+        <p class="section-sub">Pull ignition events, DTC fault codes, and odometer data directly into your dispatch system, maintenance platform, or custom tools. JWT authentication. No SDK required.</p>
+        <ul class="api-use-cases">
+          <li>Feed ignition data into dispatch and payroll software</li>
+          <li>Trigger maintenance tickets when DTC fault codes appear</li>
+          <li>Sync odometer readings with your maintenance schedule</li>
+        </ul>
+        <button class="btn-ghost" onclick="navigateTo('/contact')">Contact Us for API Access</button>
       </div>
       <div class="api-code-card">
         <div class="api-code-bar">
           <div class="api-code-bar-dot"></div>
           <div class="api-code-bar-dot"></div>
           <div class="api-code-bar-dot"></div>
-          <div class="api-code-bar-label">AccuGPS REST API</div>
+          <div class="api-code-bar-label">AccuGPS OBD Open API &nbsp;|&nbsp; v1</div>
         </div>
-        <div class="api-code-body">
-          <div class="api-line"><span class="api-comment">// Get live vehicle positions</span></div>
-          <div class="api-line"><span class="api-method">GET</span> <span class="api-url">/api/v1/fleet/vehicles</span></div>
-          <div class="api-line">&nbsp;</div>
-          <div class="api-line"><span class="api-comment">// Pull trip history for a vehicle</span></div>
-          <div class="api-line"><span class="api-method">GET</span> <span class="api-url">/api/v1/trips/:vehicle_id</span></div>
-          <div class="api-line">&nbsp;</div>
-          <div class="api-line"><span class="api-comment">// Subscribe to real-time alerts</span></div>
-          <div class="api-line"><span class="api-key">Authorization:</span> <span class="api-val">Bearer {your_api_key}</span></div>
+        <div class="api-tabs">
+          <div class="api-tab active">ignition</div>
+          <div class="api-tab">dtc</div>
+          <div class="api-tab">odometer</div>
         </div>
+
+        <div class="api-panel active">
+          <div class="api-code-body">
+            <div class="api-line"><span class="api-method">GET</span> <span class="api-url">/api/open/v1/devices/{sn}/ignition</span></div>
+            <div class="api-line"><span class="api-comment">?start_time=1641334180&amp;end_time=1641334750</span></div>
+            <div class="api-line">&nbsp;</div>
+            <div class="api-line"><span class="api-val">{</span></div>
+            <div class="api-line">&nbsp;&nbsp;<span class="api-key">"status"</span><span class="api-val">: 200,</span></div>
+            <div class="api-line">&nbsp;&nbsp;<span class="api-key">"data"</span><span class="api-val">: [</span></div>
+            <div class="api-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="api-val">{ <span class="api-key">"event_type"</span>: 1, <span class="api-key">"utc_time"</span>: 1641334189 },</span></div>
+            <div class="api-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="api-val">{ <span class="api-key">"event_type"</span>: 0, <span class="api-key">"utc_time"</span>: 1641334749 }</span></div>
+            <div class="api-line">&nbsp;&nbsp;<span class="api-val">]</span></div>
+            <div class="api-line"><span class="api-val">}</span></div>
+            <div class="api-line">&nbsp;</div>
+            <div class="api-line"><span class="api-comment">// 0 = ignition off, 1 = ignition on</span></div>
+          </div>
+        </div>
+
+        <div class="api-panel">
+          <div class="api-code-body">
+            <div class="api-line"><span class="api-method">GET</span> <span class="api-url">/api/open/v1/devices/{sn}/dtc</span></div>
+            <div class="api-line"><span class="api-comment">?start_time=1641334180&amp;end_time=1641334750</span></div>
+            <div class="api-line">&nbsp;</div>
+            <div class="api-line"><span class="api-val">{</span></div>
+            <div class="api-line">&nbsp;&nbsp;<span class="api-key">"status"</span><span class="api-val">: 200,</span></div>
+            <div class="api-line">&nbsp;&nbsp;<span class="api-key">"data"</span><span class="api-val">: [</span></div>
+            <div class="api-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="api-val">{ <span class="api-key">"code"</span>: <span class="api-url">"P0138"</span>, <span class="api-key">"utc_time"</span>: 1641334749 }</span></div>
+            <div class="api-line">&nbsp;&nbsp;<span class="api-val">]</span></div>
+            <div class="api-line"><span class="api-val">}</span></div>
+            <div class="api-line">&nbsp;</div>
+            <div class="api-line"><span class="api-comment">// OBD-II fault codes with timestamps</span></div>
+          </div>
+        </div>
+
+        <div class="api-panel">
+          <div class="api-code-body">
+            <div class="api-line"><span class="api-method">GET</span> <span class="api-url">/api/open/v1/devices/{sn}/odometer</span></div>
+            <div class="api-line"><span class="api-comment">?start_time=1641334180&amp;end_time=1641334750</span></div>
+            <div class="api-line">&nbsp;</div>
+            <div class="api-line"><span class="api-val">{</span></div>
+            <div class="api-line">&nbsp;&nbsp;<span class="api-key">"status"</span><span class="api-val">: 200,</span></div>
+            <div class="api-line">&nbsp;&nbsp;<span class="api-key">"data"</span><span class="api-val">: {</span></div>
+            <div class="api-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="api-key">"odometer"</span><span class="api-val">: 100000</span></div>
+            <div class="api-line">&nbsp;&nbsp;<span class="api-val">}</span></div>
+            <div class="api-line"><span class="api-val">}</span></div>
+            <div class="api-line">&nbsp;</div>
+            <div class="api-line"><span class="api-comment">// Value in meters. Divide by 1609 for miles.</span></div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1633,9 +1693,9 @@
     <div class="cta-banner-content">
       <span class="section-eyebrow">Get Started Today</span>
       <h2 class="cta-banner-title">The platform is<br>included with every <span style="color:var(--accent);">tracker.</span></h2>
-      <p class="cta-banner-sub">Every GPS tracker ships with full access to the platform: live map, all reports, all 99+ alerts, Drive Score, IFTA, and the mobile apps. No platform fee. No per-user charge. Starting at $129.</p>
+      <p class="cta-banner-sub">Every GPS tracker ships with full access to the platform: live map, all reports, multiple alert types, Drive Score, IFTA, and the mobile apps. No platform fee. No per-user charge. Starting at $129.</p>
       <div class="cta-banner-buttons">
-        <button class="btn-primary-dark" onclick="navigateTo('/gps-trackers')">Shop GPS Trackers</button>
+        <button class="btn-primary-dark" onclick="navigateTo('/fleettrackingsolutions')">Shop GPS Trackers</button>
         <button class="btn-ghost-dark">Call (888) 519-9128</button>
       </div>
     </div>
@@ -1657,21 +1717,21 @@
       <div>
         <div class="footer-col-title">Products</div>
         <div class="footer-links">
-          <a href="#" onclick="navigateTo('/obd-ii-gps-tracker'); return false;">OBD II Smart Tracker</a>
-          <a href="#" onclick="navigateTo('/magnetic-gps-tracker'); return false;">Magnetic Asset Tracker</a>
-          <a href="#" onclick="navigateTo('/4g-lte-gps-tracker'); return false;">4G LTE GPS Tracker</a>
-          <a href="#" onclick="navigateTo('/fleet-dash-cameras'); return false;">Fleet Cameras</a>
+          <a href="#" onclick="navigateTo('/fleettrackingsolutions'); return false;">OBD II Smart Tracker</a>
+          <a href="#" onclick="navigateTo('/fleettrackingsolutions'); return false;">Magnetic Asset Tracker</a>
+          <a href="#" onclick="navigateTo('/fleettrackingsolutions'); return false;">4G LTE GPS Tracker</a>
+          <a href="#" onclick="navigateTo('/camerasystems'); return false;">Fleet Cameras</a>
           <a href="#" onclick="navigateTo('/gps-tracking-pricing'); return false;">Pricing</a>
         </div>
       </div>
       <div>
         <div class="footer-col-title">Platform</div>
         <div class="footer-links">
-          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">Drive Score</a>
-          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">Geofencing</a>
-          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">IFTA Reporting</a>
-          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">Trip Replay</a>
-          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">All Features</a>
+          <a href="#" onclick="navigateTo('/integratedsolutions'); return false;">Drive Score</a>
+          <a href="#" onclick="navigateTo('/integratedsolutions'); return false;">Geofencing</a>
+          <a href="#" onclick="navigateTo('/integratedsolutions'); return false;">IFTA Reporting</a>
+          <a href="#" onclick="navigateTo('/integratedsolutions'); return false;">Trip Replay</a>
+          <a href="#" onclick="navigateTo('/integratedsolutions'); return false;">All Features</a>
         </div>
       </div>
       <div>
@@ -1772,6 +1832,20 @@
               card.classList.add('report-card-hidden');
             }
           });
+        });
+      });
+    })();
+
+    // API tab switcher
+    (function() {
+      var tabs = document.querySelectorAll('.api-tab');
+      var panels = document.querySelectorAll('.api-panel');
+      tabs.forEach(function(tab, i) {
+        tab.addEventListener('click', function() {
+          tabs.forEach(function(t) { t.classList.remove('active'); });
+          panels.forEach(function(p) { p.classList.remove('active'); });
+          tab.classList.add('active');
+          panels[i].classList.add('active');
         });
       });
     })();
