@@ -1139,102 +1139,6 @@
     }
 
     /* ============================================
-       ROI CALCULATOR
-    ============================================ */
-    .section-roi {
-      background: var(--white);
-      padding: 112px 80px;
-    }
-
-    .roi-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .roi-calc {
-      background: var(--off-white);
-      border-radius: 20px;
-      padding: 40px;
-      border: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
-    .calc-title {
-      font-family: var(--font-display);
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 32px;
-      letter-spacing: -0.02em;
-    }
-
-    .calc-field {
-      margin-bottom: 24px;
-    }
-
-    .calc-label {
-      font-family: var(--font-body);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--body-text);
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .calc-input {
-      width: 100%;
-      background: var(--white);
-      border: 1px solid var(--mid-gray);
-      border-radius: 10px;
-      padding: 14px 18px;
-      font-family: var(--font-body);
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--dark);
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .calc-input:focus {
-      border-color: var(--forest);
-      box-shadow: 0 0 0 3px rgba(46, 68, 60, 0.1);
-    }
-
-    .calc-result {
-      background: var(--dark);
-      border-radius: 14px;
-      padding: 28px;
-      margin-top: 8px;
-    }
-
-    .calc-result-label {
-      font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 10px;
-    }
-
-    .calc-result-value {
-      font-family: var(--font-display);
-      font-size: 48px;
-      font-weight: 800;
-      color: var(--accent);
-      letter-spacing: -0.04em;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .calc-result-note {
-      font-family: var(--font-body);
-      font-size: 12px;
-      color: var(--muted-dark);
-    }
-
-    /* ============================================
        TESTIMONIALS
     ============================================ */
     .section-testimonials {
@@ -1618,7 +1522,6 @@
       .section-math,
       .section-platform,
       .section-industries,
-      .section-roi,
       .section-testimonials,
       .section-cta-banner {
         padding: 72px 24px;
@@ -1644,11 +1547,6 @@
 
       .industry-grid {
         grid-template-columns: repeat(2, 1fr);
-      }
-
-      .roi-layout {
-        grid-template-columns: 1fr;
-        gap: 48px;
       }
 
       .testimonial-grid {
@@ -2019,7 +1917,7 @@
           </div>
           <div class="math-row highlighted" style="background: var(--forest);">
             <div class="math-row-label">AccuGPS renewal (per year)</div>
-            <div class="math-row-value" style="color: var(--teal-light);">$99</div>
+            <div class="math-row-value" style="color: var(--teal-light);">$129</div>
           </div>
           <div class="math-row">
             <div class="math-row-label">5 vehicles over 3 years. Competitors.</div>
@@ -2027,11 +1925,11 @@
           </div>
           <div class="math-row highlighted">
             <div class="math-row-label">5 vehicles over 3 years. AccuGPS.</div>
-            <div class="math-row-value">$1,240</div>
+            <div class="math-row-value">$1,935</div>
           </div>
         </div>
         <p class="math-note">Competitor range based on $25-60/month/vehicle industry average. AccuGPS: $129 year one +
-          $99/year renewal per vehicle.</p>
+          $129/year renewal per vehicle.</p>
       </div>
     </div>
   </section>
@@ -2134,40 +2032,6 @@
       <div class="industry-card">
         <div class="industry-icon">🚗</div>
         <div class="industry-name">Fleet Management</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ================================================
-       ROI CALCULATOR
-  ================================================ -->
-  <section class="section-roi" id="calculator">
-    <div class="roi-layout">
-      <div>
-        <div class="section-eyebrow">ROI Calculator</div>
-        <h2 class="section-title">See your savings<br>before you <span class="accent">buy.</span></h2>
-        <p class="section-sub">Enter your fleet size and monthly fuel spend. We'll show you how much GPS tracking
-          typically saves, based on a 15% reduction in fuel waste from route optimization and idle time monitoring.</p>
-        <p class="section-sub" style="margin-top:16px;">One local service company using AccuGPS cut idle hours by 18%
-          and recovered their full investment in 9 months.</p>
-      </div>
-
-      <div class="roi-calc">
-        <div class="calc-title">Estimate your annual savings</div>
-        <div class="calc-field">
-          <label class="calc-label" for="calc-vehicles">Number of vehicles</label>
-          <input class="calc-input" type="number" id="calc-vehicles" placeholder="5" min="1" max="500">
-        </div>
-        <div class="calc-field">
-          <label class="calc-label" for="calc-fuel">Monthly fuel spend per vehicle ($)</label>
-          <input class="calc-input" type="number" id="calc-fuel" placeholder="400" min="50">
-        </div>
-        <div class="calc-result">
-          <div class="calc-result-label">Estimated annual fuel savings</div>
-          <div class="calc-result-value" id="calc-output">$—</div>
-          <div class="calc-result-note">Based on 15% fuel waste reduction. Actual results vary.</div>
-        </div>
       </div>
     </div>
   </section>
