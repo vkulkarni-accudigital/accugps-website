@@ -3,12 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fleet Cameras | AccuGPS Fleet Tracking</title>
+  <meta name="description" content="AccuGPS fleet dash cameras with live 4G LTE streaming. All-In-One AI camera and MDVR multi-channel recorder. Reduce liability and protect your drivers. Call (888) 519-9128.">
+  <title>Fleet Dash Cameras | AccuGPS</title>
 
   <!-- Font: Figtree -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-734P54F0RR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-734P54F0RR');
+  </script>
 
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -422,6 +431,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: 20px;
       background: var(--off-white);
       border-radius: 20px;
       border: 1px solid rgba(0,0,0,0.06);
@@ -441,8 +451,8 @@
       pointer-events: none;
     }
     .aio-visual img {
-      max-height: 260px;
-      max-width: 80%;
+      max-height: 340px;
+      max-width: 90%;
       object-fit: contain;
       position: relative;
       z-index: 1;
@@ -589,15 +599,16 @@
 
     .addon-card-img {
       background: var(--off-white);
-      height: 200px;
+      height: 240px;
+      border-radius: 20px 20px 0 0;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
     }
     .addon-card-img img {
-      max-height: 150px;
-      max-width: 75%;
+      max-height: 190px;
+      max-width: 90%;
       object-fit: contain;
     }
 
@@ -970,6 +981,8 @@
     .spotlight-active {
       position: relative;
       min-height: 220px;
+      border-radius: 20px;
+      overflow: hidden;
     }
     .spotlight-feature {
       position: absolute;
@@ -1264,6 +1277,47 @@
     }
 
     /* No nav. Wix Studio header is used instead. */
+
+    /* ============================================
+       GEO + FAQ SECTIONS
+    ============================================ */
+    .section-geo {
+      background: var(--off-white);
+      padding: 96px 80px;
+    }
+    .section-geo-inner { max-width: 1120px; margin: 0 auto; }
+    .geo-intro {
+      font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--forest); margin-bottom: 64px;
+    }
+    .geo-block {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px 80px;
+      align-items: start; padding-bottom: 48px;
+      border-bottom: 1px solid rgba(0,0,0,0.08); margin-bottom: 48px;
+    }
+    .geo-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .geo-block h2 {
+      font-family: var(--font-display); font-size: clamp(20px, 2vw, 28px);
+      font-weight: 700; line-height: 1.25; color: var(--dark); margin: 0;
+    }
+    .geo-block p { font-size: 16px; line-height: 1.7; color: var(--body-text); margin: 0; }
+    .section-faq { background: var(--white); padding: 96px 80px; }
+    .section-faq-inner { max-width: 800px; margin: 0 auto; }
+    .faq-header { margin-bottom: 56px; }
+    .faq-item { border-bottom: 1px solid rgba(0,0,0,0.1); padding: 28px 0; }
+    .faq-item:first-of-type { border-top: 1px solid rgba(0,0,0,0.1); }
+    .faq-item h3 {
+      font-family: var(--font-display); font-size: 18px; font-weight: 700;
+      color: var(--dark); margin-bottom: 12px; line-height: 1.3;
+    }
+    .faq-item p { font-size: 15px; line-height: 1.75; color: var(--body-text); margin: 0; }
+    @media (max-width: 900px) {
+      .section-geo, .section-faq { padding: 72px 40px; }
+      .geo-block { grid-template-columns: 1fr; gap: 16px; }
+    }
+    @media (max-width: 768px) {
+      .section-geo, .section-faq { padding: 56px 24px; }
+    }
   </style>
 </head>
 <body>
@@ -1276,7 +1330,7 @@
 
     <div class="hero-left" id="hero-left">
       <div class="hero-breadcrumb">
-        <a href="#" class="hero-breadcrumb-link" onclick="navigateTo('/'); return false;">AccuGPS</a>
+        <a href="#" class="hero-breadcrumb-link" onclick="navigateTo('/home'); return false;">AccuGPS</a>
         <span class="hero-breadcrumb-sep">/</span>
         <span class="hero-breadcrumb-current">Fleet Cameras</span>
       </div>
@@ -1288,15 +1342,15 @@
       </h1>
 
       <p class="hero-sub">
-        Two camera systems built for working fleets. The <strong style="color:var(--accent);">All-In-One</strong> gives you AI-powered dual-view in one device. The <strong style="color:var(--accent);">MDVR</strong> supports up to 4 cameras for full coverage. Both run 4G LTE live streaming and cloud storage.
+        AccuGPS fleet cameras are available to businesses in Jamesville, NY, Syracuse, and across the US. Two camera systems built for working fleets. The <strong style="color:var(--accent);">All-In-One</strong> gives you AI-powered dual-view in one device. The <strong style="color:var(--accent);">MDVR</strong> supports up to 4 cameras for full coverage. Both run 4G LTE live streaming and cloud storage.
       </p>
 
       <div class="hero-cta-row">
-        <button class="btn-primary" onclick="navigateTo('/fleet-dash-cameras')">
+        <button class="btn-primary" onclick="window.top.location.href='https://www.accugps.com/category/dash-cameras'">
           Shop Fleet Cameras
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
-        <button class="btn-ghost">
+        <button class="btn-ghost" onclick="window.location.href='tel:8885199128'">
           Call (888) 519-9128
         </button>
       </div>
@@ -1309,9 +1363,12 @@
         </div>
         <div class="hero-chip-info">
           <div class="hero-chip-name">All-In-One Camera</div>
-          <div class="hero-chip-desc">Forward + driver view. AI alerts. No MDVR needed.</div>
+          <div class="hero-chip-desc">Forward + driver view. AI alerts. Add-on available. No MDVR needed.</div>
         </div>
-        <div class="hero-chip-price">$220</div>
+        <div class="hero-chip-price" style="text-align: right; white-space: normal; line-height: 1.3;">
+          $220<br>
+          <span style="font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.55);">hardware + monthly fee</span>
+        </div>
       </div>
 
       <div class="hero-camera-chip">
@@ -1320,13 +1377,17 @@
         </div>
         <div class="hero-chip-info">
           <div class="hero-chip-name">MDVR Multi-Camera System</div>
-          <div class="hero-chip-desc">Up to 4 cameras. 2TB storage. Full fleet coverage.</div>
+          <div class="hero-chip-desc">Up to 3 channels included. 4th channel available as an add-on.</div>
         </div>
-        <div class="hero-chip-price">$199</div>
+        <div class="hero-chip-price" style="text-align: right; white-space: normal; line-height: 1.3;">
+          <span style="font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.55);">Starting from</span><br>
+          $299<br>
+          <span style="font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.55);">hardware + monthly fee</span>
+        </div>
       </div>
 
       <div style="padding: 12px 20px; background: rgba(230,255,131,0.06); border-radius: 10px; border: 1px solid rgba(230,255,131,0.12);">
-        <p style="font-size:12px; color:rgba(255,255,255,0.4); line-height:1.5;">All-In-One subscription: <strong style="color:rgba(255,255,255,0.65);">$27/month</strong> per vehicle. MDVR add-on cameras start at <strong style="color:rgba(255,255,255,0.65);">$50 each</strong>. No long-term contracts.</p>
+        <p style="font-size:12px; color:rgba(255,255,255,0.4); line-height:1.5;">All-In-One subscription: <strong style="color:rgba(255,255,255,0.65);">$27/month</strong> per vehicle. MDVR includes up to 3 channels; add a 4th channel if needed. No long-term contracts.</p>
       </div>
     </div>
 
@@ -1348,11 +1409,11 @@
 
         <h2 class="section-title">One device.<br>Forward view <span style="color:var(--forest);">and</span><br>driver monitoring.</h2>
 
-        <p class="section-sub">The MT95L is GPS tracking, AI driver coaching, live video, and cloud storage in a single unit. No separate MDVR. No extra wiring. Mount it on the windshield and you are done.</p>
+        <p class="section-sub">The MT95L is GPS tracking, AI driver coaching, live video, and cloud storage in a single unit. Optional camera add-on available. No separate MDVR. No extra wiring. Mount it on the windshield and you are done.</p>
 
         <div class="aio-price-row">
           <div class="aio-price">$220</div>
-          <div class="aio-price-note">device only<br>hardware included</div>
+          <div class="aio-price-note">hardware + monthly fee</div>
         </div>
         <p class="aio-sub-price">Plus <strong>$27/month</strong> per vehicle for cloud storage, live tracking, and AI insights.</p>
 
@@ -1410,7 +1471,7 @@
         </div>
 
         <div style="display:flex; gap:12px; flex-wrap:wrap;">
-          <button class="btn-primary" onclick="navigateTo('/fleet-dash-cameras')">
+          <button class="btn-primary" onclick="window.top.location.href='https://www.accugps.com/product-page/accugps-all-in-one-camera'">
             Shop All-In-One Camera
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
@@ -1418,7 +1479,7 @@
       </div>
 
       <div class="aio-visual" id="aio-visual">
-        <img src="./camera-adas.png" alt="AccuGPS All-In-One AI Camera">
+        <img src="./All%20in%20One%20Hero.jpg" alt="AccuGPS All-In-One AI Camera">
       </div>
 
     </div>
@@ -1445,11 +1506,11 @@
 
         <h2 class="section-title">Full coverage<br>for <span style="color:var(--forest);">larger fleets.</span></h2>
 
-        <p class="section-sub">The MDVR records up to four camera channels simultaneously. Front, rear, side, and cabin: choose the angles your fleet needs. Paired with your choice of add-on cameras, it covers every blind spot.</p>
+        <p class="section-sub">The MDVR system includes up to 3 high-definition channels out of the box for immediate front, rear, and cabin monitoring. Need more coverage? Easily expand to a 4-channel setup.</p>
 
         <div class="mdvr-price-row">
-          <div class="mdvr-price">$199</div>
-          <div class="mdvr-price-note">MDVR unit<br>Add-on cameras from $50 each</div>
+          <div class="mdvr-price"><span style="font-size: 20px; font-weight: 600; color: var(--muted); vertical-align: middle; margin-right: 8px;">Starting from</span>$299</div>
+          <div class="mdvr-price-note">hardware + monthly fee</div>
         </div>
 
         <div class="mdvr-spec-grid">
@@ -1463,7 +1524,7 @@
           </div>
           <div class="mdvr-spec">
             <div class="mdvr-spec-label">Max Storage</div>
-            <div class="mdvr-spec-value">2TB HDD/SSD</div>
+            <div class="mdvr-spec-value">SD Card</div>
           </div>
           <div class="mdvr-spec">
             <div class="mdvr-spec-label">Temperature Range</div>
@@ -1480,15 +1541,15 @@
         </div>
 
         <div class="mdvr-add-note">
-          <strong>Build your system:</strong> Start with the MDVR at $199, then add the cameras you need. HD Dual AI, Auxiliary, and In-Cabin HD cameras are each $50. Mix and match up to 4 channels for complete visibility.
+          <strong>Build your system:</strong> Start with the MDVR, then add the cameras you need: HD Dual AI, Auxiliary, and In-Cabin HD. Mix and match up to 4 channels for complete visibility.
         </div>
 
         <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;">
-          <button class="btn-primary" onclick="navigateTo('/fleet-dash-cameras')">
+          <button class="btn-primary" onclick="window.top.location.href='https://www.accugps.com/product-page/accugps-mdvr-mobile-digital-video-recorder'">
             Shop MDVR System
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
-          <button class="btn-outline-dark">
+          <button class="btn-outline-dark" onclick="window.top.location.href='https://www.accugps.com/category/dash-cameras?Price=50-100'">
             See Add-On Cameras
           </button>
         </div>
@@ -1509,7 +1570,7 @@
       <div class="spotlight-image-wrap" id="spotlight-image-wrap">
         <div class="spotlight-image-panel">
           <span class="spotlight-chip spotlight-chip-tl">4 Channels</span>
-          <span class="spotlight-chip spotlight-chip-tr">2TB Storage</span>
+          <span class="spotlight-chip spotlight-chip-tr">SD Card Storage</span>
           <span class="spotlight-chip spotlight-chip-bl">-20C to 70C</span>
           <span class="spotlight-chip spotlight-chip-br">4G LTE</span>
           <img src="./camera-multicam.png" alt="AccuGPS MDVR System" id="spotlight-img">
@@ -1538,8 +1599,8 @@
             <div class="spotlight-feature-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
             </div>
-            <div class="spotlight-feature-title">2TB Local<br>Storage</div>
-            <p class="spotlight-feature-desc">Footage stays on the vehicle even without signal. HDD or SSD up to 2TB, plus SD card backup so nothing is lost.</p>
+            <div class="spotlight-feature-title">SD Card<br>Storage</div>
+            <p class="spotlight-feature-desc">Footage stays on the vehicle even without signal. Records directly to a high-capacity SD card so nothing is lost.</p>
           </div>
 
           <div class="spotlight-feature" data-index="2" data-image="./camera-roadfacing.png" id="sf-2">
@@ -1615,7 +1676,7 @@
           <h2 class="section-title">Three cameras.<br>One MDVR.<br><span style="color:var(--forest);">Your choice.</span></h2>
         </div>
         <div>
-          <p class="section-sub" style="margin-top:0;">Each add-on camera pairs with the AccuGPS MDVR. Pick the angles that matter for your operation. All at $50 each.</p>
+          <p class="section-sub" style="margin-top:0;">Each add-on camera pairs with the AccuGPS MDVR. Pick the angles that matter for your operation. Starting at $50 each.</p>
         </div>
       </div>
     </div>
@@ -1625,14 +1686,14 @@
       <!-- HD Dual AI Camera -->
       <div class="addon-card" id="addon-1">
         <div class="addon-card-img">
-          <img src="./camera-dsm.png" alt="AccuGPS HD Dual AI Camera">
+          <img src="./Dual%20HD%20Main.png" alt="AccuGPS HD Dual AI Camera">
         </div>
         <div class="addon-card-body">
           <span class="addon-card-tag">AI Powered</span>
           <div class="addon-card-name">HD Dual AI Camera</div>
           <div class="addon-card-tagline">Dual HD lenses with AI driver analytics. Built for fleets focused on safety and incident defense.</div>
           <div class="addon-price-row">
-            <div class="addon-price">$50</div>
+            <div class="addon-price">$100</div>
             <div class="addon-price-note">requires MDVR</div>
           </div>
           <ul class="addon-features">
@@ -1663,7 +1724,7 @@
       <!-- Auxiliary Camera -->
       <div class="addon-card" id="addon-2">
         <div class="addon-card-img">
-          <img src="./camera-roadfacing.png" alt="AccuGPS Auxiliary Camera">
+          <img src="./Auxilary%20Camera%20Main.png" alt="AccuGPS Auxiliary Camera">
         </div>
         <div class="addon-card-body">
           <span class="addon-card-tag">Wide Angle</span>
@@ -1701,7 +1762,7 @@
       <!-- In-Cabin HD Camera -->
       <div class="addon-card" id="addon-3">
         <div class="addon-card-img">
-          <img src="./camera-dsm.png" alt="AccuGPS In-Cabin HD Camera">
+          <img src="./In%20Cabin%20Camera%20Main.png" alt="AccuGPS In-Cabin HD Camera">
         </div>
         <div class="addon-card-body">
           <span class="addon-card-tag">Interior</span>
@@ -1772,7 +1833,7 @@
         <tr>
           <td>Base price</td>
           <td class="col-highlight">$220</td>
-          <td>$199 + cameras from $50 each</td>
+          <td>Starting from $299 including camera</td>
         </tr>
         <tr>
           <td>Monthly subscription</td>
@@ -1801,8 +1862,8 @@
         </tr>
         <tr>
           <td>Local storage</td>
-          <td class="col-highlight">TF card up to 512GB</td>
-          <td>HDD/SSD up to 2TB + SD backup</td>
+          <td class="col-highlight">Up to 512GB TF card</td>
+          <td>SD Card</td>
         </tr>
         <tr>
           <td>GPS tracking included</td>
@@ -1855,7 +1916,7 @@
         <div class="guide-scenario">"I need to cover the front, back, sides, and inside the cab. My fleet runs heavy-duty trucks with multiple blind spots."</div>
         <div class="guide-arrow">&#8594;</div>
         <div class="guide-recommendation">MDVR + Add-On Cameras</div>
-        <div class="guide-reason">The MDVR handles up to 4 channels simultaneously at 1080p each, with 2TB of local storage and 4G LTE live streaming. Pair it with the HD Dual AI, Auxiliary, and In-Cabin cameras to cover every angle your operation requires.</div>
+        <div class="guide-reason">The MDVR handles up to 4 channels simultaneously at 1080p each, with local SD card storage and 4G LTE live streaming. Pair it with the HD Dual AI, Auxiliary, and In-Cabin cameras to cover every angle your operation requires.</div>
         <div class="guide-key-fact">Best for: box trucks, logistics fleets, cold storage, passenger transport</div>
       </div>
 
@@ -1880,6 +1941,59 @@
 
 
   <!-- ================================================
+       GEO CONTENT — AI Visibility Optimization
+  ================================================ -->
+  <section class="section-geo">
+    <div class="section-geo-inner">
+      <div class="geo-intro">AccuGPS Fleet Cameras — Jamesville, NY</div>
+
+      <div class="geo-block">
+        <h2>Where to buy AI-powered in-cabin cameras for fleet vehicles in Jamesville?</h2>
+        <p>AccuGPS sells and ships AI-powered in-cabin fleet cameras from Jamesville, NY 13078 to businesses across Central New York and the US. The All-In-One camera includes forward-facing and driver-facing views in one device, with AI that detects distraction, fatigue, and phone use in real time. Call (888) 519-9128 to order.</p>
+      </div>
+
+      <div class="geo-block">
+        <h2>Can I buy driver behavior monitoring systems in Syracuse?</h2>
+        <p>AccuGPS provides AI-powered driver behavior monitoring for fleet operators in Syracuse and across Central New York. The in-cabin camera detects phone use, drowsiness, lane departure, and tailgating. The AccuGPS platform scores each driver and sends alerts when unsafe behavior is detected, giving managers in Syracuse a clear coaching tool.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       FAQ
+  ================================================ -->
+  <section class="section-faq">
+    <div class="section-faq-inner">
+      <div class="faq-header">
+        <div class="section-eyebrow">Fleet Camera Questions</div>
+        <h2 class="section-title" style="margin-top:12px;">Camera system answers<br>for fleet managers.</h2>
+      </div>
+
+      <div class="faq-item">
+        <h3>What is the difference between the All-In-One camera and the MDVR system?</h3>
+        <p>The All-In-One camera is a single device that captures forward-facing road view and driver-facing cabin view simultaneously. It is the fastest install and works for most fleets. The MDVR system supports up to 4 cameras for vehicles that need side, rear, or cargo views in addition to forward and driver coverage.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How does AI-powered driver behavior detection work?</h3>
+        <p>The AccuGPS in-cabin camera uses computer vision to analyze the driver's face and posture in real time. It detects phone use, drowsiness, distraction, and seatbelt compliance. When it spots a safety event, it logs a video clip, sends an alert to the fleet manager, and adds the event to the driver's safety score in the AccuGPS platform.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does the fleet camera include GPS tracking?</h3>
+        <p>Yes. AccuGPS fleet cameras integrate with the AccuGPS GPS tracking platform. Every recorded event is tagged with the exact location, speed, and time. Fleet managers in Syracuse and Jamesville can replay any incident on the map, see the associated video clip, and review the driver's full trip timeline alongside the camera footage.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Where is video stored and how long is it kept?</h3>
+        <p>AccuGPS fleet cameras store footage locally on an SD card and upload event-triggered clips to cloud storage automatically over 4G LTE. Cloud footage is accessible from the AccuGPS platform on any device. Continuous recording is stored locally and can be pulled on demand. Retention periods vary by plan.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
        CTA BANNER
   ================================================ -->
   <section class="section-cta-banner">
@@ -1888,8 +2002,8 @@
       <h2 class="cta-banner-title">Add cameras<br>to your <span class="accent">fleet today.</span></h2>
       <p class="cta-banner-sub">The All-In-One Camera ships ready to mount. The MDVR system scales as your fleet grows. Both include 4G LTE live streaming, cloud storage, and GPS tracking.</p>
       <div class="cta-banner-buttons">
-        <button class="btn-primary-dark" onclick="navigateTo('/fleet-dash-cameras')">Shop Fleet Cameras</button>
-        <button class="btn-ghost-dark">Call (888) 519-9128</button>
+        <button class="btn-primary-dark" onclick="window.top.location.href='https://www.accugps.com/category/dash-cameras?Price=50-100'">Shop Fleet Cameras</button>
+        <button class="btn-ghost-dark" onclick="window.location.href='tel:8885199128'">Call (888) 519-9128</button>
       </div>
     </div>
   </section>
@@ -1911,10 +2025,10 @@
       <div>
         <div class="footer-col-title">Products</div>
         <div class="footer-links">
-          <a href="#" onclick="navigateTo('/obd-ii-gps-tracker'); return false;">OBD II Smart Tracker</a>
-          <a href="#" onclick="navigateTo('/magnetic-gps-tracker'); return false;">Magnetic Asset Tracker</a>
-          <a href="#" onclick="navigateTo('/4g-lte-gps-tracker'); return false;">4G LTE GPS Tracker</a>
-          <a href="#" onclick="navigateTo('/fleet-dash-cameras'); return false;">Fleet Cameras</a>
+          <a href="#" onclick="window.top.location.href='https://www.accugps.com/product-page/accugps-obd-ii-smart-tracker'; return false;">OBD II Smart Tracker</a>
+          <a href="#" onclick="window.top.location.href='https://www.accugps.com/product-page/accugps-magnetic-asset-tracker'; return false;">Magnetic Asset Tracker</a>
+          <a href="#" onclick="window.top.location.href='https://www.accugps.com/product-page/accugps-4g-lte-gps-tracker'; return false;">4G LTE GPS Tracker</a>
+          <a href="#" onclick="window.top.location.href='https://www.accugps.com/category/all-products?Price=50-101'; return false;">Fleet Cameras</a>
           <a href="#" onclick="navigateTo('/gps-tracking-pricing'); return false;">Pricing</a>
         </div>
       </div>
@@ -1922,21 +2036,21 @@
       <div>
         <div class="footer-col-title">Platform</div>
         <div class="footer-links">
-          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">Drive Score</a>
-          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">Geofencing</a>
-          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">IFTA Reporting</a>
-          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">Trip Replay</a>
-          <a href="#" onclick="navigateTo('/fleet-management-software'); return false;">All Features</a>
+          <a href="#" onclick="window.top.location.href='https://www.accugps.com/integratedsolutionspage'; return false;">Drive Score</a>
+          <a href="#" onclick="window.top.location.href='https://www.accugps.com/integratedsolutionspage'; return false;">Geofencing</a>
+          <a href="#" onclick="window.top.location.href='https://www.accugps.com/integratedsolutionspage'; return false;">IFTA Reporting</a>
+          <a href="#" onclick="window.top.location.href='https://www.accugps.com/integratedsolutionspage'; return false;">Trip Replay</a>
+          <a href="#" onclick="window.top.location.href='https://www.accugps.com/integratedsolutionspage'; return false;">All Features</a>
         </div>
       </div>
 
       <div>
         <div class="footer-col-title">Company</div>
         <div class="footer-links">
-          <a href="#" onclick="navigateTo('/about-accugps'); return false;">About AccuGPS</a>
+          <a href="#" onclick="window.top.location.href='https://www.accugps.com/about-us'; return false;">About AccuGPS</a>
           <a href="#" onclick="navigateTo('/gps-tracking-for-business'); return false;">Industries</a>
-          <a href="#" onclick="navigateTo('/blog'); return false;">Blog</a>
-          <a href="#" onclick="navigateTo('/contact'); return false;">Contact Us</a>
+          <a href="#" onclick="window.top.location.href='https://www.accugps.com/accugps-blog'; return false;">Blog</a>
+          <a href="#" onclick="window.top.location.href='https://www.accugps.com/customer-care'; return false;">Contact Us</a>
           <a href="https://i.accugps.com/map-view" target="_blank">Login</a>
         </div>
       </div>
@@ -2055,7 +2169,7 @@
     (function() {
       var LABELS = [
         'Up to 4 Camera Channels',
-        '2TB Local Storage',
+        'SD Card Storage',
         'Built for Extreme Conditions',
         '4G LTE Live Streaming',
         '1080p HD Per Channel',

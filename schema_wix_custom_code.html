@@ -1,0 +1,608 @@
+<!--
+  ============================================================
+  AccuGPS — Wix Custom Code: Structured Data (JSON-LD)
+  ============================================================
+
+  HOW TO USE THIS FILE
+  --------------------
+  These schema blocks go in Wix Dashboard, NOT inside the iframe HTML files.
+  Path: Wix Dashboard > Settings > Custom Code > + Add Code > Body End
+
+  Create one "Custom Code" entry per page.
+  Paste the block labeled for that page.
+  Set Page Scope to the matching page only.
+
+  IMPORTANT BEFORE DEPLOYING
+  ---------------------------
+  - Verify geo coordinates (lat/lng) for 5727 E. Seneca Turnpike, Jamesville NY 13078
+  - Confirm the live Wix site URL (replace https://www.accugps.com below with actual domain)
+  - Test each block at: https://search.google.com/test/rich-results
+  - Add one block at a time and validate before adding the next
+  ============================================================
+-->
+
+
+<!-- ============================================================
+     HOMEPAGE + ALL PAGES
+     Schema: LocalBusiness
+     Where to add: Wix Custom Code > Body End > All Pages
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "AccuGPS",
+  "description": "AccuGPS provides fleet GPS tracking for small businesses. GPS trackers, fleet cameras, and a real-time tracking platform starting at $129. No contracts.",
+  "url": "https://www.accugps.com",
+  "telephone": "+18885199128",
+  "email": "info@accugps.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "5727 E. Seneca Turnpike",
+    "addressLocality": "Jamesville",
+    "addressRegion": "NY",
+    "postalCode": "13078",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 43.0096,
+    "longitude": -76.0661
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "09:00",
+    "closes": "17:00"
+  },
+  "priceRange": "$$",
+  "servesCuisine": null,
+  "areaServed": {
+    "@type": "Country",
+    "name": "United States"
+  },
+  "sameAs": [
+    "https://www.facebook.com/goaccugps/",
+    "https://www.linkedin.com/company/accugps"
+  ],
+  "foundingDate": "2012",
+  "knowsAbout": [
+    "GPS fleet tracking",
+    "Fleet management",
+    "Vehicle tracking",
+    "Fleet cameras",
+    "Driver behavior monitoring",
+    "Geofencing",
+    "IFTA reporting"
+  ]
+}
+</script>
+
+
+<!-- ============================================================
+     HOMEPAGE
+     Schema: FAQPage
+     Where to add: Wix Custom Code > Body End > Homepage only
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does GPS fleet tracking cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AccuGPS is $129 per tracker. That covers the hardware, activation, and your first full year of service. After year one, renewal is $12.99 per month or $129 per year. No contracts, no cancellation fees, no surprise charges."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the GPS tracker require professional installation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The OBD II tracker plugs into the port under your dashboard in under 2 minutes. No tools, no wiring, no installer needed. It works on any US vehicle made after 1996. The Magnetic Asset Tracker attaches to any metal surface without tools and runs on its own battery."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is geofencing and how does it work for fleet vehicles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Geofencing lets you draw a virtual boundary on the map around a job site, yard, or service area. AccuGPS sends an alert the moment a vehicle enters or exits that boundary. Fleet managers in Syracuse and Central New York use it to catch unauthorized vehicle use after hours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does AccuGPS require a contract?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. AccuGPS has no contracts and no cancellation fees. Pay $129 once for hardware, activation, and year one of service. After that, renew month-to-month at $12.99 or save with the $129 annual plan. Stop any time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly can I start tracking my fleet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most customers are live within minutes of receiving their tracker. Plug in the OBD II device, activate it at i.accugps.com, and your vehicle appears on the map. AccuGPS ships from Jamesville, NY. Call (888) 519-9128 for same-day help."
+      }
+    }
+  ]
+}
+</script>
+
+
+<!-- ============================================================
+     GPS TRACKERS PAGE
+     Schema: FAQPage + Product (OBD II Tracker)
+     Where to add: Wix Custom Code > Body End > GPS Trackers page
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What features should I look for in GPS fleet tracking in New York?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Look for 4G LTE coverage, real-time location updates, driver behavior scoring, geofencing alerts, and trip history. AccuGPS includes all of these plus IFTA reporting, maintenance alerts, and a shared account feature. For New York fleets operating across counties, IFTA compliance reporting alone saves hours of manual work each quarter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the OBD II tracker work on all vehicles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The AccuGPS OBD II tracker works on any US vehicle made after 1996. It plugs into the port under the dashboard, driver's side. No tools needed. Installation takes under 2 minutes. For vehicles without an OBD port, use the 4G LTE Hardwired Tracker instead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does the Magnetic Asset Tracker battery last?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The AccuGPS Magnetic Asset Tracker is battery-powered and designed for long deployment. Battery life varies based on update frequency settings. For assets that move infrequently, such as trailers or seasonal equipment, the battery can last several months between charges. The platform sends a low-battery alert before it runs out."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does GPS fleet tracking cost in Jamesville, NY?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AccuGPS is $129 per tracker. That covers the hardware, activation, and your first full year of service. After year one, renewal is $12.99 per month or $129 per year. No contracts. AccuGPS ships from Jamesville, NY and supports customers across Central New York and nationwide by phone at (888) 519-9128."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "AccuGPS OBD II Smart Tracker",
+  "description": "Plug-and-play GPS tracker for any US vehicle made after 1996. Installs in under 2 minutes into the OBD II port. Real-time 4G LTE location updates, Drive Score, engine diagnostics.",
+  "brand": {
+    "@type": "Brand",
+    "name": "AccuGPS"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "129",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "priceValidUntil": "2027-12-31",
+    "url": "https://www.accugps.com/product-page/accugps-obd-ii-smart-tracker",
+    "seller": {
+      "@type": "Organization",
+      "name": "AccuGPS"
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "AccuGPS Magnetic Asset Tracker",
+  "description": "Tool-free magnetic GPS tracker for trailers, equipment, and assets without an OBD port. Battery-powered. Weatherproof. 4G LTE real-time location. Geofencing theft alerts.",
+  "brand": {
+    "@type": "Brand",
+    "name": "AccuGPS"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "129",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "priceValidUntil": "2027-12-31",
+    "url": "https://www.accugps.com/product-page/accugps-magnetic-asset-tracker",
+    "seller": {
+      "@type": "Organization",
+      "name": "AccuGPS"
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.accugps.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "GPS Trackers",
+      "item": "https://www.accugps.com/gps-trackers"
+    }
+  ]
+}
+</script>
+
+
+<!-- ============================================================
+     FLEET CAMERAS PAGE
+     Schema: FAQPage + Service + BreadcrumbList
+     Where to add: Wix Custom Code > Body End > Fleet Cameras page
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where to buy AI-powered in-cabin cameras for fleet vehicles in Jamesville?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AccuGPS sells and ships AI-powered in-cabin fleet cameras from Jamesville, NY 13078 to businesses across Central New York and the US. The All-In-One camera includes forward-facing and driver-facing views in one device, with AI that detects distraction, fatigue, and phone use in real time. Call (888) 519-9128 to order."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does AI-powered driver behavior detection work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The AccuGPS in-cabin camera uses computer vision to analyze the driver's face and posture in real time. It detects phone use, drowsiness, distraction, and seatbelt compliance. When it spots a safety event, it logs a video clip, sends an alert to the fleet manager, and adds the event to the driver's safety score in the AccuGPS platform."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the fleet camera include GPS tracking?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. AccuGPS fleet cameras integrate with the AccuGPS GPS tracking platform. Every recorded event is tagged with the exact location, speed, and time. Fleet managers in Syracuse and Jamesville can replay any incident on the map, see the associated video clip, and review the driver's full trip timeline alongside the camera footage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between the All-In-One camera and the MDVR system?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The All-In-One camera is a single device that captures forward-facing road view and driver-facing cabin view simultaneously. It is the fastest install and works for most fleets. The MDVR system supports up to 4 cameras for vehicles that need side, rear, or cargo views in addition to forward and driver coverage."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Fleet Camera Systems",
+  "name": "AccuGPS Fleet Cameras",
+  "description": "AI-powered fleet cameras for commercial vehicles. All-In-One dual-view camera and MDVR multi-camera systems with 4G LTE live streaming, cloud storage, and GPS tracking integration.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "AccuGPS",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "5727 E. Seneca Turnpike",
+      "addressLocality": "Jamesville",
+      "addressRegion": "NY",
+      "postalCode": "13078",
+      "addressCountry": "US"
+    }
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "United States"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.accugps.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Fleet Cameras",
+      "item": "https://www.accugps.com/fleet-cameras"
+    }
+  ]
+}
+</script>
+
+
+<!-- ============================================================
+     PLATFORM AND FEATURES PAGE
+     Schema: FAQPage + Service + BreadcrumbList
+     Where to add: Wix Custom Code > Body End > Platform page
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does geofencing work for fleet vehicles in Jamesville?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Geofencing in AccuGPS lets you draw a virtual boundary on the map around any location: a job site, equipment yard, or restricted area. The platform sends an instant alert when a vehicle enters or exits that zone. Fleet operators in Jamesville and Syracuse use it to catch after-hours vehicle use and verify job site arrivals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do route analysis tools work for delivery trucks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AccuGPS logs every trip automatically: start time, end time, every stop, speed at each point, and total distance. Fleet managers use Trip Replay to review any vehicle's full route for any date. Delivery companies in Central New York use route history to resolve customer disputes and improve driver dispatch schedules."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I get maintenance alert systems for trucks in Syracuse?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. AccuGPS supports odometer-based and date-based maintenance reminders for any vehicle in your fleet. Set an alert at a specific mileage interval and the platform notifies you automatically. For OBD II-equipped vehicles, it also detects engine fault codes and sends an alert when a DTC is triggered."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does AccuGPS support fuel consumption monitoring for fleets in New York?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AccuGPS generates idle time reports and trip distance summaries that fleet managers use to track fuel efficiency patterns. You can see which vehicles idle most, which routes are longest, and which drivers have the heaviest foot. The data is exportable and available on iOS, Android, and web."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the AccuGPS platform included with the tracker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The $129 all-in price covers the tracker, activation, and your first year of platform access. That includes the live map, all reports, Drive Score, geofencing, alerts, IFTA, and the iOS and Android apps. No separate platform fee, no per-user charge."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "GPS Fleet Tracking Platform",
+  "name": "AccuGPS Fleet Tracking Platform",
+  "description": "Real-time GPS fleet tracking platform with live map, Drive Score, geofencing, IFTA reporting, maintenance alerts, trip replay, and fuel monitoring. Included with every tracker at no extra cost.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "AccuGPS",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "5727 E. Seneca Turnpike",
+      "addressLocality": "Jamesville",
+      "addressRegion": "NY",
+      "postalCode": "13078",
+      "addressCountry": "US"
+    }
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "United States"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Platform access included with every tracker purchase. No separate platform fee."
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.accugps.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Platform and Features",
+      "item": "https://www.accugps.com/platform-features"
+    }
+  ]
+}
+</script>
+
+
+<!-- ============================================================
+     INDUSTRIES PAGE
+     Schema: FAQPage + Service + BreadcrumbList
+     Where to add: Wix Custom Code > Body End > Industries page
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where to find GPS tracking for medical transportation fleets in Syracuse?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AccuGPS, based at 5727 E. Seneca Turnpike, Jamesville, NY 13078, provides GPS fleet tracking to medical transport operators in Syracuse and across Central New York. Real-time vehicle location, trip logging, driver behavior monitoring, and in-cabin cameras are all available starting at $129 per vehicle. No contracts. Call (888) 519-9128."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does AccuGPS work for delivery and courier fleets in Jamesville?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. AccuGPS is built for delivery fleets of any size operating in Jamesville, Syracuse, and across New York. The OBD II tracker installs in under 2 minutes per vehicle. The platform shows all vehicles on a live map, logs every trip, and flags idle time and speeding automatically. $129 per tracker, no contracts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does AccuGPS help construction companies prevent equipment theft in Central New York?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AccuGPS Magnetic Asset Trackers mount to any metal surface without wiring. Attach one to a trailer, generator, or piece of equipment and set a geofence around the job site. If the asset moves after hours, AccuGPS sends an instant alert. Construction companies in Central New York use this to protect equipment that sits at remote sites overnight."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is AccuGPS suitable for small property service businesses in Syracuse?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Most AccuGPS customers are small businesses with 2 to 20 vehicles. The OBD II tracker is ideal for the vans and light trucks used by HVAC, plumbing, and landscaping companies in Syracuse. There is no fleet minimum, no contracts, and phone support at (888) 519-9128 from a real person in Jamesville, NY."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does AccuGPS support IFTA reporting for government fleets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. AccuGPS automatically tracks mileage by state for every vehicle. The IFTA report pulls that data into a standard fuel tax summary, eliminating manual odometer logging. Government and municipal fleet managers in Central New York use this to file quarterly IFTA returns accurately and on time."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "GPS Fleet Tracking",
+  "name": "AccuGPS Fleet GPS Tracking",
+  "description": "GPS fleet tracking for delivery, medical transport, construction, property services, and government fleets. Based in Jamesville, NY. Serving Syracuse and Central New York.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "AccuGPS",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "5727 E. Seneca Turnpike",
+      "addressLocality": "Jamesville",
+      "addressRegion": "NY",
+      "postalCode": "13078",
+      "addressCountry": "US"
+    },
+    "telephone": "+18885199128"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Jamesville",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "New York"
+      }
+    },
+    {
+      "@type": "City",
+      "name": "Syracuse",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "New York"
+      }
+    },
+    {
+      "@type": "Country",
+      "name": "United States"
+    }
+  ],
+  "offers": {
+    "@type": "Offer",
+    "price": "129",
+    "priceCurrency": "USD",
+    "description": "Hardware, activation, and year one of service all-in. $12.99/month or $129/year renewal. No contracts."
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.accugps.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Industries",
+      "item": "https://www.accugps.com/gps-tracking-for-business"
+    }
+  ]
+}
+</script>
+
+
+<!-- ============================================================
+     PRICING PAGE
+     Schema: BreadcrumbList
+     Where to add: Wix Custom Code > Body End > Pricing page
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.accugps.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pricing",
+      "item": "https://www.accugps.com/gps-tracking-pricing"
+    }
+  ]
+}
+</script>
