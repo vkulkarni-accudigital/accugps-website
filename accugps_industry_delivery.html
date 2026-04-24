@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GPS tracking and fleet cameras for delivery and courier companies in Central New York. Prove every delivery, protect against porch theft disputes, improve route efficiency. $129 all-in. No contracts. Call (888) 519-9128.">
+  <title>GPS Tracking and Fleet Cameras for Delivery and Courier | AccuGPS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-734P54F0RR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-734P54F0RR');
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* ============================================
+       BRAND TOKENS
+    ============================================ */
+    :root {
+      --dark: #122023;
+      --forest: #2E443C;
+      --deep: #162C23;
+      --accent: #E6FF83;
+      --teal-light: #CFDDDF;
+      --sage: #A9BB96;
+      --green-light: #E8F8D7;
+      --white: #FFFFFF;
+      --off-white: #F7F7F5;
+      --mid-gray: #C2C2C2;
+      --body-text: #3C3C3C;
+      --muted: #666666;
+      --muted-dark: rgba(255,255,255,0.55);
+      --font-display: 'Figtree', sans-serif;
+      --font-body: 'Figtree', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--body-text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============================================
+       SHARED TYPOGRAPHY
+    ============================================ */
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      display: block;
+      margin-bottom: 14px;
+    }
+    .eyebrow.dark { color: var(--forest); }
+    .eyebrow.accent { color: var(--accent); }
+
+    .section-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+    }
+    .section-title.light { color: var(--white); }
+    .section-title.accent-word span { color: var(--accent); }
+
+    .section-sub {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 560px;
+    }
+    .section-sub.light { color: var(--muted-dark); }
+
+    /* ============================================
+       BUTTONS
+    ============================================ */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--dark);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #d4f060; transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.06); }
+
+    .btn-outline-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--dark);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border: 2px solid var(--dark);
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline-dark:hover { background: var(--dark); color: var(--accent); }
+
+    /* ============================================
+       HERO
+    ============================================ */
+    .page-hero {
+      background: var(--dark);
+      padding: 88px 80px 96px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -80px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(46,68,60,0.5) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: var(--muted-dark);
+    }
+    .hero-breadcrumb a { color: var(--muted-dark); text-decoration: none; }
+    .hero-breadcrumb a:hover { color: var(--accent); }
+    .hero-breadcrumb-sep { opacity: 0.4; }
+    .hero-industry-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(230,255,131,0.1);
+      border: 1px solid rgba(230,255,131,0.2);
+      border-radius: 100px;
+      padding: 6px 14px;
+      margin-bottom: 24px;
+    }
+    .hero-industry-badge span {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .hero-headline {
+      font-size: clamp(38px, 5.5vw, 64px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .hero-headline .accent { color: var(--accent); }
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--muted-dark);
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+    .hero-cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .hero-stat-row {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-stat { }
+    .hero-stat-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 12px;
+      color: var(--muted-dark);
+      margin-top: 4px;
+    }
+
+    /* Hero right: suite selector cards */
+    .hero-suite-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .hero-suite-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px 28px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      text-align: left;
+    }
+    .hero-suite-card:hover {
+      border-color: rgba(230,255,131,0.3);
+      background: rgba(230,255,131,0.05);
+      transform: translateX(4px);
+    }
+    .suite-card-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 8px;
+    }
+    .suite-card-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .suite-card-desc {
+      font-size: 14px;
+      color: var(--muted-dark);
+      line-height: 1.5;
+    }
+    .suite-card-cta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* ============================================
+       GPS SECTION
+    ============================================ */
+    .section-gps {
+      background: var(--dark);
+      padding: 100px 80px;
+    }
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .two-col.reversed { }
+    .two-col.reversed .col-visual { order: -1; }
+
+    .gps-use-cases {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-top: 40px;
+    }
+    .use-case {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .use-case-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(230,255,131,0.1);
+      border: 1px solid rgba(230,255,131,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+    .use-case-icon svg { width: 20px; height: 20px; }
+    .use-case-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .use-case-body {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted-dark);
+    }
+
+    .gps-price-block {
+      margin-top: 40px;
+      padding: 24px 28px;
+      background: rgba(230,255,131,0.06);
+      border: 1px solid rgba(230,255,131,0.15);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .gps-price-num {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .gps-price-detail {
+      font-size: 13px;
+      color: var(--muted-dark);
+      line-height: 1.5;
+    }
+    .gps-price-detail strong { color: rgba(255,255,255,0.7); }
+
+    /* Platform visual */
+    .platform-mockup {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .platform-browser-bar {
+      background: rgba(255,255,255,0.06);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .browser-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .browser-dot:nth-child(1) { background: #FF5F57; }
+    .browser-dot:nth-child(2) { background: #FFBD2E; }
+    .browser-dot:nth-child(3) { background: #28CA41; }
+    .browser-url {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      margin-left: 8px;
+    }
+    .platform-map-area {
+      background: linear-gradient(135deg, #1a2e2a 0%, #122023 100%);
+      height: 220px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .platform-map-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(230,255,131,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(230,255,131,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .platform-vehicle-dot {
+      position: absolute;
+      width: 12px; height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 0 6px rgba(230,255,131,0.15);
+    }
+    .platform-vehicle-dot:nth-child(2) { top: 35%; left: 28%; }
+    .platform-vehicle-dot:nth-child(3) { top: 55%; left: 60%; }
+    .platform-vehicle-dot:nth-child(4) { top: 25%; left: 72%; }
+    .platform-vehicle-dot:nth-child(5) { top: 68%; left: 38%; animation: pulse 2s infinite; }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 6px rgba(230,255,131,0.15); }
+      50% { box-shadow: 0 0 0 14px rgba(230,255,131,0.05); }
+    }
+    .platform-label {
+      position: absolute;
+      top: 16px; left: 16px;
+      background: rgba(230,255,131,0.15);
+      border: 1px solid rgba(230,255,131,0.25);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+    }
+    .platform-feature-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .platform-feature {
+      padding: 16px 18px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .platform-feature:last-child { border-right: none; }
+    .pf-img {
+      width: 100%;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      opacity: 0.85;
+    }
+    .pf-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ============================================
+       CAMERA SECTION
+    ============================================ */
+    .section-cameras {
+      background: var(--forest);
+      padding: 100px 80px;
+    }
+    .camera-use-cases {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-top: 40px;
+    }
+    .cam-use-case {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .cam-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+    .cam-icon svg { width: 20px; height: 20px; }
+    .cam-use-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .cam-use-body {
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* Camera footage grid */
+    .footage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 32px;
+    }
+    .footage-cell {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      background: rgba(0,0,0,0.3);
+    }
+    .footage-cell img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      opacity: 0.9;
+    }
+    .footage-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      padding: 20px 12px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* Video placeholder */
+    .video-placeholder {
+      margin-top: 32px;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .video-placeholder:hover .video-play { transform: scale(1.08); }
+    .video-bg-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .video-play {
+      width: 64px;
+      height: 64px;
+      background: rgba(230,255,131,0.2);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    .video-play svg { width: 24px; height: 24px; color: var(--accent); margin-left: 4px; }
+    .video-caption {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .camera-product-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .camera-product-chip {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .camera-product-chip img {
+      width: 64px;
+      height: 56px;
+      object-fit: contain;
+    }
+    .chip-info-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+    .chip-info-rec {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .cam-cta-row {
+      display: flex;
+      gap: 14px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================
+       WHY ACCUGPS
+    ============================================ */
+    .section-why {
+      background: var(--off-white);
+      padding: 80px 80px;
+    }
+    .why-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 48px;
+    }
+    .why-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 32px 28px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .why-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--green-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      color: var(--forest);
+    }
+    .why-icon svg { width: 22px; height: 22px; }
+    .why-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .why-body {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    /* ============================================
+       FAQ
+    ============================================ */
+    .section-faq {
+      background: var(--white);
+      padding: 96px 80px;
+    }
+    .faq-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 24px 0;
+    }
+    .faq-item:first-of-type { padding-top: 0; }
+    .faq-q {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+    .faq-a {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    /* ============================================
+       GEO CONTENT
+    ============================================ */
+    .section-geo {
+      background: var(--off-white);
+      padding: 80px 80px;
+    }
+    .section-geo-inner { max-width: 1120px; margin: 0 auto; }
+    .geo-intro {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    .geo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .geo-block h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    .geo-block p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       CTA BANNER
+    ============================================ */
+    .section-cta-banner {
+      background: var(--dark);
+      padding: 96px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(46,68,60,0.5) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-banner-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+    .cta-banner-title {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .cta-banner-sub {
+      font-size: 17px;
+      color: var(--muted-dark);
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+    .cta-banner-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cta-contact-line {
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--muted-dark);
+    }
+    .cta-contact-line a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 900px) {
+      .page-hero { padding: 56px 32px 64px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .section-gps,
+      .section-cameras,
+      .section-why,
+      .section-faq,
+      .section-geo,
+      .section-cta-banner { padding: 72px 32px; }
+      .two-col { grid-template-columns: 1fr; gap: 48px; }
+      .two-col.reversed .col-visual { order: 0; }
+      .why-grid { grid-template-columns: 1fr; }
+      .geo-grid { grid-template-columns: 1fr; }
+      .platform-feature-strip { grid-template-columns: 1fr; }
+      .platform-feature { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .platform-feature:last-child { border-bottom: none; }
+      .footage-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .page-hero,
+      .section-gps,
+      .section-cameras,
+      .section-why,
+      .section-faq,
+      .section-geo,
+      .section-cta-banner { padding: 56px 20px; }
+      .hero-stat-row { flex-wrap: wrap; gap: 20px; }
+      .camera-product-strip { grid-template-columns: 1fr; }
+      .footage-grid { grid-template-columns: 1fr; }
+      .gps-price-block { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================================================
+       HERO
+  ================================================ -->
+  <section class="page-hero" id="top">
+    <div class="hero-inner">
+
+      <div class="hero-left">
+        <div class="hero-breadcrumb">
+          <a href="#" onclick="window.top.location.href='/'; return false;">AccuGPS</a>
+          <span class="hero-breadcrumb-sep">/</span>
+          <span>Industries</span>
+          <span class="hero-breadcrumb-sep">/</span>
+          <span style="color:rgba(255,255,255,0.75);">Delivery and Courier</span>
+        </div>
+
+        <div class="hero-industry-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <span>Delivery and Courier</span>
+        </div>
+
+        <h1 class="hero-headline">
+          Prove every delivery.<br>Protect every<br>
+          <span class="accent">last mile.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Delivery and courier fleets face porch theft disputes, SLA pressure, and last-mile accountability every day. AccuGPS gives you timestamped proof of every stop and real-time visibility over every driver for $129 all-in.
+        </p>
+
+        <div class="hero-cta-row">
+          <button class="btn-primary" onclick="document.getElementById('gps').scrollIntoView({behavior:'smooth'});">
+            GPS Tracking
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <button class="btn-ghost" onclick="document.getElementById('cameras').scrollIntoView({behavior:'smooth'});">
+            Fleet Cameras
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l4.553-2.069A1 1 0 0 1 21 8.845v6.31a1 1 0 0 1-1.447.914L15 14M3 8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/></svg>
+          </button>
+        </div>
+
+        <div class="hero-stat-row">
+          <div class="hero-stat">
+            <div class="hero-stat-num">$129</div>
+            <div class="hero-stat-label">All-in. Hardware, activation, year 1.</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">Timestamped</div>
+            <div class="hero-stat-label">Proof of delivery for every stop.</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">4G LTE</div>
+            <div class="hero-stat-label">Nationwide real-time tracking.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-suite-cards">
+          <div class="hero-suite-card" onclick="document.getElementById('gps').scrollIntoView({behavior:'smooth'});">
+            <div class="suite-card-label">GPS Fleet Tracking</div>
+            <div class="suite-card-title">Know every driver. Every stop.</div>
+            <div class="suite-card-desc">Real-time location, trip history, route analysis, and driver behavior scores. Prove delivery times, optimize routes, and hold every driver accountable.</div>
+            <div class="suite-card-cta">
+              See GPS Tracking
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="hero-suite-card" onclick="document.getElementById('cameras').scrollIntoView({behavior:'smooth'});">
+            <div class="suite-card-label">Fleet Dash Cameras</div>
+            <div class="suite-card-title">Video proof at every doorstep</div>
+            <div class="suite-card-desc">When a customer claims a package was not delivered or a driver is accused of porch theft, camera footage with GPS timestamps closes the case. Forward and in-cab, 4G LTE.</div>
+            <div class="suite-card-cta">
+              See Fleet Cameras
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       GPS SECTION
+  ================================================ -->
+  <section class="section-gps" id="gps">
+    <div class="section-inner">
+
+      <div class="two-col">
+
+        <div class="col-info">
+          <span class="eyebrow accent">GPS Fleet Tracking</span>
+          <h2 class="section-title light">Every stop. Every route.<br>Every driver.<br><span style="color:var(--accent);">Fully accountable.</span></h2>
+          <p class="section-sub light" style="margin-top:16px;">Delivery and courier companies in Central New York use AccuGPS to meet SLA commitments, identify route inefficiencies, and maintain driver accountability on every shift.</p>
+
+          <div class="gps-use-cases">
+            <div class="use-case">
+              <div class="use-case-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              </div>
+              <div>
+                <div class="use-case-title">Proof of delivery timing</div>
+                <div class="use-case-body">Trip replay stores the exact time each vehicle arrived and departed every address. When a customer disputes a delivery time or claims a package was not delivered, the timestamp answers the question. No more taking a driver's word for it.</div>
+              </div>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div>
+                <div class="use-case-title">Route analysis and efficiency</div>
+                <div class="use-case-body">Review daily routes for every driver. Identify unnecessary detours, excess idle time, and stops that run long. Better routes mean more deliveries per shift without adding vehicles.</div>
+              </div>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <div>
+                <div class="use-case-title">Drive Score for last-mile safety</div>
+                <div class="use-case-body">Last-mile routes involve constant stopping, pedestrian zones, and residential traffic. Drive Score flags speeding, hard braking, and aggressive driving. Better-scoring drivers cost less to insure and stay safer on dense delivery routes.</div>
+              </div>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+              </div>
+              <div>
+                <div class="use-case-title">SLA compliance and reporting</div>
+                <div class="use-case-body">Generate fleet reports showing arrival times, delivery windows met, and total stops per shift. Share delivery data with clients to prove SLA compliance. Reports export directly from the platform.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gps-price-block">
+            <div class="gps-price-num">$129</div>
+            <div class="gps-price-detail">
+              <strong>Hardware, activation, and year one service included.</strong><br>
+              Renews at $12.99/month or $129/year. No contracts. Cancel any time.
+            </div>
+          </div>
+
+          <div style="display:flex; gap:14px; margin-top:24px; flex-wrap:wrap;">
+            <button class="btn-primary" onclick="window.top.location.href='https://www.accugps.com/category/gps-trackers'">
+              Shop GPS Trackers
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <button class="btn-ghost" onclick="window.top.location.href='/platform'">
+              See the Platform
+            </button>
+          </div>
+        </div>
+
+        <div class="col-visual">
+          <div class="platform-mockup">
+            <div class="platform-browser-bar">
+              <div class="browser-dot"></div>
+              <div class="browser-dot"></div>
+              <div class="browser-dot"></div>
+              <div class="browser-url">i.accugps.com/map-view</div>
+            </div>
+            <div class="platform-map-area">
+              <div class="platform-map-grid"></div>
+              <div class="platform-label">LIVE TRACKING</div>
+              <div class="platform-vehicle-dot"></div>
+              <div class="platform-vehicle-dot"></div>
+              <div class="platform-vehicle-dot"></div>
+              <div class="platform-vehicle-dot"></div>
+            </div>
+            <div class="platform-feature-strip">
+              <div class="platform-feature">
+                <img src="./integrated-reporting.png" class="pf-img" alt="Trip reports">
+                <div class="pf-label">Trip Reports</div>
+              </div>
+              <div class="platform-feature">
+                <img src="./integrated-driver.png" class="pf-img" alt="Drive score">
+                <div class="pf-label">Drive Score</div>
+              </div>
+              <div class="platform-feature">
+                <img src="./integrated-alerts.png" class="pf-img" alt="Delivery alerts">
+                <div class="pf-label">Stop Alerts</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px; padding:16px 20px; background:rgba(230,255,131,0.06); border:1px solid rgba(230,255,131,0.12); border-radius:10px;">
+            <p style="font-size:13px; color:var(--muted-dark); line-height:1.6;">AccuGPS works on iOS, Android, and web. The OBD II tracker plugs into any 2001-or-newer delivery van in 2 minutes. No tools, no wiring, no installation appointment.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       CAMERA SECTION
+  ================================================ -->
+  <section class="section-cameras" id="cameras">
+    <div class="section-inner">
+
+      <div class="two-col reversed">
+
+        <div class="col-info">
+          <span class="eyebrow accent">Fleet Dash Cameras</span>
+          <h2 class="section-title light">Porch theft. False claims.<br>Accidents at the door.<br><span style="color:var(--accent);">Video closes every case.</span></h2>
+          <p class="section-sub light" style="margin-top:16px;">Delivery drivers face false theft allegations, accidents in driveways, and customer disputes on every route. AccuGPS cameras record every stop with GPS-stamped footage and stream live over 4G LTE.</p>
+
+          <div class="camera-use-cases">
+            <div class="cam-use-case">
+              <div class="cam-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="cam-use-title">Porch theft and false allegations</div>
+                <div class="cam-use-body">A customer reports a package stolen after delivery or claims a driver took it. Forward-facing footage timestamped with GPS coordinates shows the delivery was made and the package was left at the door. No investigation needed.</div>
+              </div>
+            </div>
+            <div class="cam-use-case">
+              <div class="cam-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div>
+                <div class="cam-use-title">Accident protection at every stop</div>
+                <div class="cam-use-body">Delivery vans stop and start hundreds of times a day. Driveway incidents, parking disputes, and rear-end situations happen. In-cab and forward cameras show what happened and who is liable before the insurance adjuster asks.</div>
+              </div>
+            </div>
+            <div class="cam-use-case">
+              <div class="cam-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l4.553-2.069A1 1 0 0 1 21 8.845v6.31a1 1 0 0 1-1.447.914L15 14M3 8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/></svg>
+              </div>
+              <div>
+                <div class="cam-use-title">Last-mile accountability</div>
+                <div class="cam-use-body">Every delivery is documented. Clients who require delivery proof get video records. Customers who question whether a delivery happened get timestamps. Your team is protected and your clients stay confident.</div>
+              </div>
+            </div>
+            <div class="cam-use-case">
+              <div class="cam-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </div>
+              <div>
+                <div class="cam-use-title">AI coaching for high-stop routes</div>
+                <div class="cam-use-body">Drivers who complete 80 to 150 stops per day face fatigue, distraction, and increased risk in the final hours of a shift. The All-In-One camera detects phone use and drowsiness in real time, so managers can intervene before an incident occurs.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cam-cta-row">
+            <button class="btn-primary" onclick="window.top.location.href='https://www.accugps.com/category/dash-cameras'">
+              Shop Fleet Cameras
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <a href="tel:8885199128" class="btn-ghost">(888) 519-9128</a>
+          </div>
+        </div>
+
+        <div class="col-visual">
+          <!-- Footage stills -->
+          <div class="footage-grid">
+            <div class="footage-cell">
+              <img src="./camera-roadfacing.png" alt="Forward-facing camera view">
+              <div class="footage-label">Forward View</div>
+            </div>
+            <div class="footage-cell">
+              <img src="./camera-dsm.png" alt="Driver monitoring camera">
+              <div class="footage-label">Driver Monitoring</div>
+            </div>
+            <div class="footage-cell">
+              <img src="./camera-adas.png" alt="ADAS collision detection">
+              <div class="footage-label">ADAS Alerts</div>
+            </div>
+            <div class="footage-cell">
+              <img src="./camera-multicam.png" alt="Multi-camera setup">
+              <div class="footage-label">Multi-Camera</div>
+            </div>
+          </div>
+
+          <!-- Video placeholder -->
+          <div class="video-placeholder" onclick="window.top.location.href='https://www.accugps.com/category/dash-cameras'">
+            <div class="video-bg-label">
+              <div class="video-play">
+                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <span class="video-caption">See AccuGPS cameras in action</span>
+            </div>
+          </div>
+
+          <!-- Product chips -->
+          <div class="camera-product-strip">
+            <div class="camera-product-chip">
+              <img src="./All%20in%20One%20Hero.jpg" alt="All-In-One Camera">
+              <div>
+                <div class="chip-info-title">All-In-One Camera</div>
+                <div class="chip-info-rec">Best for delivery vans</div>
+              </div>
+            </div>
+            <div class="camera-product-chip">
+              <img src="./MDVR.png" alt="MDVR Multi-Camera">
+              <div>
+                <div class="chip-info-title">MDVR System</div>
+                <div class="chip-info-rec">Best for cargo coverage</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       WHY ACCUGPS
+  ================================================ -->
+  <section class="section-why">
+    <div class="why-inner">
+      <div style="text-align:center; margin-bottom:8px;">
+        <span class="eyebrow dark" style="text-align:center; display:block;">Why AccuGPS</span>
+        <h2 class="section-title" style="text-align:center;">Built for working fleets.<br>Not enterprise software.</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <div class="why-title">Local team in Syracuse, NY</div>
+          <div class="why-body">AccuGPS is based at 5727 E. Seneca Turnpike, Jamesville, NY 13078. When you call (888) 519-9128, you reach people who understand delivery operations in Central New York. Not a call center.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="why-title">$129 all-in pricing</div>
+          <div class="why-body">Hardware, activation, and year one service are included in the $129 price. No setup fees, no activation surprises. Renewal is $12.99/month or $129/year after year one.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="why-title">No contracts</div>
+          <div class="why-body">Cancel any time. No annual commitment required beyond the first year included in your purchase. Scale up during peak season and back down off-peak. No penalties.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       FAQ
+  ================================================ -->
+  <section class="section-faq">
+    <div class="faq-inner">
+      <span class="eyebrow dark" style="display:block; text-align:center;">Common Questions</span>
+      <h2 class="section-title" style="text-align:center; margin-bottom:48px;">Delivery fleet tracking<br>questions.</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">Can AccuGPS prove when and where a delivery was made?</div>
+        <div class="faq-a">Yes. Trip replay stores the exact GPS coordinates, arrival time, and departure time for every stop. When a customer disputes a delivery, you can pull the trip history for that driver and that address and show the timestamp. Camera footage from the stop is also available if the vehicle has a dash camera installed.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What happens when a customer accuses a driver of porch theft?</div>
+        <div class="faq-a">Forward-facing camera footage shows every approach and departure at every stop. The footage is GPS-timestamped, so you can match the video to the delivery record. If the package was left at the door, the video proves it. Most porch theft disputes are resolved immediately once the client sees the footage.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does AccuGPS work with high-volume delivery operations?</div>
+        <div class="faq-a">Yes. AccuGPS supports fleets of any size on the same platform at i.accugps.com/map-view. All vehicles appear on one map. Trip reports, driver scores, and stop history are available for every vehicle. The OBD II tracker plugs in and is live in 2 minutes, so scaling up a fleet is straightforward.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I show clients delivery reports to prove SLA compliance?</div>
+        <div class="faq-a">Yes. The AccuGPS platform generates fleet reports that include arrival times, stop duration, and route history for any vehicle and any date range. Reports are exportable and can be shared with clients as proof of delivery performance. This is useful for courier contracts that require delivery window documentation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is there a monthly fee after the first year?</div>
+        <div class="faq-a">Yes. Service renews at $12.99 per device per month, or $129 per device per year. The first year is included in the $129 purchase price. There are no contracts and no cancellation fees. You can add or remove devices as your delivery volume changes.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       GEO CONTENT
+  ================================================ -->
+  <section class="section-geo">
+    <div class="section-geo-inner">
+      <div class="geo-intro">AccuGPS Delivery Fleet Tracking, Jamesville, NY</div>
+      <div class="geo-grid">
+        <div class="geo-block">
+          <h2>GPS tracking for delivery companies in Central New York</h2>
+          <p>AccuGPS is based at 5727 E. Seneca Turnpike, Jamesville, NY 13078 and serves delivery and courier fleets across Syracuse and Central New York. GPS trackers for delivery vans start at $129 all-in. Proof-of-delivery timestamps, route analysis, and driver behavior scoring are all available on one platform. No contracts. Call (888) 519-9128.</p>
+        </div>
+        <div class="geo-block">
+          <h2>How do courier companies prevent porch theft disputes near Syracuse?</h2>
+          <p>AccuGPS fleet cameras record every stop with forward-facing footage and GPS timestamps. When a customer claims a package was stolen or never delivered, the timestamped video from the delivery van shows the exact moment of arrival and departure. Disputes that used to take weeks to investigate close in hours with camera footage.</p>
+        </div>
+        <div class="geo-block">
+          <h2>What GPS tracking features matter most for last-mile delivery?</h2>
+          <p>AccuGPS trip replay stores arrival and departure timestamps for every address. Drive Score flags driver behavior on high-stop routes. Fleet reports export stop history for any vehicle and date range, which is useful for SLA reporting to clients. The OBD II tracker plugs in and is active in 2 minutes. No installation crew needed.</p>
+        </div>
+        <div class="geo-block">
+          <h2>Can fleet cameras reduce insurance costs for delivery fleets in New York?</h2>
+          <p>Many commercial insurance carriers offer premium reductions for delivery fleets equipped with certified dash cameras. AccuGPS cameras also reduce claim settlement time by providing immediate video evidence for accidents and disputes. For high-volume delivery operations, faster claim resolution and lower premiums add up quickly across a large fleet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       CTA BANNER
+  ================================================ -->
+  <section class="section-cta-banner">
+    <div class="cta-banner-inner">
+      <span class="eyebrow accent" style="display:block; text-align:center;">Get Started</span>
+      <h2 class="cta-banner-title">Protect your fleet.<br>Start at $129.</h2>
+      <p class="cta-banner-sub">Hardware, activation, and year one service included. No contracts. Cancel any time.</p>
+      <div class="cta-banner-buttons">
+        <button class="btn-primary" onclick="window.top.location.href='https://www.accugps.com/category/gps-trackers'">
+          Shop GPS Trackers
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button class="btn-primary" onclick="window.top.location.href='https://www.accugps.com/category/dash-cameras'" style="background:var(--forest); color:var(--accent);">
+          Shop Fleet Cameras
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <p class="cta-contact-line">
+        Questions? Call <a href="tel:8885199128">(888) 519-9128</a> or email <a href="mailto:info@accugps.com">info@accugps.com</a>
+      </p>
+    </div>
+  </section>
+
+
+  <script>
+    /* Wix iframe nav-hide */
+    window.addEventListener('message', function(e) {
+      if (e.data && e.data.type === 'wix-nav-hide') {
+        document.body.style.paddingTop = '0';
+      }
+    });
+
+    /* GSAP scroll animations */
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from('.hero-left > *', {
+      opacity: 0, y: 28, duration: 0.7, stagger: 0.12, ease: 'power2.out'
+    });
+    gsap.from('.hero-suite-card', {
+      opacity: 0, x: 32, duration: 0.7, stagger: 0.15, ease: 'power2.out', delay: 0.3
+    });
+
+    document.querySelectorAll('.use-case, .cam-use-case, .why-card, .geo-block, .faq-item').forEach(el => {
+      gsap.from(el, {
+        scrollTrigger: { trigger: el, start: 'top 88%' },
+        opacity: 0, y: 24, duration: 0.6, ease: 'power2.out'
+      });
+    });
+
+    gsap.from('.platform-mockup', {
+      scrollTrigger: { trigger: '.platform-mockup', start: 'top 85%' },
+      opacity: 0, y: 32, duration: 0.8, ease: 'power2.out'
+    });
+
+    gsap.from('.footage-cell', {
+      scrollTrigger: { trigger: '.footage-grid', start: 'top 85%' },
+      opacity: 0, scale: 0.96, duration: 0.5, stagger: 0.1, ease: 'power2.out'
+    });
+  </script>
+
+</body>
+</html>
