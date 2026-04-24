@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GPS tracking and fleet dash cameras for medical transportation fleets in Central New York and nationwide. On-time compliance, trip logging, patient incident documentation. $129 all-in. No contracts. Call (888) 519-9128.">
+  <title>GPS Tracking and Fleet Cameras for Medical Transportation | AccuGPS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-734P54F0RR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-734P54F0RR');
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root {
+      --dark: #122023;
+      --forest: #2E443C;
+      --deep: #162C23;
+      --accent: #E6FF83;
+      --teal-light: #CFDDDF;
+      --sage: #A9BB96;
+      --green-light: #E8F8D7;
+      --white: #FFFFFF;
+      --off-white: #F7F7F5;
+      --mid-gray: #C2C2C2;
+      --body-text: #3C3C3C;
+      --muted: #666666;
+      --muted-dark: rgba(255,255,255,0.55);
+      --font-display: 'Figtree', sans-serif;
+      --font-body: 'Figtree', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--body-text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      display: block;
+      margin-bottom: 14px;
+    }
+    .eyebrow.dark { color: var(--forest); }
+    .eyebrow.accent { color: var(--accent); }
+
+    .section-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+    }
+    .section-title.light { color: var(--white); }
+
+    .section-sub {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 560px;
+    }
+    .section-sub.light { color: var(--muted-dark); }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--dark);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #d4f060; transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.06); }
+
+    /* HERO */
+    .page-hero {
+      background: var(--dark);
+      padding: 88px 80px 96px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -80px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(46,68,60,0.5) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: var(--muted-dark);
+    }
+    .hero-breadcrumb a { color: var(--muted-dark); text-decoration: none; }
+    .hero-breadcrumb a:hover { color: var(--accent); }
+    .hero-breadcrumb-sep { opacity: 0.4; }
+    .hero-industry-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(230,255,131,0.1);
+      border: 1px solid rgba(230,255,131,0.2);
+      border-radius: 100px;
+      padding: 6px 14px;
+      margin-bottom: 24px;
+    }
+    .hero-industry-badge span {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .hero-headline {
+      font-size: clamp(38px, 5.5vw, 64px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .hero-headline .accent { color: var(--accent); }
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--muted-dark);
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+    .hero-cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .hero-stat-row {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-stat-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 12px;
+      color: var(--muted-dark);
+      margin-top: 4px;
+    }
+    .hero-suite-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .hero-suite-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px 28px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      text-align: left;
+    }
+    .hero-suite-card:hover {
+      border-color: rgba(230,255,131,0.3);
+      background: rgba(230,255,131,0.05);
+      transform: translateX(4px);
+    }
+    .suite-card-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 8px;
+    }
+    .suite-card-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .suite-card-desc {
+      font-size: 14px;
+      color: var(--muted-dark);
+      line-height: 1.5;
+    }
+    .suite-card-cta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* GPS SECTION */
+    .section-gps {
+      background: var(--dark);
+      padding: 100px 80px;
+    }
+    .section-inner { max-width: 1120px; margin: 0 auto; }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .two-col.reversed .col-visual { order: -1; }
+
+    .gps-use-cases { display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
+    .use-case { display: flex; gap: 18px; align-items: flex-start; }
+    .use-case-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: rgba(230,255,131,0.1);
+      border: 1px solid rgba(230,255,131,0.15);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--accent);
+    }
+    .use-case-icon svg { width: 20px; height: 20px; }
+    .use-case-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .use-case-body { font-size: 14px; line-height: 1.6; color: var(--muted-dark); }
+
+    .gps-price-block {
+      margin-top: 40px;
+      padding: 24px 28px;
+      background: rgba(230,255,131,0.06);
+      border: 1px solid rgba(230,255,131,0.15);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .gps-price-num { font-size: 48px; font-weight: 900; color: var(--accent); letter-spacing: -0.03em; line-height: 1; }
+    .gps-price-detail { font-size: 13px; color: var(--muted-dark); line-height: 1.5; }
+    .gps-price-detail strong { color: rgba(255,255,255,0.7); }
+
+    .platform-mockup {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .platform-browser-bar {
+      background: rgba(255,255,255,0.06);
+      padding: 12px 18px;
+      display: flex; align-items: center; gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-dot:nth-child(1) { background: #FF5F57; }
+    .browser-dot:nth-child(2) { background: #FFBD2E; }
+    .browser-dot:nth-child(3) { background: #28CA41; }
+    .browser-url {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      margin-left: 8px;
+    }
+    .platform-map-area {
+      background: linear-gradient(135deg, #1a2e2a 0%, #122023 100%);
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+    .platform-map-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(230,255,131,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(230,255,131,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .platform-vehicle-dot {
+      position: absolute;
+      width: 12px; height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 0 6px rgba(230,255,131,0.15);
+    }
+    .platform-vehicle-dot:nth-child(2) { top: 30%; left: 22%; }
+    .platform-vehicle-dot:nth-child(3) { top: 58%; left: 55%; }
+    .platform-vehicle-dot:nth-child(4) { top: 20%; left: 68%; animation: pulse 2s infinite; }
+    .platform-vehicle-dot:nth-child(5) { top: 72%; left: 35%; }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 6px rgba(230,255,131,0.15); }
+      50% { box-shadow: 0 0 0 14px rgba(230,255,131,0.05); }
+    }
+    .platform-label {
+      position: absolute; top: 16px; left: 16px;
+      background: rgba(230,255,131,0.15);
+      border: 1px solid rgba(230,255,131,0.25);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 11px; font-weight: 700;
+      color: var(--accent); letter-spacing: 0.08em;
+    }
+    .platform-feature-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .platform-feature {
+      padding: 16px 18px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .platform-feature:last-child { border-right: none; }
+    .pf-img { width: 100%; height: 56px; object-fit: cover; border-radius: 6px; margin-bottom: 6px; opacity: 0.85; }
+    .pf-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.55); }
+
+    /* CAMERA SECTION */
+    .section-cameras { background: var(--forest); padding: 100px 80px; }
+    .camera-use-cases { display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
+    .cam-use-case { display: flex; gap: 18px; align-items: flex-start; }
+    .cam-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--accent);
+    }
+    .cam-icon svg { width: 20px; height: 20px; }
+    .cam-use-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .cam-use-body { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.6); }
+
+    .footage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 32px; }
+    .footage-cell { border-radius: 12px; overflow: hidden; position: relative; background: rgba(0,0,0,0.3); }
+    .footage-cell img { width: 100%; height: 140px; object-fit: cover; display: block; opacity: 0.9; }
+    .footage-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      padding: 20px 12px 10px;
+      font-size: 11px; font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+
+    .video-placeholder {
+      margin-top: 32px;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+      aspect-ratio: 16/9;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+    .video-placeholder:hover .video-play { transform: scale(1.08); }
+    .video-bg-label {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px;
+    }
+    .video-play {
+      width: 64px; height: 64px;
+      background: rgba(230,255,131,0.2);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s;
+    }
+    .video-play svg { width: 24px; height: 24px; color: var(--accent); margin-left: 4px; }
+    .video-caption { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+    .camera-product-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+    .camera-product-chip {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .camera-product-chip img { width: 64px; height: 56px; object-fit: contain; }
+    .chip-info-title { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+    .chip-info-rec { font-size: 12px; color: var(--accent); font-weight: 600; }
+
+    .cam-cta-row { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
+
+    /* WHY ACCUGPS */
+    .section-why { background: var(--off-white); padding: 80px 80px; }
+    .why-inner { max-width: 1120px; margin: 0 auto; }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+    .why-card { background: var(--white); border-radius: 14px; padding: 32px 28px; border: 1px solid rgba(0,0,0,0.06); }
+    .why-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: var(--green-light);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px; color: var(--forest);
+    }
+    .why-icon svg { width: 22px; height: 22px; }
+    .why-title { font-size: 17px; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
+    .why-body { font-size: 14px; line-height: 1.65; color: var(--muted); }
+
+    /* FAQ */
+    .section-faq { background: var(--white); padding: 96px 80px; }
+    .faq-inner { max-width: 800px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); padding: 24px 0; }
+    .faq-item:first-of-type { padding-top: 0; }
+    .faq-q { font-size: 17px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+    .faq-a { font-size: 15px; line-height: 1.65; color: var(--muted); }
+
+    /* GEO */
+    .section-geo { background: var(--off-white); padding: 80px 80px; }
+    .section-geo-inner { max-width: 1120px; margin: 0 auto; }
+    .geo-intro { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; }
+    .geo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .geo-block h2 { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 10px; line-height: 1.35; }
+    .geo-block p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+    /* CTA BANNER */
+    .section-cta-banner {
+      background: var(--dark);
+      padding: 96px 80px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .section-cta-banner::before {
+      content: '';
+      position: absolute; top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(46,68,60,0.5) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-banner-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+    .cta-banner-title { font-size: clamp(32px, 4vw, 48px); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 16px; }
+    .cta-banner-sub { font-size: 17px; color: var(--muted-dark); margin-bottom: 36px; line-height: 1.6; }
+    .cta-banner-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cta-contact-line { margin-top: 24px; font-size: 14px; color: var(--muted-dark); }
+    .cta-contact-line a { color: var(--accent); text-decoration: none; font-weight: 600; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .page-hero { padding: 56px 32px 64px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .section-gps, .section-cameras, .section-why, .section-faq, .section-geo, .section-cta-banner { padding: 72px 32px; }
+      .two-col { grid-template-columns: 1fr; gap: 48px; }
+      .two-col.reversed .col-visual { order: 0; }
+      .why-grid { grid-template-columns: 1fr; }
+      .geo-grid { grid-template-columns: 1fr; }
+      .platform-feature-strip { grid-template-columns: 1fr; }
+      .platform-feature { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .platform-feature:last-child { border-bottom: none; }
+    }
+    @media (max-width: 768px) {
+      .page-hero, .section-gps, .section-cameras, .section-why, .section-faq, .section-geo, .section-cta-banner { padding: 56px 20px; }
+      .hero-stat-row { flex-wrap: wrap; gap: 20px; }
+      .camera-product-strip { grid-template-columns: 1fr; }
+      .footage-grid { grid-template-columns: 1fr; }
+      .gps-price-block { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="page-hero" id="top">
+    <div class="hero-inner">
+
+      <div class="hero-left">
+        <div class="hero-breadcrumb">
+          <a href="#" onclick="window.top.location.href='/'; return false;">AccuGPS</a>
+          <span class="hero-breadcrumb-sep">/</span>
+          <span>Industries</span>
+          <span class="hero-breadcrumb-sep">/</span>
+          <span style="color:rgba(255,255,255,0.75);">Medical Transportation</span>
+        </div>
+
+        <div class="hero-industry-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span>Medical Transportation</span>
+        </div>
+
+        <h1 class="hero-headline">
+          On time, every time.<br>Documented for<br>
+          <span class="accent">every trip.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Medical transport operators use AccuGPS to meet on-time commitments, log every trip for compliance, and protect against patient incident claims. Real-time tracking plus in-cabin cameras for $129 all-in.
+        </p>
+
+        <div class="hero-cta-row">
+          <button class="btn-primary" onclick="document.getElementById('gps').scrollIntoView({behavior:'smooth'});">
+            GPS Tracking
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <button class="btn-ghost" onclick="document.getElementById('cameras').scrollIntoView({behavior:'smooth'});">
+            Fleet Cameras
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l4.553-2.069A1 1 0 0 1 21 8.845v6.31a1 1 0 0 1-1.447.914L15 14M3 8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/></svg>
+          </button>
+        </div>
+
+        <div class="hero-stat-row">
+          <div class="hero-stat">
+            <div class="hero-stat-num">$129</div>
+            <div class="hero-stat-label">All-in. Hardware, activation, year 1.</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">Real-time</div>
+            <div class="hero-stat-label">Trip logging for compliance records.</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">4G LTE</div>
+            <div class="hero-stat-label">Live camera streaming, any vehicle.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-suite-cards">
+          <div class="hero-suite-card" onclick="document.getElementById('gps').scrollIntoView({behavior:'smooth'});">
+            <div class="suite-card-label">GPS Fleet Tracking</div>
+            <div class="suite-card-title">Real-time location and trip logging</div>
+            <div class="suite-card-desc">Know where every vehicle is, dispatch mid-trip, and generate complete trip records for compliance and billing. Drive Score monitors safe driving on every run.</div>
+            <div class="suite-card-cta">
+              See GPS Tracking
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <div class="hero-suite-card" onclick="document.getElementById('cameras').scrollIntoView({behavior:'smooth'});">
+            <div class="suite-card-label">Fleet Dash Cameras</div>
+            <div class="suite-card-title">Protect drivers and document patient transport</div>
+            <div class="suite-card-desc">In-cabin cameras document every trip for compliance and liability. Forward-facing cameras exonerate drivers in road incidents. Live 4G LTE streaming from any vehicle.</div>
+            <div class="suite-card-cta">
+              See Fleet Cameras
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- GPS SECTION -->
+  <section class="section-gps" id="gps">
+    <div class="section-inner">
+      <div class="two-col">
+
+        <div class="col-info">
+          <span class="eyebrow accent">GPS Fleet Tracking</span>
+          <h2 class="section-title light">Every trip logged.<br>Every vehicle visible.<br><span style="color:var(--accent);">Every run on time.</span></h2>
+          <p class="section-sub light" style="margin-top:16px;">Medical transport operators in Syracuse and Central New York use AccuGPS to track vehicles in real time, reroute mid-trip, and generate complete trip records without manual paperwork.</p>
+
+          <div class="gps-use-cases">
+            <div class="use-case">
+              <div class="use-case-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <div class="use-case-title">On-time performance and dispatch visibility</div>
+                <div class="use-case-body">Dispatchers see every vehicle on one live map. When a run is running late, reroute it in seconds. Patients get accurate ETAs. Facilities get reliable pickup times.</div>
+              </div>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <div>
+                <div class="use-case-title">Automatic trip logging for compliance</div>
+                <div class="use-case-body">Every trip is recorded with start time, end time, route, and mileage. Trip replay shows the exact path driven. Use the data for billing, audits, and state compliance reporting without manual entry.</div>
+              </div>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <div>
+                <div class="use-case-title">Driver behavior and patient safety</div>
+                <div class="use-case-body">Drive Score grades every driver on speed, hard braking, and rapid acceleration. Medical transport requires smooth, safe driving. Automatic coaching alerts let managers address risky behavior before it becomes an incident.</div>
+              </div>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="use-case-title">Geofencing for facility arrival alerts</div>
+                <div class="use-case-body">Set geofences around hospitals, clinics, and care facilities. Get notified the moment a vehicle arrives or departs. Coordinate handoffs without radio calls and keep facility staff informed automatically.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gps-price-block">
+            <div class="gps-price-num">$129</div>
+            <div class="gps-price-detail">
+              <strong>Hardware, activation, and year one service included.</strong><br>
+              Renews at $12.99/month or $129/year. No contracts. Cancel any time.
+            </div>
+          </div>
+
+          <div style="display:flex; gap:14px; margin-top:24px; flex-wrap:wrap;">
+            <button class="btn-primary" onclick="window.top.location.href='https://www.accugps.com/category/gps-trackers'">
+              Shop GPS Trackers
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <button class="btn-ghost" onclick="window.top.location.href='/platform'">
+              See the Platform
+            </button>
+          </div>
+        </div>
+
+        <div class="col-visual">
+          <div class="platform-mockup">
+            <div class="platform-browser-bar">
+              <div class="browser-dot"></div>
+              <div class="browser-dot"></div>
+              <div class="browser-dot"></div>
+              <div class="browser-url">i.accugps.com/map-view</div>
+            </div>
+            <div class="platform-map-area">
+              <div class="platform-map-grid"></div>
+              <div class="platform-label">LIVE TRACKING</div>
+              <div class="platform-vehicle-dot"></div>
+              <div class="platform-vehicle-dot"></div>
+              <div class="platform-vehicle-dot"></div>
+              <div class="platform-vehicle-dot"></div>
+            </div>
+            <div class="platform-feature-strip">
+              <div class="platform-feature">
+                <img src="./integrated-alerts.png" class="pf-img" alt="Trip alerts">
+                <div class="pf-label">Trip Alerts</div>
+              </div>
+              <div class="platform-feature">
+                <img src="./integrated-driver.png" class="pf-img" alt="Drive score">
+                <div class="pf-label">Drive Score</div>
+              </div>
+              <div class="platform-feature">
+                <img src="./integrated-reporting.png" class="pf-img" alt="Compliance reports">
+                <div class="pf-label">Trip Reports</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px; padding:16px 20px; background:rgba(230,255,131,0.06); border:1px solid rgba(230,255,131,0.12); border-radius:10px;">
+            <p style="font-size:13px; color:var(--muted-dark); line-height:1.6;">All trip data is stored in the AccuGPS platform and accessible for audits, billing disputes, and compliance reporting. iOS, Android, and web access included.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CAMERA SECTION -->
+  <section class="section-cameras" id="cameras">
+    <div class="section-inner">
+      <div class="two-col reversed">
+
+        <div class="col-info">
+          <span class="eyebrow accent">Fleet Dash Cameras</span>
+          <h2 class="section-title light">When a patient makes<br>a claim, video is the<br><span style="color:var(--accent);">only answer that counts.</span></h2>
+          <p class="section-sub light" style="margin-top:16px;">Medical transport carries unique liability. In-cabin cameras document the condition of passengers and the behavior of drivers on every run. AccuGPS cameras stream live over 4G LTE and store footage in the cloud.</p>
+
+          <div class="camera-use-cases">
+            <div class="cam-use-case">
+              <div class="cam-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l4.553-2.069A1 1 0 0 1 21 8.845v6.31a1 1 0 0 1-1.447.914L15 14M3 8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/></svg>
+              </div>
+              <div>
+                <div class="cam-use-title">In-cabin documentation for every trip</div>
+                <div class="cam-use-body">The in-cabin camera records passenger loading, seating, and in-transport conditions. When a patient claims an injury occurred during transport, you have timestamped video of the entire trip.</div>
+              </div>
+            </div>
+            <div class="cam-use-case">
+              <div class="cam-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div>
+                <div class="cam-use-title">Exonerate drivers in road accidents</div>
+                <div class="cam-use-body">Forward-facing footage resolves third-party accident claims quickly. Medical transport drivers operate in heavy traffic. Video evidence protects them and your organization from false claims.</div>
+              </div>
+            </div>
+            <div class="cam-use-case">
+              <div class="cam-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </div>
+              <div>
+                <div class="cam-use-title">AI driver monitoring for passenger safety</div>
+                <div class="cam-use-body">The All-In-One camera detects distraction, phone use, and drowsiness in real time. For drivers transporting vulnerable patients, AI coaching keeps attention where it belongs.</div>
+              </div>
+            </div>
+            <div class="cam-use-case">
+              <div class="cam-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="cam-use-title">Insurance and compliance documentation</div>
+                <div class="cam-use-body">Many medical transport insurers reduce premiums for fleets with certified cameras. Cloud-stored footage is available for state audits and accreditation reviews without searching physical media.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cam-cta-row">
+            <button class="btn-primary" onclick="window.top.location.href='https://www.accugps.com/category/dash-cameras'">
+              Shop Fleet Cameras
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <a href="tel:8885199128" class="btn-ghost">(888) 519-9128</a>
+          </div>
+        </div>
+
+        <div class="col-visual">
+          <div class="footage-grid">
+            <div class="footage-cell">
+              <img src="./camera-roadfacing.png" alt="Forward-facing road view">
+              <div class="footage-label">Forward View</div>
+            </div>
+            <div class="footage-cell">
+              <img src="./camera-dsm.png" alt="Driver and cabin monitoring">
+              <div class="footage-label">In-Cabin View</div>
+            </div>
+            <div class="footage-cell">
+              <img src="./camera-adas.png" alt="ADAS collision alerts">
+              <div class="footage-label">ADAS Alerts</div>
+            </div>
+            <div class="footage-cell">
+              <img src="./camera-multicam.png" alt="Multi-angle coverage">
+              <div class="footage-label">Multi-Angle</div>
+            </div>
+          </div>
+
+          <div class="video-placeholder" onclick="window.top.location.href='https://www.accugps.com/category/dash-cameras'">
+            <div class="video-bg-label">
+              <div class="video-play">
+                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <span class="video-caption">See AccuGPS cameras in action</span>
+            </div>
+          </div>
+
+          <div class="camera-product-strip">
+            <div class="camera-product-chip">
+              <img src="./All%20in%20One%20Hero.jpg" alt="All-In-One Camera">
+              <div>
+                <div class="chip-info-title">All-In-One Camera</div>
+                <div class="chip-info-rec">Best for transport vans and sedans</div>
+              </div>
+            </div>
+            <div class="camera-product-chip">
+              <img src="./In%20Cabin%20Camera%20Main.png" alt="In-Cabin Camera">
+              <div>
+                <div class="chip-info-title">In-Cabin Camera</div>
+                <div class="chip-info-rec">Dedicated passenger compartment view</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- WHY ACCUGPS -->
+  <section class="section-why">
+    <div class="why-inner">
+      <div style="text-align:center; margin-bottom:8px;">
+        <span class="eyebrow dark" style="display:block; text-align:center;">Why AccuGPS</span>
+        <h2 class="section-title" style="text-align:center;">Built for working fleets.<br>Not enterprise software.</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <div class="why-title">Local team in Syracuse, NY</div>
+          <div class="why-body">AccuGPS is based at 5727 E. Seneca Turnpike, Jamesville, NY 13078. When you call (888) 519-9128, you reach people familiar with medical transport operations in Central New York. Not a call center.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="why-title">$129 all-in pricing</div>
+          <div class="why-body">Hardware, activation, and year one service are included in the $129 price. GPS trackers and cameras are separate products at the same price point. No setup fees, no activation surprises.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="why-title">No contracts</div>
+          <div class="why-body">Cancel any time. No annual commitment beyond the first year included in your purchase. Scale up or down as your transport operation changes without penalty.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section class="section-faq">
+    <div class="faq-inner">
+      <span class="eyebrow dark" style="display:block; text-align:center;">Common Questions</span>
+      <h2 class="section-title" style="text-align:center; margin-bottom:48px;">Medical transport<br>fleet questions.</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">Can AccuGPS generate trip logs for compliance and billing purposes?</div>
+        <div class="faq-a">Yes. Every trip is automatically logged with pickup time, route, mileage, and drop-off time. Trip replay shows the exact path driven. Reports can be exported for Medicaid billing, state compliance audits, and internal reviews without any manual data entry.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does the in-cabin camera record passengers?</div>
+        <div class="faq-a">The AccuGPS All-In-One camera includes a driver-facing lens that captures the cab area. For dedicated passenger compartment coverage in larger vehicles, an auxiliary in-cabin camera can be added to the MDVR system. All footage is stored in the cloud and accessible from the platform.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How does GPS tracking help with on-time performance?</div>
+        <div class="faq-a">Dispatchers see every vehicle's real-time location on one map. When a vehicle is running behind, the dispatcher can reroute it, notify the facility, or reassign the run in seconds. Drive Score also identifies drivers whose habits cause delays through excessive idling or inefficient routing.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What happens if a patient claims they were injured during transport?</div>
+        <div class="faq-a">Cloud-stored video from the trip is available immediately from the AccuGPS platform. Footage shows vehicle movement, driver behavior, and in-cab conditions for the full duration of the run. This evidence is used to confirm or deny claims without relying on driver recollection alone.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is there a monthly fee after the first year?</div>
+        <div class="faq-a">Yes. Service renews at $12.99 per device per month, or $129 per device per year. The first year is included in the $129 purchase price. There are no contracts and no cancellation fees.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- GEO CONTENT -->
+  <section class="section-geo">
+    <div class="section-geo-inner">
+      <div class="geo-intro">AccuGPS Medical Transportation Fleet Tracking, Jamesville, NY</div>
+      <div class="geo-grid">
+        <div class="geo-block">
+          <h2>Where to find GPS tracking for medical transportation fleets in Syracuse?</h2>
+          <p>AccuGPS is based at 5727 E. Seneca Turnpike, Jamesville, NY 13078 and serves medical transport operators across Syracuse and Central New York. GPS trackers start at $129 all-in with automatic trip logging, real-time location, and compliance reporting. No contracts. Call (888) 519-9128.</p>
+        </div>
+        <div class="geo-block">
+          <h2>How do fleet cameras help medical transport companies with liability?</h2>
+          <p>AccuGPS fleet cameras record forward-facing and in-cabin footage on every run with 4G LTE cloud storage. When a patient incident claim or road accident occurs, video evidence is available immediately from the platform. Many medical transport insurance carriers reduce premiums for verified camera installations.</p>
+        </div>
+        <div class="geo-block">
+          <h2>What GPS features help medical transport operators meet compliance requirements?</h2>
+          <p>AccuGPS automatically logs every trip including start time, end time, route, mileage, and driver. Trip replay shows the exact path. Reports export for Medicaid billing, state compliance audits, and accreditation documentation. Drive Score records safe driving performance for each driver.</p>
+        </div>
+        <div class="geo-block">
+          <h2>Can GPS and cameras work together on medical transport vehicles?</h2>
+          <p>Yes. AccuGPS GPS trackers and fleet cameras connect to the same platform at i.accugps.com/map-view. Trip data, driver behavior scores, and video footage all appear in one dashboard. No separate apps or logins for each product.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA BANNER -->
+  <section class="section-cta-banner">
+    <div class="cta-banner-inner">
+      <span class="eyebrow accent" style="display:block; text-align:center;">Get Started</span>
+      <h2 class="cta-banner-title">Protect your patients.<br>Protect your fleet.<br>Start at $129.</h2>
+      <p class="cta-banner-sub">Hardware, activation, and year one service included. No contracts. Cancel any time.</p>
+      <div class="cta-banner-buttons">
+        <button class="btn-primary" onclick="window.top.location.href='https://www.accugps.com/category/gps-trackers'">
+          Shop GPS Trackers
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button class="btn-primary" onclick="window.top.location.href='https://www.accugps.com/category/dash-cameras'" style="background:var(--forest); color:var(--accent);">
+          Shop Fleet Cameras
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <p class="cta-contact-line">
+        Questions? Call <a href="tel:8885199128">(888) 519-9128</a> or email <a href="mailto:info@accugps.com">info@accugps.com</a>
+      </p>
+    </div>
+  </section>
+
+
+  <script>
+    window.addEventListener('message', function(e) {
+      if (e.data && e.data.type === 'wix-nav-hide') {
+        document.body.style.paddingTop = '0';
+      }
+    });
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from('.hero-left > *', { opacity: 0, y: 28, duration: 0.7, stagger: 0.12, ease: 'power2.out' });
+    gsap.from('.hero-suite-card', { opacity: 0, x: 32, duration: 0.7, stagger: 0.15, ease: 'power2.out', delay: 0.3 });
+
+    document.querySelectorAll('.use-case, .cam-use-case, .why-card, .geo-block, .faq-item').forEach(el => {
+      gsap.from(el, {
+        scrollTrigger: { trigger: el, start: 'top 88%' },
+        opacity: 0, y: 24, duration: 0.6, ease: 'power2.out'
+      });
+    });
+
+    gsap.from('.platform-mockup', {
+      scrollTrigger: { trigger: '.platform-mockup', start: 'top 85%' },
+      opacity: 0, y: 32, duration: 0.8, ease: 'power2.out'
+    });
+
+    gsap.from('.footage-cell', {
+      scrollTrigger: { trigger: '.footage-grid', start: 'top 85%' },
+      opacity: 0, scale: 0.96, duration: 0.5, stagger: 0.1, ease: 'power2.out'
+    });
+  </script>
+
+</body>
+</html>
