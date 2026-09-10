@@ -1876,7 +1876,7 @@
       <!-- OBD II -->
       <div class="product-card">
         <div class="product-card-img">
-          <img src="./OBD%20Main.png" alt="AccuGPS OBD II Smart Tracker">
+          <img src="./images/OBD%20Main.png" alt="AccuGPS OBD II Smart Tracker">
         </div>
         <div class="product-card-body">
           <div class="product-card-name">OBD II Smart Tracker</div>
@@ -1901,7 +1901,7 @@
       <!-- Magnetic -->
       <div class="product-card">
         <div class="product-card-img">
-          <img src="./Magnetic%20Asset%20tracker%201.png" alt="AccuGPS Magnetic Asset Tracker">
+          <img src="./images/Magnetic%20Asset%20tracker%201.png" alt="AccuGPS Magnetic Asset Tracker">
         </div>
         <div class="product-card-body">
           <div class="product-card-name">Magnetic Asset Tracker</div>
@@ -1926,7 +1926,7 @@
       <!-- 4G LTE -->
       <div class="product-card">
         <div class="product-card-img" style="background: var(--teal-light);">
-          <img src="./LTE%201.png" alt="AccuGPS 4G LTE GPS Tracker">
+          <img src="./images/LTE%201.png" alt="AccuGPS 4G LTE GPS Tracker">
         </div>
         <div class="product-card-body">
           <div class="product-card-name">4G LTE GPS Tracker</div>
@@ -1959,7 +1959,7 @@
       <!-- All-In-One AI Camera -->
       <div class="product-card">
         <div class="product-card-img" style="background: var(--dark);">
-          <img src="./All%20in%20One%20Hero.jpg" alt="AccuGPS All-In-One AI Camera">
+          <img src="./images/All%20in%20One%20Hero.jpg" alt="AccuGPS All-In-One AI Camera">
         </div>
         <div class="product-card-body">
           <div class="product-card-name">All-In-One AI Camera</div>
@@ -1985,7 +1985,7 @@
       <!-- MDVR -->
       <div class="product-card">
         <div class="product-card-img" style="background: var(--forest);">
-          <img src="./camera-multicam.png" alt="AccuGPS MDVR Multi-Camera Recorder">
+          <img src="./images/camera-multicam.png" alt="AccuGPS MDVR Multi-Camera Recorder">
         </div>
         <div class="product-card-body">
           <div class="product-card-name">MDVR Multi-Camera Recorder</div>
@@ -2280,6 +2280,16 @@
         <h3>How quickly can I start tracking my fleet?</h3>
         <p>Most customers are live within minutes of receiving their tracker. Plug in the OBD II device, activate it at i.accugps.com, and your vehicle appears on the map. AccuGPS ships from Jamesville, NY. Call (888) 519-9128 for same-day help if you need it.</p>
       </div>
+
+      <div class="faq-item">
+        <h3>What are the benefits of GPS fleet tracking for US businesses?</h3>
+        <p>GPS fleet tracking reduces fuel costs by cutting idle time and optimizing routes. It improves driver safety through behavior monitoring and speeds up payroll with automated trip logs. AccuGPS customers report faster response times, lower insurance rates, and fewer unauthorized vehicle uses. Real-time visibility means faster ETAs and less time spent on phone check-ins.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How does GPS tracking improve fleet operations?</h3>
+        <p>GPS tracking gives fleet managers a real-time view of every vehicle, driver, and job without phone calls. AccuGPS shows live location, trip history, idle time, speed events, and maintenance status in one dashboard. Route analysis reduces miles driven. Geofencing catches after-hours use. Drive Score holds drivers accountable. Together these reduce costs and increase the number of jobs each vehicle can handle per day.</p>
+      </div>
     </div>
   </section>
 
@@ -2307,7 +2317,7 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="AccuGPSLogo.svg" alt="AccuGPS">
+        <img src="./images/AccuGPSLogo.svg" alt="AccuGPS">
         <p class="footer-tagline">Fleet GPS tracking built for small businesses. Real-time tracking, driver insights,
           and local support. Starting at $129.</p>
         <p class="footer-contact-line"><a href="tel:8885199128">(888) 519-9128</a></p>
@@ -2345,6 +2355,7 @@
           <a href="#" onclick="window.top.location.href='https://www.accugps.com/accugps-blog'; return false;">Blog</a>
           <a href="#" onclick="window.top.location.href='https://www.accugps.com/customer-care'; return false;">Contact Us</a>
           <a href="https://i.accugps.com/map-view" target="_blank">Login</a>
+          <a href="#" onclick="navigateTo('/get-the-app'); return false;">Get the App</a>
         </div>
       </div>
     </div>
@@ -2457,6 +2468,73 @@
       opacity: 0, y: 24, duration: 0.7, stagger: 0.1, ease: 'power2.out'
     });
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does GPS fleet tracking cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AccuGPS is $129 per tracker. That covers the hardware, activation, and your first full year of service. After year one, renewal is $12.99 per month or $129 per year. No contracts, no cancellation fees, no surprise charges."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the GPS tracker require professional installation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The OBD II tracker plugs into the port under your dashboard in under 2 minutes. No tools, no wiring, no installer needed. It works on any US vehicle made after 1996. The Magnetic Asset Tracker attaches to any metal surface without tools and runs on its own battery."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is geofencing and how does it work for fleet vehicles?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Geofencing lets you draw a virtual boundary on the map around a job site, yard, or service area. AccuGPS sends an alert the moment a vehicle enters or exits that boundary. Fleet managers in Syracuse and Central New York use it to catch unauthorized vehicle use after hours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does AccuGPS require a contract?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. AccuGPS has no contracts and no cancellation fees. Pay $129 once for hardware, activation, and year one of service. After that, renew month-to-month at $12.99 or save with the $129 annual plan. Stop any time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How quickly can I start tracking my fleet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most customers are live within minutes of receiving their tracker. Plug in the OBD II device, activate it at i.accugps.com, and your vehicle appears on the map. AccuGPS ships from Jamesville, NY. Call (888) 519-9128 for same-day help if you need it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the benefits of GPS fleet tracking for US businesses?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GPS fleet tracking reduces fuel costs by cutting idle time and optimizing routes. It improves driver safety through behavior monitoring and speeds up payroll with automated trip logs. AccuGPS customers report faster response times, lower insurance rates, and fewer unauthorized vehicle uses. Real-time visibility means faster ETAs and less time spent on phone check-ins."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does GPS tracking improve fleet operations?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GPS tracking gives fleet managers a real-time view of every vehicle, driver, and job without phone calls. AccuGPS shows live location, trip history, idle time, speed events, and maintenance status in one dashboard. Route analysis reduces miles driven. Geofencing catches after-hours use. Drive Score holds drivers accountable. Together these reduce costs and increase the number of jobs each vehicle can handle per day."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq1a387f53f4bca6be8a637b0652a97cc390d29b88b5c2d09b5215abd0eb0c1b43" defer></script>
 
 </body>
 

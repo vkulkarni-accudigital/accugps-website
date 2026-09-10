@@ -217,6 +217,15 @@
       margin-bottom: 36px;
       max-width: 520px;
     }
+    .hero-scenario {
+      font-size: 15px;
+      font-style: italic;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 20px;
+      max-width: 480px;
+    }
+
     .hero-cta-row {
       display: flex;
       gap: 14px;
@@ -630,6 +639,73 @@
     }
 
     /* ============================================
+       PROBLEMS WE SOLVE
+    ============================================ */
+    .section-problems {
+      background: var(--white);
+      padding: 96px 80px;
+    }
+    .problems-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .problems-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .problem-card {
+      background: var(--off-white);
+      border-radius: 16px;
+      padding: 36px 32px;
+      border: 1px solid rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .problem-card:hover::before { opacity: 1; }
+    .problem-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .problem-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.25;
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+    .problem-divider {
+      width: 32px;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 14px;
+      border-radius: 2px;
+    }
+    .problem-solution {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    /* ============================================
        WHY ACCUGPS
     ============================================ */
     .section-why {
@@ -796,6 +872,7 @@
       .hero-inner { grid-template-columns: 1fr; gap: 48px; }
       .section-gps,
       .section-cameras,
+      .section-problems,
       .section-why,
       .section-faq,
       .section-geo,
@@ -803,6 +880,7 @@
       .two-col { grid-template-columns: 1fr; gap: 48px; }
       .two-col.reversed .col-visual { order: 0; }
       .why-grid { grid-template-columns: 1fr; }
+      .problems-grid { grid-template-columns: 1fr; }
       .geo-grid { grid-template-columns: 1fr; }
       .platform-feature-strip { grid-template-columns: 1fr; }
       .platform-feature { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -847,6 +925,8 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
           <span>Construction Industry</span>
         </div>
+
+        <p class="hero-scenario">You have 12 vehicles across 4 sites. A trailer went missing overnight. You have no idea when it left or where it went.</p>
 
         <h1 class="hero-headline">
           Know where every<br>vehicle and piece of<br>
@@ -1000,15 +1080,15 @@
             </div>
             <div class="platform-feature-strip">
               <div class="platform-feature">
-                <img src="./integrated-alerts.png" class="pf-img" alt="Geofence alerts">
+                <img src="./images/integrated-alerts.png" class="pf-img" alt="Geofence alerts">
                 <div class="pf-label">Geofence Alerts</div>
               </div>
               <div class="platform-feature">
-                <img src="./integrated-driver.png" class="pf-img" alt="Drive score">
+                <img src="./images/integrated-driver.png" class="pf-img" alt="Drive score">
                 <div class="pf-label">Drive Score</div>
               </div>
               <div class="platform-feature">
-                <img src="./integrated-reporting.png" class="pf-img" alt="Fleet reports">
+                <img src="./images/integrated-reporting.png" class="pf-img" alt="Fleet reports">
                 <div class="pf-label">Fleet Reports</div>
               </div>
             </div>
@@ -1089,19 +1169,19 @@
           <!-- Footage stills -->
           <div class="footage-grid">
             <div class="footage-cell">
-              <img src="./camera-roadfacing.png" alt="Forward-facing camera view">
+              <img src="./images/camera-roadfacing.png" alt="Forward-facing camera view">
               <div class="footage-label">Forward View</div>
             </div>
             <div class="footage-cell">
-              <img src="./camera-dsm.png" alt="Driver monitoring camera">
+              <img src="./images/camera-dsm.png" alt="Driver monitoring camera">
               <div class="footage-label">Driver Monitoring</div>
             </div>
             <div class="footage-cell">
-              <img src="./camera-adas.png" alt="ADAS collision detection">
+              <img src="./images/camera-adas.png" alt="ADAS collision detection">
               <div class="footage-label">ADAS Alerts</div>
             </div>
             <div class="footage-cell">
-              <img src="./camera-multicam.png" alt="Multi-camera setup">
+              <img src="./images/camera-multicam.png" alt="Multi-camera setup">
               <div class="footage-label">Multi-Camera</div>
             </div>
           </div>
@@ -1119,20 +1199,57 @@
           <!-- Product chips -->
           <div class="camera-product-strip">
             <div class="camera-product-chip">
-              <img src="./All%20in%20One%20Hero.jpg" alt="All-In-One Camera">
+              <img src="./images/All%20in%20One%20Hero.jpg" alt="All-In-One Camera">
               <div>
                 <div class="chip-info-title">All-In-One Camera</div>
                 <div class="chip-info-rec">Best for single-cab trucks</div>
               </div>
             </div>
             <div class="camera-product-chip">
-              <img src="./MDVR.png" alt="MDVR Multi-Camera">
+              <img src="./images/MDVR.png" alt="MDVR Multi-Camera">
               <div>
                 <div class="chip-info-title">MDVR System</div>
                 <div class="chip-info-rec">Best for multi-camera coverage</div>
               </div>
             </div>
           </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       PROBLEMS WE SOLVE
+  ================================================ -->
+  <section class="section-problems">
+    <div class="problems-inner">
+      <div class="problems-header">
+        <span class="eyebrow dark">Common Situations</span>
+        <h2 class="section-title">Problems construction fleets<br>deal with every week.</h2>
+      </div>
+      <div class="problems-grid">
+
+        <div class="problem-card">
+          <div class="problem-label">Theft &amp; Loss</div>
+          <div class="problem-title">Equipment disappears overnight with no trace.</div>
+          <div class="problem-divider"></div>
+          <div class="problem-solution">A geofence alert fires the moment any asset crosses the boundary after hours. Most customers respond within minutes. One AccuGPS customer recovered a stolen trailer the first night they went live.</div>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-label">Liability</div>
+          <div class="problem-title">A driver is in an accident and there is no video.</div>
+          <div class="problem-divider"></div>
+          <div class="problem-solution">AccuGPS fleet cameras record continuous forward and driver-facing footage. When a third party files a false claim, the video is in the platform immediately. No waiting for a clip request.</div>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-label">Visibility</div>
+          <div class="problem-title">Nobody knows which crew is at which site right now.</div>
+          <div class="problem-divider"></div>
+          <div class="problem-solution">One map shows every vehicle and asset in real time. See which site each crew is at, how long they have been there, and whether any vehicle has gone off-route. No more calling around.</div>
         </div>
 
       </div>
@@ -1296,6 +1413,8 @@
       opacity: 0, scale: 0.96, duration: 0.5, stagger: 0.1, ease: 'power2.out'
     });
   </script>
+
+  <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq1a387f53f4bca6be8a637b0652a97cc390d29b88b5c2d09b5215abd0eb0c1b43" defer></script>
 
 </body>
 </html>

@@ -14,7 +14,7 @@ Brand knowledge base:
 - `c:/Users/venka/.gemini/antigravity/scratch/CMS_aD/accugps/knowledge-base/`
 
 Brand extract (colors, fonts, assets):
-- `c:/Users/venka/.gemini/antigravity/scratch/accugps_prototypes/accugps_brand_extract.md`
+- `c:/Users/venka/.gemini/antigravity/scratch/accugps_prototypes/reference/accugps_brand_extract.md`
 
 ---
 

@@ -153,6 +153,21 @@
     .chip-info-rec { font-size: 12px; color: var(--accent); font-weight: 600; }
     .cam-cta-row { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
 
+    .hero-scenario { font-size: 15px; font-style: italic; line-height: 1.6; color: rgba(255,255,255,0.45); margin-bottom: 20px; max-width: 480px; }
+
+    /* PROBLEMS WE SOLVE */
+    .section-problems { background: var(--white); padding: 96px 80px; }
+    .problems-inner { max-width: 1120px; margin: 0 auto; }
+    .problems-header { text-align: center; margin-bottom: 56px; }
+    .problems-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .problem-card { background: var(--off-white); border-radius: 16px; padding: 36px 32px; border: 1px solid rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+    .problem-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); opacity: 0; transition: opacity 0.2s; }
+    .problem-card:hover::before { opacity: 1; }
+    .problem-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .problem-title { font-size: 20px; font-weight: 800; color: var(--dark); line-height: 1.25; margin-bottom: 14px; letter-spacing: -0.01em; }
+    .problem-divider { width: 32px; height: 2px; background: var(--accent); margin-bottom: 14px; border-radius: 2px; }
+    .problem-solution { font-size: 14px; line-height: 1.65; color: var(--muted); }
+
     /* WHY ACCUGPS */
     .section-why { background: var(--off-white); padding: 80px 80px; }
     .why-inner { max-width: 1120px; margin: 0 auto; }
@@ -231,6 +246,8 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           <span>Transportation and Logistics</span>
         </div>
+
+        <p class="hero-scenario">A truck left the warehouse two hours ago. Your client wants an ETA update. You haven't heard from the driver.</p>
 
         <h1 class="hero-headline">
           Every load tracked.<br>Every driver<br>
@@ -381,15 +398,15 @@
             </div>
             <div class="platform-feature-strip">
               <div class="platform-feature">
-                <img src="./integrated-ifta.png" class="pf-img" alt="IFTA reporting">
+                <img src="./images/integrated-ifta.png" class="pf-img" alt="IFTA reporting">
                 <div class="pf-label">IFTA Reports</div>
               </div>
               <div class="platform-feature">
-                <img src="./integrated-driver.png" class="pf-img" alt="Drive score">
+                <img src="./images/integrated-driver.png" class="pf-img" alt="Drive score">
                 <div class="pf-label">Drive Score</div>
               </div>
               <div class="platform-feature">
-                <img src="./integrated-reporting.png" class="pf-img" alt="Fleet reports">
+                <img src="./images/integrated-reporting.png" class="pf-img" alt="Fleet reports">
                 <div class="pf-label">Fuel Reports</div>
               </div>
             </div>
@@ -466,19 +483,19 @@
         <div class="col-visual">
           <div class="footage-grid">
             <div class="footage-cell">
-              <img src="./camera-roadfacing.png" alt="Forward-facing road view">
+              <img src="./images/camera-roadfacing.png" alt="Forward-facing road view">
               <div class="footage-label">Forward View</div>
             </div>
             <div class="footage-cell">
-              <img src="./camera-dsm.png" alt="Driver fatigue monitoring">
+              <img src="./images/camera-dsm.png" alt="Driver fatigue monitoring">
               <div class="footage-label">Driver Monitoring</div>
             </div>
             <div class="footage-cell">
-              <img src="./camera-adas.png" alt="ADAS collision detection">
+              <img src="./images/camera-adas.png" alt="ADAS collision detection">
               <div class="footage-label">ADAS Alerts</div>
             </div>
             <div class="footage-cell">
-              <img src="./camera-multicam.png" alt="Multi-camera coverage">
+              <img src="./images/camera-multicam.png" alt="Multi-camera coverage">
               <div class="footage-label">Multi-Camera</div>
             </div>
           </div>
@@ -494,14 +511,14 @@
 
           <div class="camera-product-strip">
             <div class="camera-product-chip">
-              <img src="./All%20in%20One%20Hero.jpg" alt="All-In-One Camera">
+              <img src="./images/All%20in%20One%20Hero.jpg" alt="All-In-One Camera">
               <div>
                 <div class="chip-info-title">All-In-One Camera</div>
                 <div class="chip-info-rec">Best for single-cab trucks</div>
               </div>
             </div>
             <div class="camera-product-chip">
-              <img src="./MDVR.png" alt="MDVR Multi-Camera System">
+              <img src="./images/MDVR.png" alt="MDVR Multi-Camera System">
               <div>
                 <div class="chip-info-title">MDVR System</div>
                 <div class="chip-info-rec">Best for full truck coverage</div>
@@ -510,6 +527,37 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PROBLEMS WE SOLVE -->
+  <section class="section-problems">
+    <div class="problems-inner">
+      <div class="problems-header">
+        <span class="eyebrow dark">Common Situations</span>
+        <h2 class="section-title">Problems transportation fleets<br>deal with every week.</h2>
+      </div>
+      <div class="problems-grid">
+        <div class="problem-card">
+          <div class="problem-label">Client Communication</div>
+          <div class="problem-title">A client calls for an ETA and you have no answer ready.</div>
+          <div class="problem-divider"></div>
+          <div class="problem-solution">The live map shows every truck's location in real time. Answer ETA questions in 10 seconds from any phone or computer. No more "let me call the driver back."</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-label">Route Compliance</div>
+          <div class="problem-title">A driver went off the planned route and you found out from a client.</div>
+          <div class="problem-divider"></div>
+          <div class="problem-solution">Trip replay shows every stop and every deviation, timestamped. Review the full route in minutes. Set geofence alerts for unauthorized stops or detours.</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-label">Incident Documentation</div>
+          <div class="problem-title">A driver reports a minor collision. There is no video to back up their account.</div>
+          <div class="problem-divider"></div>
+          <div class="problem-solution">AccuGPS fleet cameras record continuous forward and in-cab footage. When an incident happens, the video is in the platform immediately. No request, no wait.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -657,6 +705,8 @@
       opacity: 0, scale: 0.96, duration: 0.5, stagger: 0.1, ease: 'power2.out'
     });
   </script>
+
+  <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq1a387f53f4bca6be8a637b0652a97cc390d29b88b5c2d09b5215abd0eb0c1b43" defer></script>
 
 </body>
 </html>
