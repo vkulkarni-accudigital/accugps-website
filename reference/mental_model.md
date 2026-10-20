@@ -157,7 +157,7 @@
 | 4 | accugps_camera-aio.html | Not started | Hero image: All in one side view.jpg |
 | 5 | accugps_camera-mdvr.html | Not started | |
 | 6 | accugps_industries.html | Not started | |
-| 7 | accugps_pricing.html | Codex building | DO NOT duplicate — coordinate with Codex |
+| 7 | accugps_pricing.html | Removed 2026-10-15 (owner decision; build a new page if needed) | |
 | 8 | accugps_contact.html | Not started | |
 | 9 | accugps_about.html | Not started | |
 
