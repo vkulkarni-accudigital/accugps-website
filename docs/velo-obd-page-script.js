@@ -15,6 +15,7 @@
  * WHAT THIS DOES:
  * - Receives postMessage events from the GitHub Pages iframe (accugps_obd_tracker.html)
  * - On "addToCart": adds the OBD II tracker to the Wix cart and shows the mini-cart
+ * - On "scrollTo": scrolls the Wix page to match a section clicked in the iframe
  * - On "setHeight": resizes the HTML Component to match the page content height
  *
  * VERIFIED WORKING (2026-11-11):
@@ -41,6 +42,15 @@ $w.onReady(function () {
         cart.showMiniCart();
       } catch (err) {
         console.error('Add to cart failed:', err);
+      }
+    }
+
+    if (data.action === 'scrollTo') {
+      try {
+        const iframePos = $w('#html1').getPosition();
+        window.scrollTo({ top: iframePos.y + data.top, behavior: 'smooth' });
+      } catch (err) {
+        console.error('scrollTo failed:', err);
       }
     }
 
