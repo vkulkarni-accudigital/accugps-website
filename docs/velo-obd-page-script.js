@@ -16,9 +16,17 @@
  * - Receives postMessage events from the GitHub Pages iframe (accugps_obd_tracker.html)
  * - On "addToCart": adds the OBD II tracker to the Wix cart and shows the mini-cart
  * - On "setHeight": resizes the HTML Component to match the page content height
+ *
+ * VERIFIED WORKING (2026-11-11):
+ * - import { cart } from 'wix-stores-frontend' gives a cart object with:
+ *   applyCoupon, removeCoupon, updateLineItemQuantity, addProducts,
+ *   showMiniCart, hideMiniCart, getCurrentCart, onChange, removeProduct, reload
+ * - The correct method is cart.addProducts([{ productId, quantity }])
+ * - DO NOT use cart.addToCart() — it does not exist on this export
+ * - DO NOT use the default import — wixStoreFrontend.addToCart() also does not exist
  */
 
-import { currentCart } from 'wix-ecom';
+import { cart } from 'wix-stores-frontend';
 
 const OBD_PRODUCT_ID = 'd473bb1f-ab95-0657-082f-f0226f7b3fe5';
 
@@ -28,45 +36,16 @@ $w.onReady(function () {
 
     if (data.action === 'addToCart') {
       try {
-        await currentCart.addToCurrentCart({
-          lineItems: [{
-            catalogReference: {
-              catalogItemId: OBD_PRODUCT_ID,
-              appId: '1380b703-ce81-ff05-f115-39571d94dfcd' // Wix Stores app ID
-            },
-            quantity: data.quantity || 1
-          }]
-        });
-        // Open the mini-cart so the user sees the item was added
-        $w('#cartIcon1').openSideCart();
+        await cart.addProducts([{ productId: OBD_PRODUCT_ID, quantity: data.quantity || 1 }]);
+        console.log('Added to cart successfully');
+        cart.showMiniCart();
       } catch (err) {
         console.error('Add to cart failed:', err);
       }
     }
 
     if (data.action === 'setHeight') {
-      $w('#html1').style.height = data.height + 'px';
+      $w('#html1').height = data.height;
     }
   });
 });
-
-/*
- * TROUBLESHOOTING NOTES:
- *
- * If addToCurrentCart is not recognised:
- *   Try the older API instead:
- *     import wixStores from 'wix-stores';
- *     wixStores.cart.addToCart(OBD_PRODUCT_ID, data.quantity || 1, {});
- *
- * If $w('#cartIcon1').openSideCart() errors:
- *   The cart icon element ID may be different on this page.
- *   Click the cart icon widget in the Editor, check its element ID in the Properties panel,
- *   and update the ID here.
- *
- * If the HTML Component height is not updating:
- *   The HTML component element ID must match '#html1' exactly.
- *   Update the ID in the Editor's Properties panel or change it in this script.
- *
- * The Wix Stores app ID (1380b703-ce81-ff05-f115-39571d94dfcd) is the standard
- * appId for Wix Stores catalog items. This should not need to change.
- */
