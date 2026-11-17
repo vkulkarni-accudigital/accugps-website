@@ -51,7 +51,7 @@
  document.querySelectorAll('a[href^="https://www.accugps.com"]').forEach(link=>link.addEventListener('click',event=>{if(event.button===0&&!event.metaKey&&!event.ctrlKey&&!event.shiftKey&&!event.altKey){try{window.top.location.href=link.href;event.preventDefault()}catch(error){/* target=_top remains the navigation fallback */}}}));
  var ctaBuy=document.getElementById('cta-buy');
  var PLAN_IDS={annual:'d473bb1f-ab95-0657-082f-f0226f7b3fe5',monthly:'fa74a64c-672b-487b-bf4e-1a8fc90b9730'};
- var RENEWAL_URLS={annual:'https://www.accugps.com/plans-pricing/accugps-obd-ii-tracker-annual-software-renewal/payment',monthly:'https://www.accugps.com/plans-pricing/accugps-obd-ii-tracker-monthly-software-renewal/payment'};
+ var RENEWAL_URLS={annual:'https://www.accugps.com/pricing-plans',monthly:'https://www.accugps.com/pricing-plans'};
  var RENEWAL_LABELS={annual:'Subscribe to annual renewal — free for 365 days ↗',monthly:'Subscribe to monthly renewal — free for 365 days ↗'};
  var selectedPlan='annual';var planAnnualBtn=document.getElementById('plan-annual');var planMonthlyBtn=document.getElementById('plan-monthly');var renewalLink=document.getElementById('renewal-link');
  function selectPlan(plan){selectedPlan=plan;planAnnualBtn.classList.toggle('plan-btn--active',plan==='annual');planMonthlyBtn.classList.toggle('plan-btn--active',plan==='monthly');if(renewalLink){renewalLink.href=RENEWAL_URLS[plan];renewalLink.textContent=RENEWAL_LABELS[plan]}}
