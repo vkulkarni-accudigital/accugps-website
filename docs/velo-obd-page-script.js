@@ -29,6 +29,7 @@
 
 import { cart } from 'wix-stores-frontend';
 
+// Annual plan product ID (default). Monthly plan sends its own ID via postMessage.
 const OBD_PRODUCT_ID = 'd473bb1f-ab95-0657-082f-f0226f7b3fe5';
 
 $w.onReady(function () {
@@ -36,8 +37,9 @@ $w.onReady(function () {
     const data = event.data;
 
     if (data.action === 'addToCart') {
+      const productId = data.productId || OBD_PRODUCT_ID;
       try {
-        await cart.addProducts([{ productId: OBD_PRODUCT_ID, quantity: data.quantity || 1 }]);
+        await cart.addProducts([{ productId: productId, quantity: data.quantity || 1 }]);
         console.log('Added to cart successfully');
         cart.showMiniCart();
       } catch (err) {
