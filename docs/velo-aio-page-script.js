@@ -20,6 +20,7 @@
  */
 
 import { cart } from 'wix-stores-frontend';
+import wixLocation from 'wix-location';
 
 const AIO_CAMERA_PRODUCT_ID = '04f6bd52-a9ca-1d5e-8144-5a39b4ff74ae';
 
@@ -34,6 +35,16 @@ $w.onReady(function () {
         cart.showMiniCart();
       } catch (err) {
         console.error('Add to cart failed:', err);
+      }
+    }
+
+    if (data.action === 'buyNow') {
+      try {
+        await cart.addProducts([{ productId: AIO_CAMERA_PRODUCT_ID, quantity: data.quantity || 1 }]);
+        wixLocation.to('/checkout');
+      } catch (err) {
+        console.error('Buy now failed:', err);
+        cart.showMiniCart();
       }
     }
 

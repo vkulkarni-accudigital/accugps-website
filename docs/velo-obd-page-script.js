@@ -15,6 +15,7 @@
  * WHAT THIS DOES:
  * - Receives postMessage events from the GitHub Pages iframe (accugps_obd_tracker.html)
  * - On "addToCart": adds the OBD II tracker to the Wix cart and shows the mini-cart
+ * - On "buyNow": adds the product then redirects to /checkout
  * - On "scrollTo": scrolls the Wix page to match a section clicked in the iframe
  * - On "setHeight": resizes the HTML Component to match the page content height
  *
@@ -28,6 +29,7 @@
  */
 
 import { cart } from 'wix-stores-frontend';
+import wixLocation from 'wix-location';
 
 // Annual plan product ID (default). Monthly plan sends its own ID via postMessage.
 const OBD_PRODUCT_ID = 'd473bb1f-ab95-0657-082f-f0226f7b3fe5';
@@ -44,6 +46,17 @@ $w.onReady(function () {
         cart.showMiniCart();
       } catch (err) {
         console.error('Add to cart failed:', err);
+      }
+    }
+
+    if (data.action === 'buyNow') {
+      const productId = data.productId || OBD_PRODUCT_ID;
+      try {
+        await cart.addProducts([{ productId: productId, quantity: data.quantity || 1 }]);
+        wixLocation.to('/checkout');
+      } catch (err) {
+        console.error('Buy now failed:', err);
+        cart.showMiniCart();
       }
     }
 
