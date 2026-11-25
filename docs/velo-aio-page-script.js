@@ -21,6 +21,7 @@
 
 import { cart } from 'wix-stores-frontend';
 import wixLocation from 'wix-location';
+import wixWindow from 'wix-window';
 
 const AIO_CAMERA_PRODUCT_ID = '04f6bd52-a9ca-1d5e-8144-5a39b4ff74ae';
 
@@ -32,11 +33,7 @@ $w.onReady(function () {
       try {
         await cart.addProducts([{ productId: AIO_CAMERA_PRODUCT_ID, quantity: data.quantity || 1 }]);
         console.log('Added to cart successfully');
-        // GTM add_to_cart event (GTM-M2RPMW8J, matches Wix native add_to_cart dataLayer schema)
-        try {
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({ event: 'add_to_cart', ecommerce: { value: 220, currency: 'USD' } });
-        } catch (gtmErr) { console.warn('GTM push failed:', gtmErr); }
+        wixWindow.trackEvent('AddToCart', { id: AIO_CAMERA_PRODUCT_ID, name: 'AccuGPS All-In-One Camera', price: '220', currency: 'USD', quantity: data.quantity || 1 });
         cart.showMiniCart();
       } catch (err) {
         console.error('Add to cart failed:', err);
@@ -55,8 +52,7 @@ $w.onReady(function () {
 
     if (data.action === 'scrollTo') {
       try {
-        const iframePos = $w('#html1').getPosition();
-        window.scrollTo({ top: iframePos.y + data.top, behavior: 'smooth' });
+        wixWindow.scrollTo(0, data.top);
       } catch (err) {
         console.error('scrollTo failed:', err);
       }
