@@ -32,6 +32,11 @@ $w.onReady(function () {
       try {
         await cart.addProducts([{ productId: AIO_CAMERA_PRODUCT_ID, quantity: data.quantity || 1 }]);
         console.log('Added to cart successfully');
+        // GTM add_to_cart event (GTM-M2RPMW8J, matches Wix native add_to_cart dataLayer schema)
+        try {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'add_to_cart', ecommerce: { value: 220, currency: 'USD' } });
+        } catch (gtmErr) { console.warn('GTM push failed:', gtmErr); }
         cart.showMiniCart();
       } catch (err) {
         console.error('Add to cart failed:', err);
