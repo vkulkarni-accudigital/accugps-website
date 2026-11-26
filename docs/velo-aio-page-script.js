@@ -20,10 +20,11 @@
  */
 
 import { cart } from 'wix-stores-frontend';
-import wixLocation from 'wix-location';
+import { customPurchaseFlow } from 'wix-pricing-plans-frontend';
 import wixWindow from 'wix-window';
 
 const AIO_CAMERA_PRODUCT_ID = '04f6bd52-a9ca-1d5e-8144-5a39b4ff74ae';
+const AIO_CAMERA_PLAN_ID = '743ebe94-2ce8-422a-a8a5-25cde638540f';
 
 $w.onReady(function () {
   $w('#html1').onMessage(async (event) => {
@@ -42,11 +43,9 @@ $w.onReady(function () {
 
     if (data.action === 'buyNow') {
       try {
-        await cart.addProducts([{ productId: AIO_CAMERA_PRODUCT_ID, quantity: data.quantity || 1 }]);
-        wixLocation.to('/checkout');
+        await customPurchaseFlow.navigateToCheckout({ planId: AIO_CAMERA_PLAN_ID });
       } catch (err) {
         console.error('Buy now failed:', err);
-        cart.showMiniCart();
       }
     }
 

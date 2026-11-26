@@ -68,7 +68,7 @@
  var ctaBuy=document.getElementById('cta-buy');
  var ctaBuyNow=document.getElementById('cta-buy-now');
  if(ctaBuy){ctaBuy.addEventListener('click',function(){if(window.parent!==window){window.parent.postMessage({action:'addToCart',quantity:qty},'*')}else{window.top.location.href='https://www.accugps.com/product-page/accugps-all-in-one-camera'}})}
- if(ctaBuyNow){ctaBuyNow.addEventListener('click',function(){window.top.location.href='https://www.accugps.com/pricing-plans'})}
+ if(ctaBuyNow){ctaBuyNow.addEventListener('click',function(){if(window.parent!==window){window.parent.postMessage({action:'buyNow',quantity:qty},'*')}else{window.top.location.href='https://www.accugps.com/pricing-plans'}})}
  function reportHeight(){if(window.parent!==window){window.parent.postMessage({action:'setHeight',height:document.documentElement.scrollHeight},'*')}}
  window.addEventListener('load',reportHeight);
  new ResizeObserver(reportHeight).observe(document.documentElement);
