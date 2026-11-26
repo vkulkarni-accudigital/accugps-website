@@ -74,9 +74,8 @@
  document.getElementById('qty-plus').addEventListener('click',function(){qty++;qtyDisplay.textContent=qty});
  var ctaBuy=document.getElementById('cta-buy');
  var ctaBuyNow=document.getElementById('cta-buy-now');
- var isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
- if(ctaBuy){ctaBuy.addEventListener('click',function(){if(window.parent!==window){if(isMobile){window.top.location.href='https://www.accugps.com/product-page/accugps-all-in-one-camera'}else{window.parent.postMessage({action:'addToCart',quantity:qty},'*')}}else{window.top.location.href='https://www.accugps.com/product-page/accugps-all-in-one-camera'}})}
- if(ctaBuyNow){ctaBuyNow.addEventListener('click',function(){if(window.parent!==window){if(isMobile){window.top.location.href='https://www.accugps.com/product-page/accugps-all-in-one-camera'}else{window.parent.postMessage({action:'buyNow',quantity:qty},'*')}}else{window.top.location.href='https://www.accugps.com/pricing-plans'}})}
+ if(ctaBuy){ctaBuy.addEventListener('click',function(){if(window.parent!==window){window.parent.postMessage({action:'addToCart',quantity:qty},'*')}else{window.top.location.href='https://www.accugps.com/product-page/accugps-all-in-one-camera'}})}
+ if(ctaBuyNow){ctaBuyNow.addEventListener('click',function(){if(window.parent!==window){window.parent.postMessage({action:'buyNow',quantity:qty},'*')}else{window.top.location.href='https://www.accugps.com/pricing-plans'}})}
  function reportHeight(){if(window.parent!==window){window.parent.postMessage({action:'setHeight',height:document.documentElement.scrollHeight},'*')}}
  window.addEventListener('load',reportHeight);
  new ResizeObserver(reportHeight).observe(document.documentElement);

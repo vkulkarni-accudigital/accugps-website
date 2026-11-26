@@ -22,6 +22,7 @@
 import { cart } from 'wix-stores-frontend';
 import { customPurchaseFlow } from 'wix-pricing-plans-frontend';
 import wixWindow from 'wix-window';
+import wixLocation from 'wix-location';
 
 const AIO_CAMERA_PRODUCT_ID = '04f6bd52-a9ca-1d5e-8144-5a39b4ff74ae';
 const AIO_CAMERA_PLAN_ID = '743ebe94-2ce8-422a-a8a5-25cde638540f';
@@ -35,7 +36,11 @@ $w.onReady(function () {
         await cart.addProducts([{ productId: AIO_CAMERA_PRODUCT_ID, quantity: data.quantity || 1 }]);
         console.log('Added to cart successfully');
         wixWindow.trackEvent('AddToCart', { id: AIO_CAMERA_PRODUCT_ID, name: 'AccuGPS All-In-One Camera', price: '187', currency: 'USD', quantity: data.quantity || 1 });
-        cart.showMiniCart();
+        if (wixWindow.formFactor === 'Mobile') {
+          wixLocation.to('/cart');
+        } else {
+          cart.showMiniCart();
+        }
       } catch (err) {
         console.error('Add to cart failed:', err);
       }
@@ -46,6 +51,9 @@ $w.onReady(function () {
         await customPurchaseFlow.navigateToCheckout({ planId: AIO_CAMERA_PLAN_ID });
       } catch (err) {
         console.error('Buy now failed:', err);
+        if (wixWindow.formFactor === 'Mobile') {
+          wixLocation.to('/cart');
+        }
       }
     }
 
