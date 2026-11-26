@@ -34,7 +34,7 @@ $w.onReady(function () {
       try {
         await cart.addProducts([{ productId: AIO_CAMERA_PRODUCT_ID, quantity: data.quantity || 1 }]);
         console.log('Added to cart successfully');
-        wixWindow.trackEvent('AddToCart', { id: AIO_CAMERA_PRODUCT_ID, name: 'AccuGPS All-In-One Camera', price: '220', currency: 'USD', quantity: data.quantity || 1 });
+        wixWindow.trackEvent('AddToCart', { id: AIO_CAMERA_PRODUCT_ID, name: 'AccuGPS All-In-One Camera', price: '187', currency: 'USD', quantity: data.quantity || 1 });
         cart.showMiniCart();
       } catch (err) {
         console.error('Add to cart failed:', err);
